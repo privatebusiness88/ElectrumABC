@@ -87,7 +87,7 @@ class MainNet(AbstractNet):
 
 class TestNet(AbstractNet):
     TESTNET = True
-    asert_daa = ASERTDaa(is_testnet=True)
+    asert_daa = ASERTDaa()
     WIF_PREFIX = 0xef
     ADDRTYPE_P2PKH = 111
     ADDRTYPE_P2PKH_BITPAY = 111  # Unsure
@@ -144,7 +144,7 @@ class ScaleNet(TestNet):
     GENESIS = "00000000e6453dc2dfe1ffa19023f86002eb11dbb8e87d0291a4599f0430be52"
     TITLE = 'Electron Cash Scalenet'
 
-    asert_daa = ASERTDaa(is_testnet=False)  # Despite being a "testnet", ScaleNet uses 2d half-life
+    asert_daa = ASERTDaa()
 
     HEADERS_URL = "http://bitcoincash.com/files/scalenet_headers"  # Unused
 

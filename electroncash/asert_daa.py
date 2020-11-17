@@ -63,7 +63,7 @@ class ASERTDaa:
     MTP_ACTIVATION_TIME = _get_asert_activation_mtp()  # Normally Nov. 15th, 2020 UTC 12:00:00
 
     IDEAL_BLOCK_TIME = 10 * 60  # 10 mins
-    HALF_LIFE = 2 * 24 * 3600  # for mainnet, testnet has 3600 (1 hour) half-life
+    HALF_LIFE = 2 * 24 * 3600
     # Integer implementation uses these for fixed point math
     RBITS = 16  # number of bits after the radix for fixed-point math
     RADIX = 1 << RBITS
