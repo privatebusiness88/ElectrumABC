@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 # python setup.py sdist --format=zip,gztar
 
@@ -38,10 +39,10 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     if not opts.is_user:
         # Not neccarily a per-user installation try system directories
         if os.access(opts.root_path + system_share, os.W_OK):
-            # Global /usr/share is writable for us – so just use that
+            # Global /usr/share is writable for us so just use that
             share_dir = system_share
         elif not os.path.exists(opts.root_path + system_share) and os.access(opts.root_path, os.W_OK):
-            # Global /usr/share does not exist, but / is writable – keep using the global directory
+            # Global /usr/share does not exist, but / is writable keep using the global directory
             # (happens during packaging)
             share_dir = system_share
         else:
