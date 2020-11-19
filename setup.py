@@ -12,6 +12,7 @@ import imp
 import argparse
 
 from electroncash.constants import PROJECT_NAME, REPOSITORY_URL, SCRIPT_NAME
+from electroncash.version import PACKAGE_VERSION
 
 with open('README.rst', "r", encoding="utf-8") as f:
     long_description = f.read()
@@ -22,7 +23,6 @@ with open('contrib/requirements/requirements.txt') as f:
 with open('contrib/requirements/requirements-hw.txt') as f:
     requirements_hw = f.read().splitlines()
 
-version = imp.load_source('version', 'electroncash/version.py')
 
 if sys.version_info[:3] < (3, 6):
     sys.exit(f"Error: {PROJECT} requires Python version >= 3.6...")
@@ -146,7 +146,7 @@ setup(
         'sdist': MakeAllBeforeSdist,
     },
     name=os.environ.get('EC_PACKAGE_NAME') or PROJECT_NAME.replace(" ", ""),
-    version=os.environ.get('EC_PACKAGE_VERSION') or version.PACKAGE_VERSION,
+    version=os.environ.get('EC_PACKAGE_VERSION') or PACKAGE_VERSION,
     install_requires=requirements,
     extras_require={
         'hardware': requirements_hw,

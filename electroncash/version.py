@@ -1,22 +1,26 @@
-PACKAGE_VERSION  = '4.2.0'   # version of the client package
+
+import re
+
+PACKAGE_VERSION = '4.3.0a0'   # version of the client package
 PROTOCOL_VERSION = '1.4'     # protocol version requested
 
 # The hash of the Electrum mnemonic seed must begin with this
-SEED_PREFIX      = '01'      # Standard wallet, Electrum seed
+SEED_PREFIX = '01'      # Standard wallet, Electrum seed
 
 
 def seed_prefix(seed_type):
     assert seed_type in ('standard', 'electrum')
     return SEED_PREFIX
 
-import re
 
 _RX_NORMALIZER = re.compile(r'(\.0+)*$')
 _RX_VARIANT_TOKEN_PARSE = re.compile(r'^(\d+)(.+)$')
 
+
 def normalize_version(v):
     """Used for PROTOCOL_VERSION normalization, e.g '1.4.0' -> (1,4) """
     return tuple(int(x) for x in _RX_NORMALIZER.sub('', v.strip()).split("."))
+
 
 def parse_package_version(pvstr):
     """ Basically returns a tuple of the normalized version plus the 'variant'
