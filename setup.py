@@ -11,6 +11,11 @@ import platform
 import imp
 import argparse
 
+from electroncash.constants import PROJECT_NAME, REPOSITORY_URL, SCRIPT_NAME
+
+with open('README.rst', "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 with open('contrib/requirements/requirements.txt') as f:
     requirements = f.read().splitlines()
 
@@ -20,7 +25,7 @@ with open('contrib/requirements/requirements-hw.txt') as f:
 version = imp.load_source('version', 'electroncash/version.py')
 
 if sys.version_info[:3] < (3, 6):
-    sys.exit("Error: Electrum BCHA requires Python version >= 3.6...")
+    sys.exit(f"Error: {PROJECT} requires Python version >= 3.6...")
 
 data_files = []
 
@@ -140,7 +145,7 @@ setup(
     cmdclass={
         'sdist': MakeAllBeforeSdist,
     },
-    name=os.environ.get('EC_PACKAGE_NAME') or "ElectrumBCHA",
+    name=os.environ.get('EC_PACKAGE_NAME') or PROJECT_NAME.replace(" ", ""),
     version=os.environ.get('EC_PACKAGE_VERSION') or version.PACKAGE_VERSION,
     install_requires=requirements,
     extras_require={
@@ -199,12 +204,12 @@ setup(
         # On Darwin we don't use that font, so we don't add it to save space.
         **platform_package_data
     },
-    scripts=['electrum-bcha'],
+    scripts=[SCRIPT_NAME],
     data_files=data_files,
     description="Lightweight BCHA Wallet",
-    author="The Electrum BCHA Developers",
+    author=f"The {PROJECT_NAME} Developers",
     # author_email=
     license="MIT Licence",
-    # url= TODO,
-    long_description="""Lightweight BCHA Wallet"""
+    url=REPOSITORY_URL,
+    long_description=long_description
 )
