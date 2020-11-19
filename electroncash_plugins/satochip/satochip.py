@@ -8,6 +8,7 @@ import logging
 from electroncash import bitcoin
 from electroncash import networks
 from electroncash.bitcoin import TYPE_ADDRESS, int_to_hex, var_int
+from electroncash.constants import PROJECT_NAME
 from electroncash.i18n import _
 from electroncash.plugins import BasePlugin, Device
 from electroncash.keystore import Hardware_KeyStore
@@ -88,7 +89,7 @@ class SatochipClient(PrintError):
             logger.setLevel(logging.DEBUG)
         else:
             logger.setLevel(logging.INFO)
-        
+
     def __repr__(self):
         return '<SatochipClient TODO>'
 
@@ -131,11 +132,11 @@ class SatochipClient(PrintError):
                 self.cc.parser.authentikey_from_storage= ECPubkey(bytes.fromhex(hex_authentikey))
         except Exception as e: #attributeError?
             self.print_error("get_xpub(): exception when getting authentikey from self.handler.win.wallet.storage:", str(e))#debugSatochip
-        
+
         try:
             # needs PIN
             self.cc.card_verify_PIN()
-            
+
             # bip32_path is of the form 44'/0'/1'
             self.print_error("[get_xpub(): bip32_path = ", bip32_path)#debugSatochip
             (depth, bytepath)= bip32path2bytes(bip32_path)
@@ -157,11 +158,11 @@ class SatochipClient(PrintError):
                                  # chaincode=childchaincode,
                                  # depth=depth,
                                  # fingerprint=fingerprint,
-                                 # child_number=child_number).to_xpub() 
+                                 # child_number=child_number).to_xpub()
         except Exception as e:
             self.print_error(repr(e))
             return None
-            
+
     def ping_check(self):
         #check connection is working
         try:
@@ -173,21 +174,21 @@ class SatochipClient(PrintError):
 
     def request(self, request_type, *args):
         self.print_error('client request: '+ str(request_type))
-        
+
         if self.handler is not None:
             if (request_type=='update_status'):
-                reply = self.handler.update_status(*args) 
-                return reply 
+                reply = self.handler.update_status(*args)
+                return reply
             elif (request_type=='show_error'):
-                reply = self.handler.show_error(*args) 
-                return reply 
+                reply = self.handler.show_error(*args)
+                return reply
             elif (request_type=='show_message'):
-                reply = self.handler.show_message(*args) 
-                return reply 
+                reply = self.handler.show_message(*args)
+                return reply
             else:
-                reply = self.handler.show_error('Unknown request: '+str(request_type)) 
-                return reply 
-        else: 
+                reply = self.handler.show_error('Unknown request: '+str(request_type))
+                return reply
+        else:
             self.print_error("self.handler is None! ")
             return None
         # try:
@@ -195,7 +196,7 @@ class SatochipClient(PrintError):
             # print('Type of method_to_call: '+ str(type(method_to_call)))
             # print('method_to_call: '+ str(method_to_call))
             # reply = method_to_call(*args)
-            # return reply 
+            # return reply
         # except Exception as e:
             # _logger.exception(f"Exception: {str(e)}")
             # raise RuntimeError("GUI exception")
@@ -214,22 +215,22 @@ class SatochipClient(PrintError):
             else:
                 password = password.encode('utf8')
                 return True, password
-                
+
     def PIN_setup_dialog(self, msg, msg_confirm, msg_error):
         while(True):
             (is_PIN, pin)= self.PIN_dialog(msg)
             if not is_PIN:
-                #return (False, None) 
+                #return (False, None)
                 raise RuntimeError(('A PIN code is required to initialize the Satochip!'))
             (is_PIN, pin_confirm)= self.PIN_dialog(msg_confirm)
             if not is_PIN:
-                #return (False, None) 
+                #return (False, None)
                 raise RuntimeError(('A PIN confirmation is required to initialize the Satochip!'))
             if (pin != pin_confirm):
                 self.request('show_error', msg_error)
             else:
                 return (is_PIN, pin)
-     
+
     def PIN_change_dialog(self, msg_oldpin, msg_newpin, msg_confirm, msg_error, msg_cancel):
         #old pin
         (is_PIN, oldpin)= self.PIN_dialog(msg_oldpin)
@@ -343,13 +344,13 @@ class Satochip_KeyStore(Hardware_KeyStore):
             # if (sw1!=0x90 or sw2!=0x00):
                 # _logger.info("[satochip] SatochipPlugin: error during sign_message(): sw12="+hex(sw1)+" "+hex(sw2))#debugSatochip
                 # compsig=b''
-                # self.handler.show_error(_("Wrong signature!\nThe 2FA device may have rejected the action.")) 
+                # self.handler.show_error(_("Wrong signature!\nThe 2FA device may have rejected the action."))
             # else:
                 # compsig=client.parser.parse_message_signature(response2, message_byte, pubkey)
             (response2, sw1, sw2, compsig) = client.cc.card_sign_message(keynbr, pubkey, message_byte, hmac)
             if (compsig==b''):
-                self.handler.show_error(_("Wrong signature!\nThe 2FA device may have rejected the action.")) 
-            
+                self.handler.show_error(_("Wrong signature!\nThe 2FA device may have rejected the action."))
+
         except Exception as e:
             self.give_error(e, True)
         finally:
@@ -411,7 +412,7 @@ class Satochip_KeyStore(Hardware_KeyStore):
                     tx_hash_hex= bytearray(tx_hash).hex()
                     if pre_hash_hex!= tx_hash_hex:
                         raise RuntimeError(f"[Satochip_KeyStore] Tx preimage mismatch: {pre_hash_hex} vs {tx_hash_hex}")
-                    
+
 
                     # sign tx
                     keynbr= 0xFF #for extended key
@@ -563,21 +564,27 @@ class SatochipPlugin(HW_PluginBase):
         # check setup
         while(True):
             (response, sw1, sw2, d) = client.cc.card_get_status()
-            
+
             # check version
             if  (client.cc.setup_done):
-                v_supported= SATOCHIP_PROTOCOL_VERSION 
+                v_supported= SATOCHIP_PROTOCOL_VERSION
                 v_applet= d["protocol_version"]
                 self.print_error(f"[SatochipPlugin] setup_device(): Satochip version={hex(v_applet)} Electrum supported version= {hex(v_supported)}")#debugSatochip
                 if (v_supported<v_applet):
-                    msg=(_('The version of your Satochip is higher than supported by Electron Cash. You should update Electron Cash to ensure correct functioning!')+ '\n'
-                                + f'    Satochip version: {d["protocol_major_version"]}.{d["protocol_minor_version"]}' + '\n'
-                                + f'    Supported version: {SATOCHIP_PROTOCOL_MAJOR_VERSION}.{SATOCHIP_PROTOCOL_MINOR_VERSION}')
+                    msg = (_(f'The version of your Satochip is higher than '
+                             f'supported by {PROJECT_NAME}. You should update'
+                             f' {PROJECT_NAME} to ensure correct functioning!')
+                           + '\n'
+                           + f'    Satochip version: '
+                             f'{d["protocol_major_version"]}.{d["protocol_minor_version"]}'
+                           + '\n'
+                           + f'    Supported version: '
+                             f'{SATOCHIP_PROTOCOL_MAJOR_VERSION}.{SATOCHIP_PROTOCOL_MINOR_VERSION}')
                     client.handler.show_error(msg)
-                
+
                 if (client.cc.needs_secure_channel):
                     client.cc.card_initiate_secure_channel()
-                
+
                 break
 
             # setup device (done only once)
@@ -595,7 +602,7 @@ class SatochipPlugin(HW_PluginBase):
                     # (is_PIN, pin_confirm, pin_confirm)= client.PIN_dialog(msg)
                     # if (pin_0 != pin_confirm):
                         # msg= _("The PIN values do not match! Please type PIN again!")
-                        # client.handler.show_error(msg) 
+                        # client.handler.show_error(msg)
                     # else:
                         # break
                 pin_0= list(pin_0)

@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QGridLayout, QInputDialog, QPushButton
 from PyQt5.QtWidgets import QVBoxLayout, QLabel
 
 from electroncash_gui.qt.util import *
+from electroncash.constants import PROJECT_NAME
 from electroncash.i18n import _
 from electroncash.plugins import hook, DeviceMgr
 from electroncash.util import PrintError, UserCancelled, bh2u
@@ -23,8 +24,8 @@ PASSPHRASE_HELP_SHORT =_(
     "Passphrases allow you to access new wallets, each "
     "hidden behind a particular case-sensitive passphrase.")
 PASSPHRASE_HELP = PASSPHRASE_HELP_SHORT + "  " + _(
-    "You need to create a separate Electron Cash wallet for each passphrase "
-    "you use as they each generate different addresses. Changing "
+    f"You need to create a separate {PROJECT_NAME} wallet for each passphrase"
+    " you use as they each generate different addresses. Changing "
     "your passphrase does not lose other wallets, each is still "
     "accessible behind its own passphrase.")
 RECOMMEND_PIN = _(
@@ -417,13 +418,13 @@ class SettingsDialog(WindowModalDialog):
             currently_enabled = self.features.passphrase_protection
             if currently_enabled:
                 msg = _("After disabling passphrases, you can only pair this "
-                        "Electron Cash wallet if it had an empty passphrase. "
+                        f"{PROJECT_NAME} wallet if it had an empty passphrase. "
                         "If its passphrase was not empty, you will need to "
                         "create a new wallet with the install wizard. You "
                         "can use this wallet again at any time by re-enabling "
                         "passphrases and entering its passphrase.")
             else:
-                msg = _("Your current Electron Cash wallet can only be used "
+                msg = _(f"Your current {PROJECT_NAME} wallet can only be used "
                         "with an empty passphrase. You must create a separate "
                         "wallet with the install wizard for other passphrases "
                         "as each one generates a new set of addresses.")

@@ -35,6 +35,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+from electroncash.constants import PROJECT_NAME
 from electroncash.plugins import BasePlugin, hook
 from electroncash.i18n import _
 from electroncash.util import print_error, profiler, PrintError, Weak, format_satoshis_plain, finalization_print_error
@@ -1239,9 +1240,14 @@ class SendTabExtraDisabled(QFrame, PrintError):
         l.setContentsMargins(6, 6, 6, 6)
         self.txt = "<big><b>{}</b></big> &nbsp;&nbsp; {}".format(_("CashShuffle Disabled"), _("Your shuffled and unshuffled coins can be mixed and spent together."))
 
-        self.msg = "{}\n\n{}\n\n{}".format(_("When CashShuffle is disabled, your privacy on the blockchain is reduced to traditional levels, and 'chainalysis' becomes easier (your transactions can be associated with one another)."),
-                                           _("This spending mode is the same as previous versions of Electron Cash, which did not offer CashShuffle."),
-                                           _("You may toggle CashShuffle back on at any time using the 'CashShuffle' icon in the status bar."))
+        self.msg = "{}\n\n{}\n\n{}".format(
+            _("When CashShuffle is disabled, your privacy on the blockchain"
+              " is reduced to traditional levels, and 'chainalysis' becomes "
+              "easier (your transactions can be associated with one another)."),
+            _(f"This spending mode is the same as previous versions of "
+              f"{PROJECT_NAME}, which did not offer CashShuffle."),
+            _("You may toggle CashShuffle back on at any time using the "
+              "'CashShuffle' icon in the status bar."))
         self.titleLabel = HelpLabel(self.txt, self.msg)
 
         self.titleLabel.setParent(self)
@@ -1702,7 +1708,7 @@ class SettingsDialogMixin(NetworkCheckerDelegateMixin, PrintError):
         if d.get('failed'): # Dict with only 1 key, 'failed' means connecton failed
             reason = d['failed']
             if reason == 'offline_mode':
-                reason = _("Electron Cash is in offline mode.")
+                reason = _(f"{PROJECT_NAME} is in offline mode.")
             elif reason == 'bad':
                 reason = _("Server is misconfigured")
             elif reason == 'ssl':

@@ -36,6 +36,7 @@ from typing import Optional, Tuple
 
 from electroncash.address import Address
 from electroncash.bitcoin import COINBASE_MATURITY
+from electroncash.constants import PROJECT_NAME
 from electroncash.plugins import BasePlugin, hook, daemon_command
 from electroncash.i18n import _, ngettext, pgettext
 from electroncash.util import profiler, PrintError, InvalidPassword
@@ -551,7 +552,9 @@ class FusionPlugin(BasePlugin):
                 # After 60 seconds it gives up and then will unreserve addresses,
                 # and currently-waiting fusions would then grab those addresses when
                 # they begin rounds.
-                self.stop_all_fusions('Lost connection to Electron Cash server', not_if_running = True)
+                self.stop_all_fusions(
+                    f'Lost connection to {PROJECT_NAME} server',
+                    not_if_running=True)
                 return
 
         # Snapshot of autofusing list; note that remove_wallet may get

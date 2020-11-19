@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QVBoxLayout)
 
+from electroncash.constants import PROJECT_NAME
 from electroncash.plugins import hook
 from electroncash.i18n import _
 from electroncash_gui.qt import EnterButton
@@ -88,7 +89,9 @@ class Plugin(LabelsPlugin):
                 vbox.addWidget(l)
             else:
                 # Does not have network, so we won't speak of incompatibility, but instead remind user offline mode means OFFLINE! ;)
-                l = QLabel(_("You are using Electron Cash in offline mode; restart Electron Cash if you want to get connected"))
+                l = QLabel(_(f"You are using {PROJECT_NAME} in offline mode;"
+                             f" restart Electron Cash if you want to get "
+                             f"connected"))
                 l.setWordWrap(True)
                 vbox.addWidget(l)
         vbox.addSpacing(20)
