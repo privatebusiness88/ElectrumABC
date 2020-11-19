@@ -40,56 +40,28 @@ from .i18n import _
 DEFAULT_EXPLORER = "Blockchair.com"
 
 mainnet_block_explorers = {
-    'Bitcoin.com': ('https://explorer.bitcoin.com/bch',
-                    Address.FMT_CASHADDR,
-                    {'tx': 'tx', 'addr': 'address', 'block' : 'block'}),
-    'Blockchair.com': ('https://blockchair.com/bitcoin-cash',
+    'Blockchair.com': ('https://blockchair.com/bitcoin-abc',
                        Address.FMT_CASHADDR,
-                       {'tx': 'transaction', 'addr': 'address', 'block' : 'block'}),
-    'BTC.com': ('https://bch.btc.com',
+                       {'tx': 'transaction', 'addr': 'address',
+                        'block': 'block'}),
+    'ViaBTC.com': ('https://explorer.viawallet.com/bha',
+                   Address.FMT_CASHADDR,
+                   {'tx': 'tx', 'addr': 'address',
+                    'block': 'block'}),
+    'BitcoinABC.org': ('https://explorer.bitcoinabc.org',
                        Address.FMT_CASHADDR,
-                       {'tx': '', 'addr': '', 'block' : 'block'}),
-    'ViaBTC.com': ('https://explorer.viawallet.com/bch',
-                   Address.FMT_CASHADDR,
-                   {'tx': 'tx', 'addr': 'address', 'block' : 'block'}),
-    'BlockExplorer.one': ('https://blockexplorer.one/bch/mainnet',
-                   Address.FMT_CASHADDR,
-                   {'tx': 'tx', 'addr': 'address', 'block' : 'blockHash'}),
-    'electroncash.de': ('https://explorer.electroncash.de',
-                        Address.FMT_CASHADDR,
-                        {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
-    'Blockchain.com': ('https://www.blockchain.com/bch',
-                       Address.FMT_CASHADDR,
-                       {'tx': 'tx', 'addr': 'address', 'block': 'block'}),
-    'Bitcoin Unlimited': ('https://explorer.bitcoinunlimited.info',
-                          Address.FMT_CASHADDR,
-                          {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
-    'Loping.net': ('https://bch.loping.net',
-                   Address.FMT_CASHADDR,
-                   {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
+                       {'tx': 'tx',
+                        'addr': 'address',
+                        'block': 'block-height'}),
 }
 
-DEFAULT_EXPLORER_TESTNET = 'Bitcoin.com'
+DEFAULT_EXPLORER_TESTNET = 'BitcoinABC.org'
 
 testnet_block_explorers = {
-    'Bitcoin.com'   : ('https://explorer.bitcoin.com/tbch',
-                       Address.FMT_LEGACY,  # For some reason testnet expects legacy and fails on bchtest: addresses.
-                       {'tx': 'tx', 'addr': 'address', 'block' : 'block'}),
-    'BlockExplorer.one': ('https://blockexplorer.one/bch/testnet',
-                   Address.FMT_CASHADDR,
-                   {'tx': 'tx', 'addr': 'address', 'block' : 'blockHash'}),
-    'electroncash.de': ('https://testnet-explorer.electroncash.de',
-                        Address.FMT_CASHADDR,
-                        {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
-    'Blockchain.com': ('https://www.blockchain.com/bch-testnet',
+    'BitcoinABC.org': ('https://texplorer.bitcoinabc.org/',
                        Address.FMT_CASHADDR,
-                       {'tx': 'tx', 'addr': 'address', 'block': 'block'}),
-    'Bitcoin Unlimited': ('https://texplorer.bitcoinunlimited.info',
-                          Address.FMT_CASHADDR,
-                          {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
-    'Loping.net': ('https://tbch.loping.net',
-                   Address.FMT_CASHADDR,
-                   {'tx': 'tx', 'addr': 'address', 'block': 'block-height'}),
+                       {'tx': 'tx', 'addr': 'address',
+                        'block': 'block-height'}),
 }
 
 DEFAULT_EXPLORER_TESTNET4 = 'Loping.net'
