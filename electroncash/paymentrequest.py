@@ -623,9 +623,7 @@ class PaymentRequest_BitPay20(PaymentRequest, PrintError):
 
     # Extra headers we attach to requests we send to BitPay, so they may
     # track us as a 'partner' (we actually get a small amount of revenue this way).
-    HEADERS = { 'BP_PARTNER'         : 'ELECTRONCASH',
-                'BP_PARTNER_VERSION' : 'V' + version.PACKAGE_VERSION,
-                'User-Agent'         : 'Electron-Cash' }
+    HEADERS = {'User-Agent': f'{PROJECT_NAME}'}
 
     Details = namedtuple('BitPay20Details', 'outputs, memo, payment_url, time, expires, network, currency, required_fee_rate')
 

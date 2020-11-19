@@ -62,7 +62,7 @@ from electroncash.util import (UserCancelled, PrintError, print_error,
                                get_new_wallet_name, Handlers)
 from electroncash import version
 from electroncash.address import Address
-from electroncash.constants import PROJECT_NAME
+from electroncash.constants import PROJECT_NAME, REPOSITORY_URL
 
 from .installwizard import InstallWizard, GoBack
 
@@ -660,7 +660,9 @@ class ElectrumGui(QObject, PrintError):
             except BaseException as e:
                 traceback.print_exc(file=sys.stdout)
                 if '2fa' in str(e):
-                    self.warning(title=_('Error'), message = '2FA wallets for Bitcoin Cash are currently unsupported by <a href="https://api.trustedcoin.com/#/">TrustedCoin</a>. Follow <a href="https://github.com/Electron-Cash/Electron-Cash/issues/41#issuecomment-357468208">this guide</a> in order to recover your funds.')
+                    self.warning(
+                        title=_('Error'),
+                        message=f'2FA wallets for Bitcoin Cash are currently unsupported by <a href="https://api.trustedcoin.com/#/">TrustedCoin</a>. Follow <a href="{REPOSITORY_URL}/issues/41#issuecomment-357468208">this guide</a> in order to recover your funds.')
                 else:
                     self.warning(title=_('Error'), message = 'Cannot load wallet:\n' + str(e), icon=QMessageBox.Critical)
                 return
