@@ -49,7 +49,7 @@ from electroncash import paymentrequest
 from electroncash import util, bitcoin, commands, cashacct
 from electroncash.address import Address, ScriptOutput
 from electroncash.bitcoin import COIN, TYPE_ADDRESS, TYPE_SCRIPT
-from electroncash.constants import PROJECT_NAME
+from electroncash.constants import PROJECT_NAME, REPOSITORY_URL
 from electroncash.contacts import Contact
 from electroncash.i18n import _, ngettext, pgettext
 from electroncash.plugins import run_hook
@@ -776,7 +776,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/PiRK/ElectrumBCHA/issues\">https://github.com/PiRK/ElectrumBCHA/issues</a><br/><br/>",
+            f"<a href=\"{REPOSITORY_URL}/issues\">"
+            f"https://github.com/PiRK/ElectrumBCHA/issues</a><br/><br/>",
             _(f"Before reporting a bug, upgrade to the most recent version of "
               f"{PROJECT_NAME} (latest release or git HEAD), and include the "
               f"version number in your report."),

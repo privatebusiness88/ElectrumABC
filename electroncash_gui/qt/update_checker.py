@@ -35,7 +35,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 from electroncash import version, bitcoin, address
-from electroncash.constants import PROJECT_NAME
+from electroncash.constants import PROJECT_NAME, RELEASES_JSON_URL
 from electroncash.i18n import _
 from electroncash.networks import MainNet
 from electroncash.util import PrintError, print_error
@@ -346,7 +346,7 @@ class _Req(threading.Thread, PrintError):
     """Thread to get the list of releases from a JSON file on the github
     repository.
     """
-    url = "https://raw.github.com/PiRK/ElectrumBCHA/master/contrib/update_checker/releases.json"
+    url = RELEASES_JSON_URL
 
     def __init__(self, checker):
         super().__init__(daemon=True)
