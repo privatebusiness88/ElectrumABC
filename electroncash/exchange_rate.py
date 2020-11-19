@@ -13,6 +13,7 @@ from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
 from collections import defaultdict
 
 from .bitcoin import COIN
+from .constants import PROJECT_NAME
 from .i18n import _
 from .util import PrintError, ThreadJob, print_error, inv_base_units
 
@@ -42,14 +43,14 @@ class ExchangeBase(PrintError):
     def get_json(self, site, get_string):
         # APIs must have https
         url = ''.join(['https://', site, get_string])
-        response = requests.request('GET', url, headers={'User-Agent': 'Electron Cash'}, timeout=10)
+        response = requests.request('GET', url, headers={'User-Agent': f'{PROJECT_NAME}'}, timeout=10)
         if response.status_code != 200:
             raise RuntimeWarning("Response status: " + str(response.status_code))
         return response.json()
 
     def get_csv(self, site, get_string):
         url = ''.join(['https://', site, get_string])
-        response = requests.request('GET', url, headers={'User-Agent' : 'Electron-Cash'})
+        response = requests.request('GET', url, headers={'User-Agent': f'{PROJECT_NAME}'})
         if response.status_code != 200:
             raise RuntimeWarning("Response status: " + str(response.status_code))
         reader = csv.DictReader(response.content.decode().split('\n'))

@@ -4586,7 +4586,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 ( _("App-Global Options") , global_tx_widgets ),
                 ( _("Per-Wallet Options") , per_wallet_tx_widgets),
              ]), _('Transactions')),
-            (fiat_widgets, _('Fiat')),
+            # TODO: uncomment this and update URL in exchange_rate.py when
+            # public APIs become available
+            # (fiat_widgets, _('Fiat')),
         ]
         def add_tabs_info_to_tabs(tabs, tabs_info):
             def add_widget_pair(a,b,grid):
