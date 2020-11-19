@@ -204,6 +204,27 @@ setup(
         # On Darwin we don't use that font, so we don't add it to save space.
         **platform_package_data
     },
+    classifiers=[
+        # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
+        'Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        "Environment :: MacOS X",
+        "Environment :: Win32 (MS Windows)",
+        "Environment :: X11 Applications :: Qt",
+        "Intended Audience :: End Users/Desktop",
+        "Natural Language :: English",
+        "Operating System :: MacOS",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: POSIX",
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Topic :: Security :: Cryptography'
+        'Topic :: Office/Business :: Financial'
+    ],
     scripts=[SCRIPT_NAME],
     data_files=data_files,
     description="Lightweight BCHA Wallet",
