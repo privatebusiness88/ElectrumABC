@@ -135,6 +135,9 @@ class Plugins(DaemonThread):
             # do not load deprecated plugins
             if name in ['plot', 'exchange_rate']:
                 continue
+            # do not load plugins that rely on untrusted servers, for now
+            if name in ["labels", "cosigner_pool"]:
+                continue
             m = loader.find_module(name).load_module(name)
             d = m.__dict__
             if not self.register_plugin(name, d):
