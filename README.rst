@@ -1,12 +1,12 @@
 Electrum BCHA - Lightweight Bitcoin Cash client
-=====================================
+===============================================
 
 ::
 
   Licence: MIT Licence
   Author: Electrum BCHA Developers
   Language: Python
-  Homepage:
+  Homepage: https://github.com/PiRK/ElectrumBCHA
 
 
 Getting started
@@ -142,12 +142,12 @@ Creating Binaries
 =================
 
 Linux AppImage & Source Tarball
---------------
+-------------------------------
 
 See `contrib/build-linux/README.md <contrib/build-linux/README.md>`_.
 
 Mac OS X / macOS
---------
+----------------
 
 See `contrib/osx/ <contrib/osx/>`_.
 
@@ -162,6 +162,6 @@ Android
 See `android/ <android/>`_.
 
 iOS
--------
+---
 
 See `ios/ <ios/>`_.
