@@ -135,7 +135,7 @@ is required for either).
    This requires GNU tools and automake, install with brew:
    ``brew install coreutils automake``
    or if using MacPorts: ``sudo port install coreutils automake``
-6. At this point you should be able to just run the sources: ``./electron-cash``
+6. At this point you should be able to just run the sources: ``./electrum-bcha``
 
 
 Creating Binaries
