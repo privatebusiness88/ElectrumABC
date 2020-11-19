@@ -23,43 +23,47 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import sys, time, threading
-import os, json, traceback
-import copy
-import shutil
-import csv
-from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
 import base64
-from functools import partial
+import copy
+import csv
+import json
+import os
+import shutil
+import sys
+import threading
+import time
+import traceback
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from collections import OrderedDict
+from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
+from functools import partial
 from typing import List
 
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-
+import electroncash.web as web
+from electroncash import Transaction
 from electroncash import keystore, get_config
+from electroncash import networks
+from electroncash import paymentrequest
+from electroncash import util, bitcoin, commands, cashacct
 from electroncash.address import Address, ScriptOutput
 from electroncash.bitcoin import COIN, TYPE_ADDRESS, TYPE_SCRIPT
-from electroncash import networks
-from electroncash.plugins import run_hook
+from electroncash.constants import PROJECT_NAME
+from electroncash.contacts import Contact
 from electroncash.i18n import _, ngettext, pgettext
+from electroncash.plugins import run_hook
+from electroncash.transaction import OPReturn
 from electroncash.util import (format_time, format_satoshis, PrintError,
                                format_satoshis_plain, NotEnoughFunds,
                                ExcessiveFee, UserCancelled, InvalidPassword,
                                bh2u, bfh, format_fee_satoshis, Weak,
                                print_error)
-import electroncash.web as web
-from electroncash import Transaction
-from electroncash import util, bitcoin, commands, cashacct
-from electroncash import paymentrequest
-from electroncash.transaction import OPReturn
 from electroncash.wallet import Multisig_Wallet, sweep_preparations
-from electroncash.contacts import Contact
-from electroncash.constants import PROJECT_NAME
+
 try:
     from electroncash.plot import plot_history
-except:
+except ImportError:
     plot_history = None
 import electroncash.web as web
 
