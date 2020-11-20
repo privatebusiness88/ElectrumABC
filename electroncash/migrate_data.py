@@ -8,6 +8,8 @@ import os
 import shutil
 from typing import Optional
 
+from .network import DEFAULT_WHITELIST_SERVERS_ONLY, DEFAULT_AUTO_CONNECT
+from .simple_config import read_user_config, save_user_config
 from .util import get_user_dir
 
 
@@ -55,3 +57,12 @@ def migrate_data_from_ec():
         src = get_ec_user_dir()
         dest = get_user_dir()
         shutil.copytree(src, dest)
+
+        # Reset server selection policy to make sure we don't start on the
+        # wrong chain.
+        config_dict = read_user_config(dest)
+        if config_dict:
+            config_dict["whitelist_servers_only"] = DEFAULT_WHITELIST_SERVERS_ONLY
+            config_dict["auto_connect"] = DEFAULT_AUTO_CONNECT
+            config_dict["server"] = ""
+            save_user_config(config_dict, dest)

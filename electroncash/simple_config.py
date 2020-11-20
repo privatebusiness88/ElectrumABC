@@ -200,11 +200,7 @@ class SimpleConfig(PrintError):
     def save_user_config(self):
         if not self.path:
             return
-        path = os.path.join(self.path, "config")
-        s = json.dumps(self.user_config, indent=4, sort_keys=True)
-        with open(path, "w", encoding='utf-8') as f:
-            f.write(s)
-        os.chmod(path, stat.S_IREAD | stat.S_IWRITE)
+        save_user_config(self.user_config, self.path)
 
     def get_wallet_path(self):
         """Set the path of the wallet."""
@@ -354,8 +350,12 @@ class SimpleConfig(PrintError):
         return device
 
 
-def read_user_config(path):
-    """Parse and store the user config settings in electron-cash.conf into user_config[]."""
+def read_user_config(path: str) -> dict:
+    """Parse the user config settings and return it as a dictionary.
+
+    :param path: Path to user data directory containing the JSON file.
+    :return: Configuration dictionary.
+    """
     if not path:
         return {}
     config_path = os.path.join(path, "config")
@@ -365,9 +365,21 @@ def read_user_config(path):
         with open(config_path, "r", encoding='utf-8') as f:
             data = f.read()
         result = json.loads(data)
-    except:
+    except Exception:
         print_error("Warning: Cannot read config file.", config_path)
         return {}
     if not type(result) is dict:
         return {}
     return result
+
+
+def save_user_config(config: dict, path: str):
+    """Save a user config dict to a JSON file
+
+    :param config: Configuration dictionary.
+    """
+    config_path = os.path.join(path, "config")
+    s = json.dumps(config, indent=4, sort_keys=True)
+    with open(config_path, "w", encoding='utf-8') as f:
+        f.write(s)
+    os.chmod(config_path, stat.S_IREAD | stat.S_IWRITE)
