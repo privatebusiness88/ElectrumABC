@@ -1,21 +1,21 @@
-# If you want Electron Cash to appear in a linux app launcher ("start menu"),
+# If you want the program to appear in a linux app launcher ("start menu"),
 # install this file by doing:
-# sudo desktop-file-install electron-cash.desktop
+# sudo desktop-file-install electrum-bcha.desktop
 
 [Desktop Entry]
-Comment=Lightweight Bitcoin Cash Client
-Exec=electron-cash %u
-GenericName=Bitcoin Cash Wallet
+Comment=Lightweight BCHA Client
+Exec=electrum-bcha %u
+GenericName=BCHA Wallet
 Icon=electron-cash
-Name=Electron Cash
+Name=Electrum BCHA
 Categories=Finance;Network;
 StartupNotify=true
-StartupWMClass=Electron Cash
+StartupWMClass=Electrum BCHA
 Terminal=false
 Type=Application
 MimeType=x-scheme-handler/bitcoincash;x-scheme-handler/cashacct;
 Actions=Testnet;
 
 [Desktop Action Testnet]
-Exec=electron-cash --testnet %u
+Exec=electrum-bcha --testnet %u
 Name=Testnet mode
