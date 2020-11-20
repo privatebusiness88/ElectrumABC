@@ -206,7 +206,7 @@ class ElectrumGui(QObject, PrintError):
         ret = call_callables
 
         if hasattr(QGuiApplication, 'setDesktopFileName'):
-            QGuiApplication.setDesktopFileName('electrum-bcha.desktop')
+            QGuiApplication.setDesktopFileName('electrum-abc.desktop')
 
         if self.windows_qt_use_freetype:
             # Use FreeType for font rendering on Windows. This fixes rendering

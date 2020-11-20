@@ -105,7 +105,7 @@ def recv_pb(connection, pb_class, *expected_field_names, timeout=None):
 _last_net = None
 _last_genesis_hash = None
 def get_current_genesis_hash() -> bytes:
-    """Returns the genesis_hash of this Electrum BCHA install's current chain.
+    """Returns the genesis_hash of this Electrum ABC install's current chain.
     Note that it detects if the chain has changed, and otherwise caches the raw
     32-bytes value.  This is suitable for putting into the ClientHello message.
     Both server and client call this function."""

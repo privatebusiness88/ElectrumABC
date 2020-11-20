@@ -5,4 +5,4 @@ set -e
 APPDIR="$(dirname "$(readlink -e "$0")")"
 . "$APPDIR"/common.conf
 
-exec "$PYTHON" -s "${APPDIR}/usr/bin/electrum-bcha" "$@"
+exec "$PYTHON" -s "${APPDIR}/usr/bin/electrum-abc" "$@"

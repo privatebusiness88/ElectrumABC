@@ -6,8 +6,8 @@
 ;--------------------------------
 ;Variables
 
-  !define PRODUCT_NAME "Electrum BCHA"
-  !define INTERNAL_NAME "Electrum-BCHA"
+  !define PRODUCT_NAME "Electrum ABC"
+  !define INTERNAL_NAME "ElectrumABC"
   !define PRODUCT_WEB_SITE "https://github.com/PiRK/ElectrumBCHA"
   !define PRODUCT_PUBLISHER "Bitcoin ABC"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
@@ -73,7 +73,7 @@
   !define MUI_ABORTWARNING
   !define MUI_ABORTWARNING_TEXT "Are you sure you wish to abort the installation of ${PRODUCT_NAME}?"
 
-  !define MUI_ICON "\electrumbcha\icons\electron.ico"
+  !define MUI_ICON "\electrumabc\icons\electron.ico"
 
 ;--------------------------------
 ;Pages

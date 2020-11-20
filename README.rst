@@ -1,10 +1,10 @@
-Electrum BCHA - Lightweight Bitcoin Cash client
-===============================================
+Electrum ABC - Lightweight Bitcoin Cash client
+==============================================
 
 ::
 
   Licence: MIT Licence
-  Author: Electrum BCHA Developers
+  Author: Electrum ABC Developers
   Language: Python
   Homepage: https://github.com/PiRK/ElectrumBCHA
 
@@ -12,7 +12,7 @@ Electrum BCHA - Lightweight Bitcoin Cash client
 Getting started
 ===============
 
-**Note: If running from source, Python 3.6 or above is required to run Electrum BCHA.**
+**Note: If running from source, Python 3.6 or above is required to run Electrum ABC.**
 If your system lacks Python 3.6, you have other options, such as the
 `AppImage / binary releases <https://github.com/PiRK/ElectrumBCHA/releases/>`_
 or running from source using `pyenv` (see section `Running from source on old Linux`_ below).
@@ -21,33 +21,33 @@ or running from source using `pyenv` (see section `Running from source on old Li
 as that's simpler to use and has everything included.  Otherwise, if you want to run from source, see section
 `Running from source on macOS`_ below.
 
-Electrum BCHA is a pure python application forked from Electron Cash.
+Electrum ABC is a pure python application forked from Electron Cash.
 If you want to use the Qt interface, install the Qt dependencies::
 
     sudo apt-get install python3-pyqt5 python3-pyqt5.qtsvg
 
 If you downloaded the official package (tar.gz), you can run
-Electrum BCHA from its root directory, without installing it on your
+Electrum ABC from its root directory, without installing it on your
 system; all the python dependencies are included in the 'packages'
-directory. To run Electrum BCHA from its root directory, just do::
+directory. To run Electrum ABC from its root directory, just do::
 
-    ./electrum-bcha
+    ./electrum-abc
 
-You can also install Electrum BCHA on your system, by running this command::
+You can also install Electrum ABC on your system, by running this command::
 
     pip3 setup.py install
 
 This will download and install the Python dependencies used by
-Electrum BCHA, instead of using the 'packages' directory.
+Electrum ABC, instead of using the 'packages' directory.
 
 If you cloned the git repository, you need to compile extra files
-before you can run Electrum BCHA. Read the next section, "Development
+before you can run Electrum ABC. Read the next section, "Development
 Version".
 
 Hardware Wallet - Ledger Nano S
 -------------------------------
 
-Electrum BCHA natively support Ledger Nano S hardware wallet. If you plan to use
+Electrum ABC natively support Ledger Nano S hardware wallet. If you plan to use
 you need an additional dependency, namely btchip. To install it run this command::
 
     sudo pip3 install btchip-python
@@ -67,7 +67,7 @@ If you are on macOS, see the `Running from source on macOS`_ section below.
 Check out the code from Github::
 
     git clone https://github.com/PiRK/ElectrumBCHA
-    cd ElectrumBCHA
+    cd ElectrumABC
 
 Install the python dependencies::
 
@@ -98,7 +98,7 @@ Running from source on old Linux
 
 If your Linux distribution has a different version of python 3 (such as python
 3.5 in Debian 9), it is recommended to do a user dir install with
-`pyenv <https://github.com/pyenv/pyenv-installer>`_. This allows Electrum BCHA
+`pyenv <https://github.com/pyenv/pyenv-installer>`_. This allows Electrum ABC
 to run completely independently of your system configuration.
 
 1. Install `pyenv <https://github.com/pyenv/pyenv-installer>`_ in your user
@@ -107,11 +107,11 @@ to run completely independently of your system configuration.
    loaded.
 2. Run ``pyenv install 3.6.9``. This will download and compile that version of
    python, storing it under ``.pyenv`` in your home directory.
-3. ``cd`` into the Electrum BCHA directory. Run ``pyenv local 3.6.9`` which inserts
+3. ``cd`` into the Electrum ABC directory. Run ``pyenv local 3.6.9`` which inserts
    a file ``.python-version`` into the current directory.
 4. While still in this directory, run ``pip install pyqt5``.
 5. If you are installing from the source file (.tar.gz or .zip) then you are
-   ready and you may run ``./electrum-bcha``. If you are using the git version,
+   ready and you may run ``./electrum-abc``. If you are using the git version,
    then continue by following the Development version instructions above.
 
 Running from source on macOS
@@ -128,14 +128,14 @@ is required for either).
 2. Install python 3.6 or 3.7. For brew: ``brew install python3``
    or if using MacPorts: ``sudo port install python36``
 3. Install PyQt5: ``python3 -m pip install --user pyqt5``
-4. Install Electrum BCHA requirements:
+4. Install Electrum ABC requirements:
    ``python3 -m pip install --user -r contrib/requirements/requirements.txt``
 5. Compile libsecp256k1 (optional, yet highly recommended):
    ``./contrib/make_secp``.
    This requires GNU tools and automake, install with brew:
    ``brew install coreutils automake``
    or if using MacPorts: ``sudo port install coreutils automake``
-6. At this point you should be able to just run the sources: ``./electrum-bcha``
+6. At this point you should be able to just run the sources: ``./electrum-abc``
 
 
 Creating Binaries

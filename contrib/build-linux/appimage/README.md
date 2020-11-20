@@ -31,4 +31,4 @@ folder.
 ## FAQ
 
 ### How can I see what is included in the AppImage?
-Execute the binary as follows: `./ElectrumBCHA*.AppImage --appimage-extract`
+Execute the binary as follows: `./ElectrumABC*.AppImage --appimage-extract`

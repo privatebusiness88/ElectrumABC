@@ -3,7 +3,7 @@
 
 set -e
 
-venv_dir=~/.electrum-bcha-venv
+venv_dir=~/.electrum-abc-venv
 contrib=$(dirname "$0")
 
 . $contrib/base.sh || { echo "Cannot find base.sh" && exit 1; }

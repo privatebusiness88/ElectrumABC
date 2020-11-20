@@ -58,8 +58,8 @@ fi
 # in the docker image if we get desperate for OpenSSL 1.1 but still want to
 # benefit from the compatibility granted to us by using an older Ubuntu).
 DOCKER_SUFFIX=ub1604
-IMGNAME="electrumbcha-appimage-builder-img-$DOCKER_SUFFIX"
-CONTAINERNAME="electrumbcha-appimage-builder-cont-$DOCKER_SUFFIX"
+IMGNAME="electrumabc-appimage-builder-img-$DOCKER_SUFFIX"
+CONTAINERNAME="electrumabc-appimage-builder-cont-$DOCKER_SUFFIX"
 
 info "Creating docker image ..."
 $SUDO docker build -t $IMGNAME \
@@ -68,10 +68,10 @@ $SUDO docker build -t $IMGNAME \
     || fail "Failed to create docker image"
 
 # This is the place where we checkout and put the exact revision we want to work
-# on. Docker will run mapping this directory to /opt/electrumbcha
+# on. Docker will run mapping this directory to /opt/electrumabc
 FRESH_CLONE=`pwd`/contrib/build-linux/fresh_clone
 FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
-MAPPED_DIR=/opt/electrumbcha
+MAPPED_DIR=/opt/electrumabc
 
 (
     $SUDO rm -fr $FRESH_CLONE && \

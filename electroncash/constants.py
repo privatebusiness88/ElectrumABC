@@ -10,3 +10,9 @@ POSIX_DATA_DIR: str = os.path.join(os.environ["HOME"], ".electrum-abc")
 """This is where the wallets, recent server lists and some
 other things are saved.
 """
+
+PORTABLE_DATA_DIR: str = 'electrum_abc_data'
+"""This is the name of the dir where the wallets, recent server lists and some
+other things are saved when running the portable .exe file.
+This directory is saved in the local directory containing the exe.
+"""

@@ -46,9 +46,9 @@ if [ -z ${SUDO+x} ] ; then
     fi
 fi
 
-IMGNAME="electrumbcha-srcdist-builder-img"
-MAPPED_DIR=/opt/electrumbcha
-CONTAINERNAME="electrumbcha-srcdist-builder-cont"
+IMGNAME="electrumabc-srcdist-builder-img"
+MAPPED_DIR=/opt/electrumabc
+CONTAINERNAME="electrumabc-srcdist-builder-cont"
 
 info "Creating docker image ..."
 $SUDO docker build -t $IMGNAME \
@@ -56,8 +56,7 @@ $SUDO docker build -t $IMGNAME \
     || fail "Failed to create docker image"
 
 # This is the place where we checkout and put the exact revision we want to work
-# on. Docker will run mapping this directory to /opt/electrumbcha
-# which inside wine will look lik c:\electrumbcha
+# on. Docker will run mapping this directory to /opt/electrumabc
 FRESH_CLONE=`pwd`/contrib/build-linux/fresh_clone2
 FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
 

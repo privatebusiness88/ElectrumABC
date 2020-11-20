@@ -133,7 +133,7 @@ prepare_wine() {
             git checkout -b pinned "${PYINSTALLER_COMMIT}^{commit}"
             rm -fv PyInstaller/bootloader/Windows-*/run*.exe || true  # Make sure EXEs that came with repo are deleted -- we rebuild them and need to detect if build failed
             if [ ${PYI_SKIP_TAG:-0} -eq 0 ] ; then
-                echo "const char *ec_tag = \"tagged by ElectrumBCHA@$GIT_COMMIT_HASH\";" >> ./bootloader/src/pyi_main.c
+                echo "const char *ec_tag = \"tagged by ElectrumABC@$GIT_COMMIT_HASH\";" >> ./bootloader/src/pyi_main.c
             else
                 warn "Skipping PyInstaller tag"
             fi
@@ -234,14 +234,14 @@ build_the_app() {
         find -exec touch -d '2000-11-11T11:11:11+00:00' {} +
         popd  # go back to $here
 
-        cp -rv "$here"/../electrum-locale/locale $WINEPREFIX/drive_c/electrumbcha/electroncash/
+        cp -rv "$here"/../electrum-locale/locale $WINEPREFIX/drive_c/electrumabc/electroncash/
 
         # Install frozen dependencies
         info "Installing frozen dependencies ..."
         $PYTHON -m pip install --no-warn-script-location -r "$here"/../deterministic-build/requirements.txt || fail "Failed to install requirements"
         $PYTHON -m pip install --no-warn-script-location -r "$here"/../deterministic-build/requirements-hw.txt || fail "Failed to install requirements-hw"
 
-        pushd $WINEPREFIX/drive_c/electrumbcha
+        pushd $WINEPREFIX/drive_c/electrumabc
         $PYTHON setup.py install || fail "Failed setup.py install"
         popd
 
