@@ -320,8 +320,8 @@ def init_plugins(config, gui_name):
 
 
 if __name__ == '__main__':
-    # This copies the Electron Cash data dir if we dont't already
-    # have our own data directory.
+    # This copies the Electron Cash data dir if we don't already
+    # have a Electrum ABC data directory.
     migrate_data_from_ec()
 
     # The hook will only be used in the Qt GUI right now
