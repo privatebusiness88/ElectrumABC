@@ -52,7 +52,7 @@ from electroncash.plugins import run_hook
 from electroncash import WalletStorage, Wallet, Transaction
 from electroncash.address import Address
 from electroncash.util import UserCancelled, print_error, format_satoshis, format_satoshis_plain, PrintError, InvalidPassword
-from electroncash.constants import inv_base_units
+from electroncash.constants import INV_BASE_UNITS
 import electroncash.web as web
 
 class WalletFileNotFound(Exception):
@@ -896,8 +896,8 @@ class ElectrumGui(PrintError):
             return self.format_amount(fee_rate) + ' ' + self.base_unit() + '/kB'
 
     def base_unit(self):
-        if self.decimal_point in inv_base_units:
-            return inv_base_units[self.decimal_point]
+        if self.decimal_point in INV_BASE_UNITS:
+            return INV_BASE_UNITS[self.decimal_point]
         raise Exception('Unknown base unit')
 
     def get_decimal_point(self):

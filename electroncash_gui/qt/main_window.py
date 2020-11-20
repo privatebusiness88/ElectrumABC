@@ -860,8 +860,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         return self.decimal_point
 
     def base_unit(self):
-        if self.decimal_point in electroncash.constants.inv_base_units:
-            return electroncash.constants.inv_base_units[self.decimal_point]
+        if self.decimal_point in electroncash.constants.INV_BASE_UNITS:
+            return electroncash.constants.INV_BASE_UNITS[self.decimal_point]
         raise Exception('Unknown base unit')
 
     def connect_fields(self, window, btc_e, fiat_e, fee_e):
@@ -4180,7 +4180,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         # Crash reporter box at bottom of this tab
         misc_widgets.append((cr_gb, None))  # commit crash reporter gb to layout
 
-        units = tuple(electroncash.constants.base_units.keys())
+        units = tuple(electroncash.constants.BASE_UNITS.keys())
         msg = _('Base unit of your wallet.')\
               + '\n1 BCHA = 1,000 mBCHA = 1,000,000 bits.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
@@ -4194,7 +4194,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 return
             edits = self.amount_e, self.fee_e, self.receive_amount_e
             amounts = [edit.get_amount() for edit in edits]
-            dp = electroncash.constants.base_units.get(unit_result)
+            dp = electroncash.constants.BASE_UNITS.get(unit_result)
             if dp is not None:
                 self.decimal_point = dp
             else:
