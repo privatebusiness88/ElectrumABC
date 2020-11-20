@@ -1,21 +1,21 @@
 # If you want the program to appear in a linux app launcher ("start menu"),
 # install this file by doing:
-# sudo desktop-file-install electrum-bcha.desktop
+# sudo desktop-file-install electrum-abc.desktop
 
 [Desktop Entry]
 Comment=Lightweight BCHA Client
-Exec=electrum-bcha %u
+Exec=electrum-abc %u
 GenericName=BCHA Wallet
 Icon=electron-cash
-Name=Electrum BCHA
+Name=Electrum ABC
 Categories=Finance;Network;
 StartupNotify=true
-StartupWMClass=Electrum BCHA
+StartupWMClass=Electrum ABC
 Terminal=false
 Type=Application
 MimeType=x-scheme-handler/bitcoincash;x-scheme-handler/cashacct;
 Actions=Testnet;
 
 [Desktop Action Testnet]
-Exec=electrum-bcha --testnet %u
+Exec=electrum-abc --testnet %u
 Name=Testnet mode

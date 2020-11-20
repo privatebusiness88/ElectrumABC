@@ -26,4 +26,4 @@ Or, if you wish to sign the app when building, provide an Apple developer identi
 
 ## 2. Done
 
-You should see ElectrumBCHA.app and ElectrumBCHA-x.y.z.dmg in ../dist/. If you provided an identity for signing, these files can even be distributed to other Macs and they will run there without warnings from GateKeeper.
+You should see ElectrumABC.app and ElectrumABC-x.y.z.dmg in ../dist/. If you provided an identity for signing, these files can even be distributed to other Macs and they will run there without warnings from GateKeeper.
