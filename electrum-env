@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
 # This script creates a virtualenv named 'env' and installs all
-# python dependencies before activating the env and running Electron Cash.
-# If 'env' already exists, it is activated and Electron Cash is started
+# python dependencies before activating the env and running the application.
+# If 'env' already exists, it is activated and the application is started
 # without any installations. Additionally, the PYTHONPATH environment
-# variable is set properly before running Electron Cash.
+# variable is set properly before running the application.
 #
 # python-qt and its dependencies will still need to be installed with
 # your package manager.
@@ -23,6 +23,6 @@ fi
 
 #export PYTHONPATH="/usr/local/lib/python3.5/site-packages:$PYTHONPATH"
 
-./electron-cash "$@"
+./electrum-bcha "$@"
 
 deactivate
