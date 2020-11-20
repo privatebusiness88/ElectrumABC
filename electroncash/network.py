@@ -48,9 +48,13 @@ from .tor import TorController
 from .utils import Event
 
 DEFAULT_AUTO_CONNECT = True
-# Versions prior to 4.0.15 had this set to True, but we opted for False to
+
+# Versions prior to 4.0.15 had this set to True, but EC opted for False to
 # promote network health by allowing clients to connect to new servers easily.
-DEFAULT_WHITELIST_SERVERS_ONLY = False
+# For now it is better to set it to True again to avoid having new users
+# start on the wrong chain.
+DEFAULT_WHITELIST_SERVERS_ONLY = True
+
 
 def parse_servers(result):
     """ parse servers list into dict format"""
