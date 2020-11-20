@@ -362,14 +362,16 @@ def ensure_sparse_file(filename):
 def get_headers_dir(config):
     return android_data_dir() if 'ANDROID_DATA' in os.environ else config.path
 
+
 def assert_datadir_available(config_path):
     path = config_path
     if os.path.exists(path):
         return
     else:
         raise FileNotFoundError(
-            'Electrum BCHA datadir does not exist. Was it deleted while running?' + '\n' +
+            'Datadir does not exist. Was it deleted while running?' + '\n' +
             'Should be at {}'.format(path))
+
 
 def assert_file_in_datadir_available(path, config_path):
     if os.path.exists(path):
