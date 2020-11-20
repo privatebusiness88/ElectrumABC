@@ -475,7 +475,7 @@ def user_dir(prefer_local=False):
         # Prefer APPDATA, but may get LOCALAPPDATA if present and req'd.
         if localapp_dir is not None and prefer_local or app_dir is None:
             app_dir = localapp_dir
-        return os.path.join(app_dir, PROJECT_NAME_NO_SPACES")
+        return os.path.join(app_dir, PROJECT_NAME_NO_SPACES)
     else:
         #raise Exception("No home directory found in environment variables.")
         return
