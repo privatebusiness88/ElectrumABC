@@ -13,10 +13,9 @@ from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
 from collections import defaultdict
 
 from .bitcoin import COIN
-from .constants import PROJECT_NAME
+from .constants import PROJECT_NAME, inv_base_units
 from .i18n import _
-from .util import PrintError, ThreadJob, print_error, inv_base_units
-
+from .util import PrintError, ThreadJob, print_error
 
 DEFAULT_ENABLED = False
 DEFAULT_CURRENCY = "USD"

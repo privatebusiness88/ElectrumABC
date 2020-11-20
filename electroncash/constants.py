@@ -1,3 +1,5 @@
+from typing import Mapping
+from collections import OrderedDict
 
 PROJECT_NAME: str = "Electrum ABC"
 PROJECT_NAME_NO_SPACES = "ElectrumABC"
@@ -15,3 +17,9 @@ PORTABLE_DATA_DIR: str = 'electrum_abc_data'
 other things are saved when running the portable .exe file.
 This directory is saved in the local directory containing the exe.
 """
+
+base_units: Mapping[str, int] = OrderedDict(
+    (('BCHA', 8), ('mBCHA', 5), ('bits', 2)))
+"""Ordered dict providing the location of the decimal place for all units."""
+
+inv_base_units: Mapping[int, str] = {v: k for k, v in base_units.items()}

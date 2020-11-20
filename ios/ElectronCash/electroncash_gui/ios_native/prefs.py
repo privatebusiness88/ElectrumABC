@@ -8,7 +8,8 @@ from . import utils
 from . import gui
 from . import addrconv
 from . import amountedit
-from electroncash.util import timestamp_to_datetime, base_units
+from electroncash.util import timestamp_to_datetime
+from electroncash.constants import base_units
 from electroncash.i18n import _, language, pgettext
 import time
 import html

@@ -51,7 +51,8 @@ from electroncash.i18n import _, set_language, languages
 from electroncash.plugins import run_hook
 from electroncash import WalletStorage, Wallet, Transaction
 from electroncash.address import Address
-from electroncash.util import UserCancelled, print_error, format_satoshis, format_satoshis_plain, PrintError, InvalidPassword, inv_base_units
+from electroncash.util import UserCancelled, print_error, format_satoshis, format_satoshis_plain, PrintError, InvalidPassword
+from electroncash.constants import inv_base_units
 import electroncash.web as web
 
 class WalletFileNotFound(Exception):

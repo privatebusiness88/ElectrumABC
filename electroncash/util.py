@@ -51,12 +51,6 @@ def inv_dict(d):
     return {v: k for k, v in d.items()}
 
 
-base_units = OrderedDict((('BCHA', 8),
-                          ('mBCHA', 5),
-                          ('bits', 2)))
-inv_base_units = inv_dict(base_units)
-
-
 def _(message):
     return message
 
