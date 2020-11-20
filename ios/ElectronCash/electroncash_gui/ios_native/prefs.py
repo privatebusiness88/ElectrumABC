@@ -8,7 +8,7 @@ from . import utils
 from . import gui
 from . import addrconv
 from . import amountedit
-from electroncash.util import timestamp_to_datetime, base_units, base_unit_labels
+from electroncash.util import timestamp_to_datetime, base_units
 from electroncash.i18n import _, language, pgettext
 import time
 import html
@@ -32,7 +32,7 @@ TAG_FIAT_CURRENCY = 401
 TAG_FIAT_EXCHANGE = 404
 
 UNITS = base_units
-UNIT_KEYS = base_unit_labels
+UNIT_KEYS = tuple(base_units.keys())
 
 
 class PrefsVC(UITableViewController):

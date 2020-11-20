@@ -4179,8 +4179,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         # Crash reporter box at bottom of this tab
         misc_widgets.append((cr_gb, None))  # commit crash reporter gb to layout
 
-
-        units = util.base_unit_labels
+        units = tuple(util.base_units.keys())
         msg = _('Base unit of your wallet.')\
               + '\n1 BCHA = 1,000 mBCHA = 1,000,000 bits.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
