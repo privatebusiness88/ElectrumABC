@@ -235,7 +235,7 @@ class AndroidCommands(commands.Commands):
                 raise ValueError("No wallet selected")
             return self.wallet.storage.path
         else:
-            wallets_dir = join(util.user_dir(), "wallets")
+            wallets_dir = join(util.get_user_dir(), "wallets")
             util.make_dir(wallets_dir)
             return util.standardize_path(join(wallets_dir, name))
 
