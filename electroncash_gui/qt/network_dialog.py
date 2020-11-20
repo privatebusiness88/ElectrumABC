@@ -843,8 +843,8 @@ class NetworkChoiceLayout(QObject, PrintError):
 
     def set_server(self, onion_hack=False):
         host, port, protocol, proxy, auto_connect = self.network.get_parameters()
-        host = str(self.server_host.text())
-        port = str(self.server_port.text())
+        host = str(self.server_host.text()).strip()
+        port = str(self.server_port.text()).strip()
         protocol = 's' if self.ssl_cb.isChecked() else 't'
         if onion_hack:
             # Fix #1174 -- bring back from the dead non-SSL support for .onion only in a safe way
