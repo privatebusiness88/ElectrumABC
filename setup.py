@@ -80,7 +80,7 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         (os.path.join(share_dir, 'icons/hicolor/128x128/apps/'), ['icons/electron-cash.png']),
         (os.path.join(share_dir, 'pixmaps/'),                    ['icons/electron-cash.png']),
         # Menu entry
-        (os.path.join(share_dir, 'applications/'), ['electron-cash.desktop']),
+        (os.path.join(share_dir, 'applications/'), ['electrum-bcha.desktop']),
         # App stream (store) metadata
         (os.path.join(share_dir, 'metainfo/'), ['org.electroncash.ElectronCash.appdata.xml']),
     ]

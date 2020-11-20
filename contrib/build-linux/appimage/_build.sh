@@ -108,7 +108,7 @@ info "Preparing electrum-locale"
 )
 
 
-info "Installing Electron Cash and its dependencies"
+info "Installing the application and its dependencies"
 mkdir -p "$CACHEDIR/pip_cache"
 "$python" -m pip install --no-warn-script-location --cache-dir "$CACHEDIR/pip_cache" -r "$CONTRIB/deterministic-build/requirements.txt"
 "$python" -m pip install --no-warn-script-location --cache-dir "$CACHEDIR/pip_cache" -r "$CONTRIB/deterministic-build/requirements-binaries.txt"
@@ -118,7 +118,7 @@ mkdir -p "$CACHEDIR/pip_cache"
 
 
 info "Copying desktop integration"
-cp -fp "$PROJECT_ROOT/electron-cash.desktop" "$APPDIR/electron-cash.desktop"
+cp -fp "$PROJECT_ROOT/electrum-bcha.desktop" "$APPDIR/electrum-bcha.desktop"
 cp -fp "$PROJECT_ROOT/icons/electron-cash.png" "$APPDIR/electron-cash.png"
 
 
@@ -213,7 +213,7 @@ find "$APPDIR" -path '*/__pycache__*' -delete
 rm -rf "$PYDIR"/site-packages/*.dist-info/
 rm -rf "$PYDIR"/site-packages/*.egg-info/
 
-
+# set timestamps in dist, in order to make the installer reproducible
 find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
 
 
