@@ -22,23 +22,30 @@
 # SOFTWARE.
 
 import binascii
-import os, sys, re, json, time
+import hmac
+import inspect
+import itertools
+import json
+import os
+import queue
+import re
+import stat
+import subprocess
+import sys
+import threading
+import time
+import traceback
+import weakref
+from abc import ABC, abstractmethod
 from collections import defaultdict
 from datetime import datetime
 from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
 from functools import lru_cache
-import traceback
-import threading
-import hmac
-import stat
-import inspect, weakref
-import itertools
-import subprocess
 from locale import localeconv
-from abc import ABC, abstractmethod
 from traceback import format_exception
 
-import queue
+from .constants import POSIX_DATA_DIR, PROJECT_NAME_NO_SPACES
+
 
 def inv_dict(d):
     return {v: k for k, v in d.items()}
@@ -461,14 +468,14 @@ def user_dir(prefer_local=False):
     if 'ANDROID_DATA' in os.environ:
         return android_data_dir()
     elif os.name == 'posix' and "HOME" in os.environ:
-        return os.path.join(os.environ["HOME"], ".electrum-bcha" )
+        return POSIX_DATA_DIR
     elif "APPDATA" in os.environ or "LOCALAPPDATA" in os.environ:
         app_dir = os.environ.get("APPDATA")
         localapp_dir = os.environ.get("LOCALAPPDATA")
         # Prefer APPDATA, but may get LOCALAPPDATA if present and req'd.
         if localapp_dir is not None and prefer_local or app_dir is None:
             app_dir = localapp_dir
-        return os.path.join(app_dir, "ElectrumBCHA")
+        return os.path.join(app_dir, PROJECT_NAME_NO_SPACES")
     else:
         #raise Exception("No home directory found in environment variables.")
         return
