@@ -109,6 +109,7 @@ from electroncash.winconsole import create_or_attach_console  # Import ok on oth
 import electroncash_plugins
 import electroncash.web as web
 from electroncash.constants import SCRIPT_NAME, PROJECT_NAME, PORTABLE_DATA_DIR
+from electroncash.migrate_data import migrate_data_from_ec
 
 
 # get password routine
@@ -312,12 +313,17 @@ def run_offline_command(config, config_options):
         wallet.storage.write()
     return result
 
+
 def init_plugins(config, gui_name):
     from electroncash.plugins import Plugins
     return Plugins(config, gui_name)
 
 
 if __name__ == '__main__':
+    # This copies the Electron Cash data dir if we dont't already
+    # have our own data directory.
+    migrate_data_from_ec()
+
     # The hook will only be used in the Qt GUI right now
     util.setup_thread_excepthook()
 
