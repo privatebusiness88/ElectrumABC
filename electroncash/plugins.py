@@ -41,7 +41,7 @@ from . import bitcoin
 from . import version
 from .constants import PROJECT_NAME, SCRIPT_NAME
 from .i18n import _
-from .util import (print_error, print_stderr, make_dir, profiler, user_dir,
+from .util import (print_error, print_stderr, make_dir, profiler, get_user_dir,
                    DaemonThread, PrintError, ThreadJob, UserCancelled)
 
 plugin_loaders = {}
@@ -322,7 +322,7 @@ class Plugins(DaemonThread):
     def get_external_plugin_dir(self):
         # It's possible the plugins are being stored in a local directory
         # and the rest of the data is being stored in the non-local directory.
-        local_user_dir = user_dir(prefer_local=True)
+        local_user_dir = get_user_dir(prefer_local=True)
         # Environment does not have a user directory (will be unit tests where there are no external plugins).
         if local_user_dir is None:
             return None

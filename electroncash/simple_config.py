@@ -6,7 +6,7 @@ import stat
 
 from . import util
 from copy import deepcopy
-from .util import user_dir, make_dir, print_error, PrintError
+from .util import get_user_dir, make_dir, print_error, PrintError
 from .constants import SCRIPT_NAME
 
 from .bitcoin import MAX_FEE_RATE, FEE_TARGETS
@@ -58,7 +58,7 @@ class SimpleConfig(PrintError):
         if read_user_config_function is None:
             read_user_config_function = read_user_config
         if read_user_dir_function is None:
-            self.user_dir = user_dir
+            self.user_dir = get_user_dir
         else:
             self.user_dir = read_user_dir_function
 

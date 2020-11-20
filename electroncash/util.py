@@ -467,7 +467,7 @@ def bh2u(x):
     return hfu(x).decode('ascii')
 
 
-def user_dir(prefer_local=False):
+def get_user_dir(prefer_local=False):
     if 'ANDROID_DATA' in os.environ:
         return android_data_dir()
     elif os.name == 'posix' and "HOME" in os.environ:
