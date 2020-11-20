@@ -50,21 +50,31 @@ from .constants import POSIX_DATA_DIR, PROJECT_NAME_NO_SPACES
 def inv_dict(d):
     return {v: k for k, v in d.items()}
 
-DEFAULT_BASE_UNIT = "BCH"
-base_units = {'BCH':8, 'mBCH':5, 'bits':2}
+
+base_units = {'BCH': 8,
+              'mBCH': 5,
+              'bits': 2}
 inv_base_units = inv_dict(base_units)
 base_unit_labels = tuple(inv_base_units[dp] for dp in sorted(inv_base_units.keys(), reverse=True))  # ('BCH', 'mBCH', 'bits')
 
-def _(message): return message
+
+def _(message):
+    return message
+
 
 fee_levels = [_('Within 25 blocks'), _('Within 10 blocks'), _('Within 5 blocks'), _('Within 2 blocks'), _('In the next block')]
 
 del _
 from .i18n import _, ngettext
 
-class NotEnoughFunds(Exception): pass
 
-class ExcessiveFee(Exception): pass
+class NotEnoughFunds(Exception):
+    pass
+
+
+class ExcessiveFee(Exception):
+    pass
+
 
 class InvalidPassword(Exception):
     def __str__(self):
