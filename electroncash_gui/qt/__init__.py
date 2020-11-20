@@ -396,11 +396,11 @@ class ElectrumGui(QObject, PrintError):
             # icon, otherwise we get the generic Python icon.
             # In non-running-from-source mode, macOS will get the icon from
             # the .app bundle Info.plist spec (which ends up being
-            # electron.icns).  However, in .app mode, Qt will not know about
+            # electrum.icns).  However, in .app mode, Qt will not know about
             # this icon and won't be able to use it for e.g. the About dialog.
             # In the latter case the branch below will tell Qt to use
             # electron-cash.svg as the "window icon".
-            icon = QIcon("electron.icns") if os.path.exists("electron.icns") else None
+            icon = QIcon("electrum.icns") if os.path.exists("electrum.icns") else None
         if not icon:
             # Set this on all other platforms (and macOS built .app) as it can
             # only help and never harm, and is always available.

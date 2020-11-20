@@ -15,8 +15,8 @@ symlinks = {
     'Applications': '/Applications',
 }
 
-badge_icon = './electron.icns'
-icon = './electron.icns'
+badge_icon = './electrum.icns'
+icon = './electrum.icns'
 
 files = [
     application,

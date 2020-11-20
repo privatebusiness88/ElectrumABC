@@ -7,7 +7,7 @@ PACKAGE='Electron-Cash'
 BUNDLE_IDENTIFIER='org.electroncash.' + PACKAGE # Used for info.plist
 PYPKG='electroncash'
 MAIN_SCRIPT='electron-cash'
-ICONS_FILE='electron.icns'
+ICONS_FILE='electrum.icns'
 
 for i, x in enumerate(sys.argv):
     if x == '--name':
