@@ -14,7 +14,7 @@ else
 fi
 
 if [ ! -d 'contrib' ]; then
-    fail "Please run this script form the top-level Electron Cash git directory"
+    fail "Please run this script form the top-level git directory"
 fi
 
 pushd .
@@ -58,18 +58,20 @@ fi
 # in the docker image if we get desperate for OpenSSL 1.1 but still want to
 # benefit from the compatibility granted to us by using an older Ubuntu).
 DOCKER_SUFFIX=ub1604
+IMGNAME="electrumbcha-appimage-builder-img-$DOCKER_SUFFIX"
+CONTAINERNAME="electrumbcha-appimage-builder-cont-$DOCKER_SUFFIX"
 
 info "Creating docker image ..."
-$SUDO docker build -t electroncash-appimage-builder-img-$DOCKER_SUFFIX \
+$SUDO docker build -t $IMGNAME \
     -f contrib/build-linux/appimage/Dockerfile_$DOCKER_SUFFIX \
     contrib/build-linux/appimage \
     || fail "Failed to create docker image"
 
 # This is the place where we checkout and put the exact revision we want to work
-# on. Docker will run mapping this directory to /opt/electroncash
-# which inside wine will look lik c:\electroncash
+# on. Docker will run mapping this directory to /opt/electrumbcha
 FRESH_CLONE=`pwd`/contrib/build-linux/fresh_clone
 FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
+MAPPED_DIR=/opt/electrumbcha
 
 (
     $SUDO rm -fr $FRESH_CLONE && \
@@ -86,15 +88,15 @@ mkdir "$FRESH_CLONE_DIR/contrib/build-linux/home" || fail "Failed to create home
     # NOTE: We propagate forward the GIT_REPO override to the container's env,
     # just in case it needs to see it.
     $SUDO docker run $DOCKER_RUN_TTY \
-    -e HOME="/opt/electroncash/contrib/build-linux/home" \
+    -e HOME="$MAPPED_DIR/contrib/build-linux/home" \
     -e GIT_REPO="$GIT_REPO" \
     -e BUILD_DEBUG="$BUILD_DEBUG" \
-    --name electroncash-appimage-builder-cont-$DOCKER_SUFFIX \
-    -v $FRESH_CLONE_DIR:/opt/electroncash:delegated \
+    --name $CONTAINERNAME \
+    -v $FRESH_CLONE_DIR:$MAPPED_DIR:delegated \
     --rm \
-    --workdir /opt/electroncash/contrib/build-linux/appimage \
+    --workdir $MAPPED_DIR/contrib/build-linux/appimage \
     -u $(id -u $USER):$(id -g $USER) \
-    electroncash-appimage-builder-img-$DOCKER_SUFFIX \
+    $IMGNAME \
     ./_build.sh $REV
 ) || fail "Build inside docker container failed"
 
