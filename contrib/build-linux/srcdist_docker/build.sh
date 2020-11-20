@@ -14,7 +14,7 @@ else
 fi
 
 if [ ! -d 'contrib' ]; then
-    fail "Please run this script form the top-level Electron Cash git directory"
+    fail "Please run this script from the top-level git directory"
 fi
 
 pushd .
@@ -46,15 +46,18 @@ if [ -z ${SUDO+x} ] ; then
     fi
 fi
 
+IMGNAME="electrumbcha-srcdist-builder-img"
+MAPPED_DIR=/opt/electrumbcha
+CONTAINERNAME="electrumbcha-srcdist-builder-cont"
 
 info "Creating docker image ..."
-$SUDO docker build -t electroncash-srcdist-builder-img \
+$SUDO docker build -t $IMGNAME \
     contrib/build-linux/srcdist_docker \
     || fail "Failed to create docker image"
 
 # This is the place where we checkout and put the exact revision we want to work
-# on. Docker will run mapping this directory to /opt/electroncash
-# which inside wine will look lik c:\electroncash
+# on. Docker will run mapping this directory to /opt/electrumbcha
+# which inside wine will look lik c:\electrumbcha
 FRESH_CLONE=`pwd`/contrib/build-linux/fresh_clone2
 FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
 
@@ -73,15 +76,15 @@ mkdir "$FRESH_CLONE_DIR/contrib/build-linux/home" || fail "Failed to create home
     # NOTE: We propagate forward the GIT_REPO override to the container's env,
     # just in case it needs to see it.
     $SUDO docker run $DOCKER_RUN_TTY \
-    -e HOME="/opt/electroncash/contrib/build-linux/home" \
+    -e HOME="$MAPPED_DIR/contrib/build-linux/home" \
     -e GIT_REPO="$GIT_REPO" \
     -e BUILD_DEBUG="$BUILD_DEBUG" \
-    --name electroncash-srcdist-builder-cont \
-    -v $FRESH_CLONE_DIR:/opt/electroncash:delegated \
+    --name $CONTAINERNAME \
+    -v $FRESH_CLONE_DIR:$MAPPED_DIR:delegated \
     --rm \
-    --workdir /opt/electroncash/contrib/build-linux/srcdist_docker \
+    --workdir $MAPPED_DIR/contrib/build-linux/srcdist_docker \
     -u $(id -u $USER):$(id -g $USER) \
-    electroncash-srcdist-builder-img \
+    $IMGNAME \
     ./_build.sh $REV
 ) || fail "Build inside docker container failed"
 
