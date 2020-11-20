@@ -3,10 +3,10 @@
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules, collect_dynamic_libs
 import sys, os
 
-PACKAGE='Electron-Cash'
-BUNDLE_IDENTIFIER='org.electroncash.' + PACKAGE # Used for info.plist
+PACKAGE='ElectrumBCHA'
+BUNDLE_IDENTIFIER='org.electrumbcha.' + PACKAGE # Used for info.plist
 PYPKG='electroncash'
-MAIN_SCRIPT='electron-cash'
+MAIN_SCRIPT='electrum-bcha'
 ICONS_FILE='electrum.icns'
 
 for i, x in enumerate(sys.argv):

@@ -54,7 +54,7 @@ cd $build_dir/../..
 VERSION=`git describe --tags`
 
 # Paramterize
-BUILDDIR=/tmp/electron-cash-build
+BUILDDIR=/tmp/electrumbcha-build
 LIBSECP_COMMIT="69ccf0d2f758b1a4df9cde8222459381e08fc1dc"
 # Compute major.minor Python version from above using Bash array magic
 MAJ_MIN=(${PYTHON_VERSION//./ })
@@ -252,7 +252,7 @@ plutil -insert 'CFBundleURLTypes' \
 	|| fail "Could not add keys to Info.plist. Make sure the program 'plutil' exists and is installed."
 
 plutil -insert 'NSCameraUsageDescription' \
-       -string 'Electron Cash would like to access the camera to scan for QR codes' \
+       -string 'ElectrumBCHA would like to access the camera to scan for QR codes' \
 	-- dist/$PACKAGE.app/Contents/Info.plist \
 	|| fail "Could not add keys to Info.plist. Make sure the program 'plutil' exists and is installed."
 
