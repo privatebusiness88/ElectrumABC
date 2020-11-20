@@ -4180,9 +4180,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         misc_widgets.append((cr_gb, None))  # commit crash reporter gb to layout
 
 
-        units = util.base_unit_labels  # ( 'BCH', 'mBCH', 'bits' )
+        units = util.base_unit_labels
         msg = _('Base unit of your wallet.')\
-              + '\n1 BCH = 1,000 mBCH = 1,000,000 bits.\n' \
+              + '\n1 BCHA = 1,000 mBCHA = 1,000,000 bits.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
