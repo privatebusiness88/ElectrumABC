@@ -36,11 +36,11 @@ def get_version():
 
 def get_constants():
     import constants as c
-    return c.PROJECT_NAME, c.REPOSITORY_URL, c.SCRIPT_NAME
+    return (c.PROJECT_NAME, c.REPOSITORY_URL,
+            c.SCRIPT_NAME, c.PROJECT_NAME_NO_SPACES)
 
-PROJECT_NAME, REPOSITORY_URL, SCRIPT_NAME = get_constants()
 
-
+PROJECT_NAME, REPOSITORY_URL, SCRIPT_NAME, PROJECT_NAME_NO_SPACES = get_constants()
 
 if sys.version_info[:3] < (3, 6):
     sys.exit(f"Error: {PROJECT} requires Python version >= 3.6...")
@@ -163,7 +163,7 @@ setup(
     cmdclass={
         'sdist': MakeAllBeforeSdist,
     },
-    name=os.environ.get('EC_PACKAGE_NAME') or PROJECT_NAME.replace(" ", ""),
+    name=os.environ.get('EC_PACKAGE_NAME') or PROJECT_NAME_NO_SPACES,
     version=os.environ.get('EC_PACKAGE_VERSION') or get_version(),
     install_requires=requirements,
     extras_require={
