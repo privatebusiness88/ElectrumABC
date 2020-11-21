@@ -143,7 +143,7 @@ exe_standalone = EXE(
     strip=None,
     upx=False,
     manifest=home+'contrib/build-wine/manifest.xml',
-    icon=home+'icons/electron.ico',
+    icon=home+'icons/electrum.ico',
     console=False)
 
 exe_portable = EXE(
@@ -156,7 +156,7 @@ exe_portable = EXE(
     strip=None,
     upx=False,
     manifest=home+'contrib/build-wine/manifest.xml',
-    icon=home+'icons/electron.ico',
+    icon=home+'icons/electrum.ico',
     console=False)
 
 #####
@@ -171,7 +171,7 @@ exe_dependent = EXE(
     strip=None,
     upx=False,
     manifest=home+'contrib/build-wine/manifest.xml',
-    icon=home+'icons/electron.ico',
+    icon=home+'icons/electrum.ico',
     console=False)
 
 coll = COLLECT(
@@ -182,6 +182,6 @@ coll = COLLECT(
     strip=None,
     upx=True,
     debug=False,
-    icon=home+'icons/electron.ico',
+    icon=home+'icons/electrum.ico',
     console=False,
     name=os.path.join('dist', 'electroncash'))
