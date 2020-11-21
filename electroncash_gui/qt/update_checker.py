@@ -77,11 +77,14 @@ class UpdateChecker(QWidget, PrintError):
     """[0 -> 100] range"""
 
     # Release URL
-    # TODO
-    download_url = ""
+    download_url = "https://www.bitcoinabc.org/electrum"
 
-    # Format: tuple of address.Address.from_string("bitcoincash:..., net=MainNet)
-    VERSION_ANNOUNCEMENT_SIGNING_ADDRESSES = tuple()
+    VERSION_ANNOUNCEMENT_SIGNING_ADDRESSES = (
+        # Pierre's keys
+        address.Address.from_string(
+            "bitcoincash:qz5j83ez703wvlwpqh94j6t45f8dn2afjgj9ggnxmc",
+            net=MainNet),
+    )
 
     def __init__(self, parent=None):
         super().__init__(parent)

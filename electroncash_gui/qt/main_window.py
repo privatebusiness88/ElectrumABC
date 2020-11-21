@@ -706,7 +706,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
         help_menu.addAction(_("About Qt"), self.app.aboutQt)
-        # help_menu.addAction(_("&Check for Updates"), lambda: self.gui_object.show_update_checker(self))
+        help_menu.addAction(_("&Check for Updates"),
+                            lambda: self.gui_object.show_update_checker(self))
         # help_menu.addAction(_("&Official Website"), lambda: webopen("https://..."))
         help_menu.addSeparator()
         # help_menu.addAction(_("Documentation"), lambda: webopen("http://...")).setShortcut(QKeySequence.HelpContents)
@@ -4371,8 +4372,6 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         # spacer
         gui_widgets.append((None, None))
         updatecheck_cb = QCheckBox(_("Automatically check for updates"))
-        # hide this option for now
-        updatecheck_cb.setVisible(False)
         updatecheck_cb.setChecked(self.gui_object.has_auto_update_check())
         updatecheck_cb.setToolTip(
             _("Enable this option if you wish to be notified as soon as a "

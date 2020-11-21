@@ -148,8 +148,8 @@ class ElectrumGui(QObject, PrintError):
         self.build_tray_menu()
         self.tray.show()
         self.new_window_signal.connect(self.start_new_window)
-        # if self.has_auto_update_check():
-        #     self._start_auto_update_timer(first_run=True)
+        if self.has_auto_update_check():
+            self._start_auto_update_timer(first_run=True)
         self.app.focusChanged.connect(self.on_focus_change)  # track last window the user interacted with
         self.shutdown_signal.connect(self.close, Qt.QueuedConnection)
         run_hook('init_qt', self)
@@ -506,7 +506,7 @@ class ElectrumGui(QObject, PrintError):
             submenu.addAction(_("Close"), window.close)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        # m.addAction(_("&Check for updates..."), lambda: self.show_update_checker(None))
+        m.addAction(_("&Check for updates..."), lambda: self.show_update_checker(None))
         m.addSeparator()
         m.addAction(_(f"Exit {PROJECT_NAME}"), self.close)
         self.tray.setContextMenu(m)
@@ -897,7 +897,7 @@ class ElectrumGui(QObject, PrintError):
             parent.show_message( title = _('Automatic High DPI'), msg = msg)
 
     def has_auto_update_check(self):
-        return bool(self.config.get('auto_update_check', False))
+        return bool(self.config.get('auto_update_check', True))
 
     def set_auto_update_check(self, b):
         was, b = self.has_auto_update_check(), bool(b)
