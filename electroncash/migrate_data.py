@@ -73,6 +73,10 @@ def migrate_data_from_ec():
             config["auto_connect"] = DEFAULT_AUTO_CONNECT
             config["server"] = ""
 
+            # Set a fee_per_kb adapted to the current mempool situation
+            if "fee_per_kb" in config:
+                config["fee_per_kb"] = 80000
+
             # Delete rpcuser and password. These will be generated on
             # the first connection with jsonrpclib.Server
             if "rpcuser" in config:
