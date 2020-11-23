@@ -57,31 +57,38 @@ def remove_lockfile(lockfile):
 
 
 def get_fd_or_server(config):
-    '''Tries to create the lockfile, using O_EXCL to
-    prevent races.  If it succeeds it returns the FD.
+    """Tries to create the lockfile, using O_EXCL to
+    prevent races.  If it succeeds it returns the a tuple (fd, None).
     Otherwise try and connect to the server specified in the lockfile.
-    If this succeeds, the server is returned.  Otherwise remove the
-    lockfile and try again.'''
+    If this succeeds, a tuple (None, server) is returned.
+    Otherwise remove the lockfile and try again.
+    """
     lockfile = get_lockfile(config)
-    limit = 5  # prevent infinite looping here. Give up after 5 attempts.
+
+    limit = 5
     latest_exc = None
     for n in range(limit):
         try:
-            return os.open(lockfile, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644), None
+            return os.open(lockfile, os.O_CREAT | os.O_EXCL | os.O_WRONLY,
+                           0o644), None
         except PermissionError as e:
-            sys.exit(f"Unable to create lockfile due to file system permission problems: {e}")
+            sys.exit(f"Unable to create lockfile due to file system "
+                     f"permission problems: {e}")
         except NotADirectoryError as e:
             lockdir = os.path.dirname(lockfile)
-            sys.exit(f"{PROJECT_NAME} directory location at {lockdir} is not a directory. Error was: {e}")
+            sys.exit(f"{PROJECT_NAME} directory location at {lockdir} is not"
+                     f" a directory. Error was: {e}")
         except OSError as e:
-            ''' Unable to create -- this is normal if there was a pre-existing lockfile '''
+            # Unable to create because there was a pre-existing lockfile
             latest_exc = e
         server = get_server(config)
         if server is not None:
             return None, server
         # Couldn't connect; remove lockfile and try again.
         remove_lockfile(lockfile)
-    sys.exit(f"Unable to open/create lockfile at {lockfile} after {limit} attempts. Please check your filesystem setup. Last error was: {repr(latest_exc)}")
+    sys.exit(f"Unable to open/create lockfile at {lockfile} after "
+             f"{limit} attempts. Please check your filesystem setup. "
+             f"Last error was: {repr(latest_exc)}")
 
 
 def get_server(config, timeout=2.0):
