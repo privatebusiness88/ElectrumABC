@@ -6,7 +6,7 @@ Electrum ABC - Lightweight Bitcoin Cash client
   Licence: MIT Licence
   Author: Electrum ABC Developers
   Language: Python
-  Homepage: https://github.com/PiRK/ElectrumBCHA
+  Homepage: https://www.bitcoinabc.org/electrum
 
 
 Getting started
@@ -156,12 +156,3 @@ Windows
 
 See `contrib/build-wine/ <contrib/build-wine>`_.
 
-Android
--------
-
-See `android/ <android/>`_.
-
-iOS
----
-
-See `ios/ <ios/>`_.
