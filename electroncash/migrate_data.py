@@ -58,11 +58,15 @@ def migrate_data_from_ec():
         dest = get_user_dir()
         shutil.copytree(src, dest)
 
-        # Reset server selection policy to make sure we don't start on the
-        # wrong chain.
         config_dict = read_user_config(dest)
         if config_dict:
+            # Reset server selection policy to make sure we don't start on the
+            # wrong chain.
             config_dict["whitelist_servers_only"] = DEFAULT_WHITELIST_SERVERS_ONLY
             config_dict["auto_connect"] = DEFAULT_AUTO_CONNECT
             config_dict["server"] = ""
+            # Make sure the fiat columns are hidden, because the menu to change
+            # this setting is hidden for now.
+            config_dict["fiat_address"] = False
+            config_dict["history_rates"] = False
             save_user_config(config_dict, dest)
