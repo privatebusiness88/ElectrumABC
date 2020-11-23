@@ -2,10 +2,11 @@
 
 set -e
 
-. "$CONTRIB"/base.sh
-
 PROJECT_ROOT="$(dirname "$(readlink -e "$0")")/../../.."
 CONTRIB="$PROJECT_ROOT/contrib"
+
+. "$CONTRIB"/base.sh
+
 DISTDIR="$PROJECT_ROOT/dist"
 BUILDDIR="$CONTRIB/build-linux/appimage/build/appimage"
 APPDIR="$BUILDDIR/$PACKAGE.AppDir"
