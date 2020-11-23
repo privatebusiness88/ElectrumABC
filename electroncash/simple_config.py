@@ -290,12 +290,7 @@ class SimpleConfig(PrintError):
         return min(range(len(dist)), key=dist.__getitem__)
 
     def has_fee_estimates(self):
-        #return len(self.fee_estimates)==4
-        # We disabled fee estimates for BCH.  They do more harm than good.
-        # Our blocks aren't full and it is not the intention for them to ever
-        # be full according to all the full node implementers.  This is a
-        # coreism that must die. :)
-        return False
+        return len(self.fee_estimates) == 4
 
     def custom_fee_rate(self):
         f = self.get('customfee')
@@ -331,8 +326,6 @@ class SimpleConfig(PrintError):
         """Checks time since last requested and updated fee estimates.
         Returns True if an update should be requested.
         """
-        return False # For now we disable fee estimates altogether. This is BCH. 1.0 sats/B pretty much works.
-        # /
         now = time.time()
         prev_updates = self.fee_estimates_last_updated.values()
         oldest_fee_time = min(prev_updates) if prev_updates else 0
