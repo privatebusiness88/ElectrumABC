@@ -69,4 +69,7 @@ def migrate_data_from_ec():
             # this setting is hidden for now.
             config_dict["fiat_address"] = False
             config_dict["history_rates"] = False
+            # disable some plugins
+            config_dict["use_labels"] = False
+            config_dict["use_cosigner_pool"] = False
             save_user_config(config_dict, dest)
