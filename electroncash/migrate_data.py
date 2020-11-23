@@ -58,6 +58,12 @@ def migrate_data_from_ec():
         dest = get_user_dir()
         shutil.copytree(src, dest)
 
+        # Delete the server lock file if it exists.
+        # This file exists if electron cash is currently running.
+        lock_file = os.path.join(dest, "daemon")
+        if os.path.isfile(lock_file):
+            os.remove(lock_file)
+
         # update some parameters in config file
         config = read_user_config(dest)
         if config:
@@ -66,13 +72,27 @@ def migrate_data_from_ec():
             config["whitelist_servers_only"] = DEFAULT_WHITELIST_SERVERS_ONLY
             config["auto_connect"] = DEFAULT_AUTO_CONNECT
             config["server"] = ""
+
+            # Delete rpcuser and password. These will be generated on
+            # the first connection with jsonrpclib.Server
+            if "rpcuser" in config:
+                del config["rpcuser"]
+            if "rpcpassword" in config:
+                del config["rpcpassword"]
+
             # Make sure the fiat columns are hidden, because the menu to change
             # this setting is hidden for now.
             config["fiat_address"] = False
             config["history_rates"] = False
-            # disabled plugins
+
+            # Disable plugins that can not be selected in the Electrum ABC menu.
             config["use_labels"] = False
             config["use_cosigner_pool"] = False
+
+            # Disable by default other plugins that depend on servers that
+            # do not exist yet for BCHA.
+            config["use_fusion"] = False
+            config["use_shuffle_deprecated"] = False
 
             # adjust all paths to point to the new user dir
             for k, v in config.items():

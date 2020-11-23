@@ -129,7 +129,7 @@ def get_rpc_credentials(config):
     rpc_user = config.get('rpcuser', None)
     rpc_password = config.get('rpcpassword', None)
     if rpc_user is None or rpc_password is None:
-        rpc_user = 'user'
+        rpc_user = 'electrumabcuser'
         import ecdsa, base64
         bits = 128
         nbytes = bits // 8 + (bits % 8 > 0)
