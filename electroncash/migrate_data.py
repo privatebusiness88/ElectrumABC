@@ -58,18 +58,29 @@ def migrate_data_from_ec():
         dest = get_user_dir()
         shutil.copytree(src, dest)
 
-        config_dict = read_user_config(dest)
-        if config_dict:
+        # update some parameters in config file
+        config = read_user_config(dest)
+        if config:
             # Reset server selection policy to make sure we don't start on the
             # wrong chain.
-            config_dict["whitelist_servers_only"] = DEFAULT_WHITELIST_SERVERS_ONLY
-            config_dict["auto_connect"] = DEFAULT_AUTO_CONNECT
-            config_dict["server"] = ""
+            config["whitelist_servers_only"] = DEFAULT_WHITELIST_SERVERS_ONLY
+            config["auto_connect"] = DEFAULT_AUTO_CONNECT
+            config["server"] = ""
             # Make sure the fiat columns are hidden, because the menu to change
             # this setting is hidden for now.
-            config_dict["fiat_address"] = False
-            config_dict["history_rates"] = False
-            # disable some plugins
-            config_dict["use_labels"] = False
-            config_dict["use_cosigner_pool"] = False
-            save_user_config(config_dict, dest)
+            config["fiat_address"] = False
+            config["history_rates"] = False
+            # disabled plugins
+            config["use_labels"] = False
+            config["use_cosigner_pool"] = False
+
+            # adjust all paths to point to the new user dir
+            for k, v in config.items():
+                if isinstance(v, str) and v.startswith(src):
+                    config[k] = v.replace(src, dest)
+            # adjust paths in list of recently open wallets
+            if "recently_open" in config:
+                for idx, wallet in enumerate(config["recently_open"]):
+                    config["recently_open"][idx] = wallet.replace(src, dest)
+
+            save_user_config(config, dest)
