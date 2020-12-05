@@ -2,7 +2,7 @@
 
 The Electrum ABC project welcomes contributors!
 
-This guide is intended to help developers contribute effectively to the project.
+This guide is intended to help developers and non-developers contribute effectively to the project.
 
 The development philosophy and communication channels are identical to the ones
 used by the Bitcoin-ABC project. Please read the relevant sections in
