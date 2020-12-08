@@ -1,44 +1,32 @@
-# Verifying Electron-Cash Downloads using File Hashes
-PLEASE NOTE: sha256sum is known as gsha256sum in MACOS
+## Verification of File Hashes
 
-1. Download the SHA256SUMS file to the same directory as the installer. 
+Download the SHA256SUMS files that is available on the
+[release page](https://github.com/Bitcoin-ABC/ElectrumABC/releases).
+Open it with a text viewer.
 
+Generate a SHA256 hash of the file you downloaded. For example, if
+you downloaded the Linux AppImage file for the 4.3.1 release, open a
+terminal window, `cd` to the download directory and type:
 
-    cd Downloads
+    $ sha256sum ElectrumABC-4.3.1-x86_64.AppImage
+    16b4dd5cad9868d827627ba256eb23bba4f052a51c20345633f7362285ef0af3  ElectrumABC-4.3.1-x86_64.AppImage
 
-    wget https://raw.githubusercontent.com/Electron-Cash/keys-n-hashes/master/sigs-and-sums/3.1/mac/SHA256.Electron-Cash-3.1-macosx.dmg.txt
+Now compare the hash that your machine calculated with the corresponding
+hash in the SHA256SUMS file.
 
-Compare the file hashes
+When both hashes match exactly then the downloaded file is almost certainly
+intact.
 
-    sha256sum -c SHA256.Electron-Cash-3.1-macosx.dmg.txt 2>&1
-    
-If the file hashes match, "OK" will be displayed on your screen. 
+This procedure allows you to verify that a binary release file downloaded
+on the official release page was properly downloaded without data corruption.
+It can also allow you to verify that a file downloaded from a different
+sources is the same as the one provided on the official download page.
 
-    Electron-Cash-3.1-macosx.dmg: OK
-    
-If the hashes do not match, then there was a problem with either the download or a problem with the server. You should download the file again.
+It does not, however, tell you whether the official download page was
+compromised, as an attacker able to modify a binary file on the github
+release page can also modify the SHA256SUMS file.
 
-## Manual Verification of File Hashes
-
-Download the SHA256SUMS files
-
-    wget https://raw.githubusercontent.com/Electron-Cash/keys-n-hashes/master/sigs-and-sums/3.1/mac/SHA256.Electron-Cash-3.1-macosx.dmg.txt
-    
-View the SHA256SUMS file
-
-    cat SHA256.Electron-Cash-3.1-macosx.dmg.txt
-    670d6851908720195d58a1d94a53e77e4120e0e98f6940ee93a76f4468e2c6c5  Electron-Cash-3.1-macosx.dmg
-    
-Generate a SHA256 hash of the file you downloaded
-
-    sha256sum Electron-Cash-3.1-macosx.dmg
-    670d6851908720195d58a1d94a53e77e4120e0e98f6940ee93a76f4468e2c6c5  Electron-Cash-3.1-macosx.dmg
-    
-Now compare the hash that your machine calculated with the corresponding hash in the SHA256SUMS file.
-
-When both hashes match exactly then the downloaded file is almost certainly intact. 
-
-# Verifying Electron-Cash Downloads using GNU Privacy Guard
+# Verifying ElectrumABC Downloads using GNU Privacy Guard
 
 ## TLDR
 
@@ -49,57 +37,42 @@ When both hashes match exactly then the downloaded file is almost certainly inta
 
         gpg --generate-key
 
-    Choose RSA/DSA key with 4096 bits. 
+    Choose RSA/DSA key with 4096 bits.
     Enter your name, email and make sure to choose a strong password.
 
-2. Download the public key of the person/institution you want to verify. For TrueCrypt, their public key is available here.
+2. Download the public key of the person you want to verify.
+   You can find verify the keys provided in this directory with the
+   same key from a public GPG key server, such as http://keys.gnupg.net.
 
-        wget https://raw.githubusercontent.com/Electron-Cash/keys-n-hashes/master/pubkeys/calinkey.txt
+   The keys used to sign the binaries have the following fingerprints:
+      - PiRK: `D77B FAED C2C0 AD61 D9D5  DC32 B838 D022 AFCF 71C9`
+
 
 3. Import the person’s public key into your key ring
 
-        gpg --import TrueCrypt-Foundation-Public-Key.asc
-        
-    You should see output similar to
-    
-        gpg: key 21810A542031C02C: public key "Calin Culianu (NilacTheGrim)         <calin.culianu@gmail.com>" imported
-        gpg: Total number processed: 1
-        gpg:               imported: 1
+        gpg --import PiRK.asc
 
-4. You need to sign the person’s public key with your private key, to tell GPG that you “accept” the key. 
+4. You need to sign the person’s public key with your private key, to tell GPG that you “accept” the key.
 
-        gpg --list-keys
+        $ gpg --list-keys
+        pub   rsa4096 2020-12-03 [SC]
+              D77BFAEDC2C0AD61D9D5DC32B838D022AFCF71C9
+        uid           [ultimate] Pierre K <......@.....com>
 
-        pub   dsa2048 2017-08-20 [SC]
-        D465135F97D0047E18E99DC321810A542031C02C
-        uid           [ unknown] Calin Culianu (NilacTheGrim) <calin.culianu@gmail.com>
-        sub   elg2048 2017-08-20 [E]
+        $ gpg --sign-key D77BFAEDC2C0AD61D9D5DC32B838D022AFCF71C9
 
-    The “name” of their key is long string on the second line.
+5. Download the corresponding signature file on the
+   [release page](https://github.com/Bitcoin-ABC/ElectrumABC/releases).
+   Extract the signature you want to verify into the same directory
+   as the corresponding release file.
 
-5. Sign their public key with:
-
-        gpg --sign-key D465135F97D0047E18E99DC321810A542031C02C
-
-6. Download the corresponding signature file
-
-        wget https://github.com/Electron-Cash/keys-n-hashes/raw/master/sigs-and-sums/3.1/mac/Electron-Cash-3.1-macosx.dmg.sig
-        
 7. Now you can verify the signature of the file you downloaded
 
-        gpg --verify Electron-Cash-3.1-macosx.dmg.sig
-      
-    Example of successful output
-    
-        gpg: assuming signed data in 'Electron-Cash-3.1-macosx.dmg'
-        gpg: Signature made Sat  6 Jan 03:51:06 2018 AEDT
-        gpg:                using DSA key 21810A542031C02C
-        gpg: checking the trustdb
-        gpg: marginals needed: 3  completes needed: 1  trust model: pgp
-        gpg: depth: 0  valid:   2  signed:   1  trust: 0-, 0q, 0n, 0m, 0f, 2u
-        gpg: depth: 1  valid:   1  signed:   0  trust: 1-, 0q, 0n, 0m, 0f, 0u
-        gpg: next trustdb check due at 2020-01-12
-        gpg: Good signature from "Calin Culianu (NilacTheGrim) <calin.culianu@gmail.com>" [full]
+        gpg --verify ElectrumABC-4.3.1-x86_64.AppImage
+
+    A successful output should end with the following line:
+
+        gpg: Good signature from "Pierre K <.......@....com>" [final]
 
 # Installing GnuPG MAC OS
 Can be installed using [Homebrew](https://brew.sh/)
