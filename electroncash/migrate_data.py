@@ -134,7 +134,7 @@ def migrate_data_from_ec():
 
             # Set a fee_per_kb adapted to the current mempool situation
             if "fee_per_kb" in config:
-                config["fee_per_kb"] = 80000
+                config["fee_per_kb"] = 10000
 
             # Disable plugins that can not be selected in the Electrum ABC menu.
             config["use_labels"] = False

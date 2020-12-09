@@ -37,7 +37,10 @@ class SimpleConfig(PrintError):
         2. User configuration (in the user's config directory)
     They are taken in order (1. overrides config options set in 2.)
     """
-    fee_rates = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000]
+    fee_rates = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000,
+                 90000, 100000]
+    """List of rates used for selecting a fee with the slider in the GUI.
+    The lowest rate is used by default for new users."""
 
     def __init__(self, options=None, read_user_config_function=None,
                  read_user_dir_function=None):
@@ -301,14 +304,15 @@ class SimpleConfig(PrintError):
         f = self.get('customfee')
         return f
 
-    def fee_per_kb(self):
-       retval = self.get('customfee')
-       if retval is None:
-           retval = self.get('fee_per_kb')
-       if retval is None:
-           # New wallet (value adapted to November 2020 mempool situation)
-           retval = 80000
-       return retval
+    def fee_per_kb(self) -> int:
+        """Return transaction fee in sats per kB"""
+        retval = self.get('customfee')
+        if retval is None:
+            retval = self.get('fee_per_kb')
+        if retval is None:
+            # New wallet: use the lowest rate in self.fee_rates
+            retval = self.fee_rates[0]
+        return retval
 
     def has_custom_fee_rate(self):
         i = -1
