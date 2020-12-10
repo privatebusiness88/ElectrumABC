@@ -194,7 +194,6 @@ setup(
         'electroncash_plugins.trezor',
         'electroncash_plugins.digitalbitbox',
         'electroncash_plugins.virtualkeyboard',
-        'electroncash_plugins.shuffle_deprecated',
         'electroncash_plugins.satochip',
         'electroncash_plugins.fusion',
     ],
