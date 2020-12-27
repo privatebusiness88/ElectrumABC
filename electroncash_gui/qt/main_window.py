@@ -50,7 +50,7 @@ from electroncash import paymentrequest
 from electroncash import util, bitcoin, commands, cashacct
 from electroncash.address import Address
 from electroncash.bitcoin import COIN, TYPE_ADDRESS
-from electroncash.constants import PROJECT_NAME, REPOSITORY_URL
+from electroncash.constants import PROJECT_NAME, REPOSITORY_URL, CURRENCY
 from electroncash.contacts import Contact
 from electroncash.i18n import _, ngettext, pgettext
 from electroncash.plugins import run_hook

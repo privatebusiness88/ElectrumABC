@@ -22,6 +22,8 @@ other things are saved when running the portable .exe file.
 This directory is saved in the local directory containing the exe.
 """
 
+CURRENCY = "BCHA"
+
 BASE_UNITS: Mapping[str, int] = OrderedDict(
     (('BCHA', 8), ('mBCHA', 5), ('bits', 2)))
 """Ordered dict providing the location of the decimal place for all units."""
