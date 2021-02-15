@@ -54,7 +54,7 @@ prepare_wine() {
         here=`pwd`
         # Please update these carefully, some versions won't work under Wine
 
-        NSIS_URL='https://github.com/PiRK/Electron-Cash-Build-Tools/releases/download/v1.0/nsis-3.06.1-setup.exe'
+        NSIS_URL='https://prdownloads.sourceforge.net/nsis/nsis-3.06.1-setup.exe'
         NSIS_SHA256=f60488a676308079bfdf6845dc7114cfd4bbff47b66be4db827b89bb8d7fdc52
 
         # libusb 1.0.23
