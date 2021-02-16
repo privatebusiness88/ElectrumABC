@@ -38,7 +38,6 @@ from decimal import Decimal as PyDecimal  # Qt 5.12 also exports Decimal
 from functools import wraps
 
 from . import bitcoin
-from . import rpa
 from . import util
 from .constants import PROJECT_NAME, SCRIPT_NAME, BASE_UNIT_8
 from .address import Address, AddressError
@@ -554,19 +553,6 @@ class Commands:
                 self.wallet.save_transactions()
         return tx
 
-    @command('w')
-    def rpa_generate_paycode(self):
-        return rpa.paycode.generate_paycode(self.wallet)
-
-    @command('w')
-    def rpa_generate_transaction_from_paycode(self, amount, paycode):
-        # WARNING: Amount is in full Bitcoin Cash units
-        return rpa.paycode.generate_transaction_from_paycode(self.wallet, self.config, amount, paycode)
-
-    @command('wp')
-    def rpa_extract_private_key_from_transaction(self, raw_tx, password=None):
-        return rpa.paycode.extract_private_key_from_transaction(self.wallet, raw_tx, password)
-
     @command('wp')
     def payto(self, destination, amount, fee=None, from_addr=None, change_addr=None, nocheck=False, unsigned=False, password=None, locktime=None,
               op_return=None, op_return_raw=None, addtransaction=False):
@@ -898,7 +884,6 @@ command_options = {
     'paid':        (None, "Show only paid requests."),
     'passphrase':  (None, "Seed extension"),
     'password':    ("-W", "Password"),
-    'paycode':     (None, 'RPA Resuable Payment Address Paycode'),
     'payment_url': (None, 'Optional URL where you would like users to POST the BIP70 Payment message'),
     'pending':     (None, "Show only pending requests."),
     'privkey':     (None, "Private key. Set to '?' to get a prompt."),
