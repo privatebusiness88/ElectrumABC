@@ -1,5 +1,5 @@
-Electrum ABC - Lightweight Bitcoin Cash client
-==============================================
+Electrum ABC - Lightweight BCHA client
+======================================
 
 ::
 
