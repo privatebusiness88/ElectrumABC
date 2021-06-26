@@ -6,7 +6,7 @@
 Comment=Lightweight eCash Client
 Exec=electrum-abc %u
 GenericName=eCash Wallet
-Icon=electron-cash
+Icon=electrumABC
 Name=Electrum ABC
 Categories=Finance;Network;
 StartupNotify=true
