@@ -2588,9 +2588,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         w.setLayout(grid)
 
         label = WWLabel(_(
-            "This tool helps convert between address formats for Bitcoin "
-            "Cash addresses.\nYou are encouraged to use the 'Cash address' "
-            "format."
+            f"This tool helps convert between address formats for {CURRENCY} "
+            f"addresses.\nYou are encouraged to use the 'Cash address' "
+            f"format."
         ))
 
         vbox = QVBoxLayout()
