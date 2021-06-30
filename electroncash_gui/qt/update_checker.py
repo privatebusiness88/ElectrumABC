@@ -83,7 +83,7 @@ class UpdateChecker(QWidget, PrintError):
     VERSION_ANNOUNCEMENT_SIGNING_ADDRESSES = (
         # Pierre's keys
         address.Address.from_string(
-            "bitcoincash:qz5j83ez703wvlwpqh94j6t45f8dn2afjgj9ggnxmc",
+            "ecash:qz5j83ez703wvlwpqh94j6t45f8dn2afjgtgurgua0",
             net=MainNet),
     )
 
