@@ -2,6 +2,7 @@ import json
 import threading
 import os
 import stat
+from decimal import Decimal as PyDecimal
 
 from . import util
 from copy import deepcopy
@@ -299,7 +300,11 @@ class SimpleConfig(PrintError):
     def estimate_fee(self, size) -> int:
         """Return fee in satoshis for a given transaction size
         in bytes."""
-        return int(self.fee_per_kb() * size / 1000.)
+        return self.estimate_fee_for_feerate(self.fee_per_kb(), size)
+
+    @staticmethod
+    def estimate_fee_for_feerate(fee_per_kb, size):
+        return int(PyDecimal(fee_per_kb) * PyDecimal(size) / 1000)
 
     def get_video_device(self):
         device = self.get("video_device", "default")
