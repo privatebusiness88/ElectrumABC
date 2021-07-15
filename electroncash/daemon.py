@@ -151,6 +151,7 @@ class Daemon(DaemonThread):
         DaemonThread.__init__(self)
         self.plugins = plugins
         self.config = config
+        self.listen_jsonrpc = listen_jsonrpc
         if config.get('offline'):
             self.network = None
         else:
@@ -160,6 +161,7 @@ class Daemon(DaemonThread):
         if self.network:
             self.network.add_jobs([self.fx])
         self.gui = None
+        self.server = None
         self.wallets = {}
         if listen_jsonrpc:
             # Setup JSONRPC server
@@ -175,7 +177,6 @@ class Daemon(DaemonThread):
                                             rpc_user=rpc_user, rpc_password=rpc_password)
         except Exception as e:
             self.print_error('Warning: cannot initialize RPC server on host', host, e)
-            self.server = None
             os.close(fd)
             return
         os.write(fd, bytes(repr((server.socket.getsockname(), time.time())), 'utf8'))
@@ -344,8 +345,9 @@ class Daemon(DaemonThread):
         self.on_stop()
 
     def stop(self):
-        self.print_error("stopping, removing lockfile")
-        remove_lockfile(get_lockfile(self.config))
+        if self.listen_jsonrpc:
+            self.print_error("stopping, removing lockfile")
+            remove_lockfile(get_lockfile(self.config))
         super().stop()
 
     def init_gui(self):
