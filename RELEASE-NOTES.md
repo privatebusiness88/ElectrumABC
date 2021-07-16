@@ -22,54 +22,21 @@ We STRONGLY recommend you get comfortable and only send a small amount of eCash
 coins at first, to yourself, to confirm the network is processing your
 transactions as expected.
 
+
 # Release notes
 
-## Release 4.3.0
 
- The first release is based on the
-Electron Cash 4.2.0 codebase with the following changes
+## Release 5.0.0
 
-- updated list of electrum servers
-- updated icons and branding
-- use different directory for wallets and configuration
-- automatically import wallets and some configuration files from Electron Cash
-
-
-## Release 4.3.1
-
-- Fixed a bug happening when clicking on a server in the network overview
-  dialog.
-- Enable the fiat display again, using CoinGecko's price for BCHA.
-- Add a checkpoint to ensure only BCHA servers can be used. When splitting
-  coins, it is now recommended to run both Electrum ABC and Electron Cash.
-- Improve the automatic importing of wallets and user settings from
-  Electron Cash, for new users: clear fiat historic exchange rates to avoid
-  displaying BCH prices for pre-fork transactions, clear the server blacklist
-  and whitelist, copy also testnet wallets and settings.
-- When creating a new wallet, always save the file in the standard user
-  directory. Previously, wallets were saved in the same directory as the
-  most recently opened wallet.
-- Change the crash report window to redirect users to github in their
-  web browser, with a pre-filled issue ready to be submitted.
-- Fix a bug when attempting to interact with a Trezor T hardware wallet
-  with the autolock feature enabled, when the device is locked.
-
-
-## Release 4.3.2
-
-- Decrease the default transaction fee from 80 satoshis/byte to 10 sats/byte
-- Add an option in the 'Pay to' context menu to scan the current screen
-  for a QR code.
-- Add a documentation page [Contributing to Electrum ABC](CONTRIBUTING.md).
-- Remove the deprecated CashShuffle plugin.
-- Specify a default server for CashFusion.
-- Fix a bug introduced in 4.3.1 when starting the program from the source
-  package when the `secp256k1` library is not available. This bug did not
-  affect the released binary files.
-- Fix a bug related to the initial automatic copy of wallets from the
-  Electron Cash data directory on Windows. The configuration paths were not
-  changed accordingly, causing new wallets to be automatically saved in the
-  Electron Cash directory.
+- Rebranding from BCHA to eCash (XEC).
+- Change base unit from BCHA (100 000 000 satoshis) to XEC (100 satoshis).
+- Change CashAddr prefix from "bitcoincash:" to "ecash:".
+- Make the address conversion tool display 3 results: eCash address,
+  BCH address and Legacy Bitcoin address.
+- Interpret amounts as XEC in BIP21 payment URIs. Generate payment URIs and
+  QR codes with amounts in XEC.
+- Add a scanner for usual eCash, BCH or BTC derivation paths to assist users
+  when restoring a wallet from seed (feature backported from Electron Cash).
 
 
 ## Release 4.3.3
@@ -105,14 +72,49 @@ Electron Cash 4.2.0 codebase with the following changes
 - Minor performance improvements when freezing coins and saving wallet files.
 
 
-## Release 5.0.0
+## Release 4.3.2
 
-- Rebranding from BCHA to eCash (XEC).
-- Change base unit from BCHA (100 000 000 satoshis) to XEC (100 satoshis).
-- Change CashAddr prefix from "bitcoincash:" to "ecash:".
-- Make the address conversion tool display 3 results: eCash address,
-  BCH address and Legacy Bitcoin address.
-- Interpret amounts as XEC in BIP21 payment URIs. Generate payment URIs and
-  QR codes with amounts in XEC.
-- Add a scanner for usual eCash, BCH or BTC derivation paths to assist users
-  when restoring a wallet from seed (feature backported from Electron Cash).
+- Decrease the default transaction fee from 80 satoshis/byte to 10 sats/byte
+- Add an option in the 'Pay to' context menu to scan the current screen
+  for a QR code.
+- Add a documentation page [Contributing to Electrum ABC](CONTRIBUTING.md).
+- Remove the deprecated CashShuffle plugin.
+- Specify a default server for CashFusion.
+- Fix a bug introduced in 4.3.1 when starting the program from the source
+  package when the `secp256k1` library is not available. This bug did not
+  affect the released binary files.
+- Fix a bug related to the initial automatic copy of wallets from the
+  Electron Cash data directory on Windows. The configuration paths were not
+  changed accordingly, causing new wallets to be automatically saved in the
+  Electron Cash directory.
+
+
+## Release 4.3.1
+
+- Fixed a bug happening when clicking on a server in the network overview
+  dialog.
+- Enable the fiat display again, using CoinGecko's price for BCHA.
+- Add a checkpoint to ensure only BCHA servers can be used. When splitting
+  coins, it is now recommended to run both Electrum ABC and Electron Cash.
+- Improve the automatic importing of wallets and user settings from
+  Electron Cash, for new users: clear fiat historic exchange rates to avoid
+  displaying BCH prices for pre-fork transactions, clear the server blacklist
+  and whitelist, copy also testnet wallets and settings.
+- When creating a new wallet, always save the file in the standard user
+  directory. Previously, wallets were saved in the same directory as the
+  most recently opened wallet.
+- Change the crash report window to redirect users to github in their
+  web browser, with a pre-filled issue ready to be submitted.
+- Fix a bug when attempting to interact with a Trezor T hardware wallet
+  with the autolock feature enabled, when the device is locked.
+
+
+## Release 4.3.0
+
+ The first release is based on the
+Electron Cash 4.2.0 codebase with the following changes
+
+- updated list of electrum servers
+- updated icons and branding
+- use different directory for wallets and configuration
+- automatically import wallets and some configuration files from Electron Cash
