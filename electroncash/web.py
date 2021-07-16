@@ -95,7 +95,7 @@ class BeCash(BlockchainExplorer):
     url_base = "https://explorer.be.cash"
 
 
-DEFAULT_EXPLORER = Blockchair
+DEFAULT_EXPLORER = BitcoinABC
 
 mainnet_block_explorers = {explorer.name: explorer for explorer in
                            [Blockchair, ViaWallet, BitcoinABC, BeCash]}
