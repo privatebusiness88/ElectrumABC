@@ -189,6 +189,8 @@ class SimpleConfig(PrintError):
         return key not in self.cmdline_options
 
     def save_user_config(self):
+        if self.get('forget_config'):
+            return
         if not self.path:
             return
         save_user_config(self.user_config, self.path)
