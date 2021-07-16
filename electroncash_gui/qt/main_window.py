@@ -4300,7 +4300,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         block_ex_label = HelpLabel(_('Online block explorer') + ':', msg)
         block_ex_combo = QComboBox()
         block_ex_combo.addItems(block_explorers)
-        block_ex_combo.setCurrentIndex(block_ex_combo.findText(web.BE_from_config(self.config)))
+        block_ex_combo.setCurrentIndex(block_ex_combo.findText(web.BE_name_from_config(self.config)))
         def on_be(x):
             be_result = block_explorers[block_ex_combo.currentIndex()]
             self.config.set_key('block_explorer', be_result, True)

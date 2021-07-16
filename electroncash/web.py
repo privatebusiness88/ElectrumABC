@@ -117,12 +117,12 @@ def BE_default_explorer() -> BlockchainExplorer:
     return DEFAULT_EXPLORER
 
 
-def BE_from_config(config) -> str:
-    return config.get('block_explorer', BE_default_explorer())
+def BE_name_from_config(config) -> str:
+    return config.get('block_explorer', BE_default_explorer().name)
 
 
-def BE_URL(config, kind: ExplorerUrlParts, item: Union[str, Address]):
-    explorer_name = BE_from_config(config)
+def BE_URL(config, kind: ExplorerUrlParts, item: Union[str, Address]) -> str:
+    explorer_name = BE_name_from_config(config)
     explorer = BE_info().get(explorer_name, BE_default_explorer())
 
     kind_str = BlockchainExplorer.get_kind_str(explorer, kind)
