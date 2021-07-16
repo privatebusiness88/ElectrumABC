@@ -26,6 +26,20 @@ transactions as expected.
 # Release notes
 
 
+## Release 5.0.1
+
+- Fix the missing thousands separator when formatting amounts on Mac OS and Windows.
+- Update the API for block explorers after the rebranding. Most block explorers now use the "ecash:" prefix for
+  addresses. Some explorer changed their URLs.
+- Fix an issue with the transaction details dialog splitting addresses and amounts over two lines when the "ecash:"
+  prefix is shown in the address.
+- Add CoinGecko's new eCash exchange rate for fiat amount conversion. The legacy BCHA exchange rate API is still
+  supported because the new one does not provide historical data prior to July 2021.
+- Add explorer.be.cash to the list of supported block explorers.
+- Set explorer.bitcoinabc.org as the default block explorer.
+- Electron Cash backports:
+  - Increase CashFusion transaction fees for high tiers (https://github.com/Electron-Cash/Electron-Cash/pull/1984)
+
 ## Release 5.0.0
 
 - Rebranding from BCHA to eCash (XEC).
