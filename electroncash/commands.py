@@ -48,7 +48,7 @@ from .plugins import run_hook
 from .wallet import create_new_wallet, restore_wallet_from_text
 from .transaction import Transaction, multisig_script, OPReturn
 from .util import bfh, format_satoshis, json_decode, to_bytes
-from .paymentrequest import PR_PAID, PR_UNPAID, PR_UNKNOWN, PR_EXPIRED
+from .paymentrequest import PR_PAID, PR_UNCONFIRMED, PR_UNPAID, PR_UNKNOWN, PR_EXPIRED
 from .simple_config import SimpleConfig
 
 known_commands = {}
@@ -717,6 +717,7 @@ class Commands:
             PR_UNPAID: 'Pending',
             PR_PAID: 'Paid',
             PR_EXPIRED: 'Expired',
+            PR_UNCONFIRMED: 'Unconfirmed'
         }
         out['address'] = out.get('address').to_full_ui_string()
         out[f'amount ({XEC.ticker})'] = format_satoshis(out.get('amount'))
