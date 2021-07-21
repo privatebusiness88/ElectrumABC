@@ -5,6 +5,7 @@ The first time a user runs this program, if he already uses Electron Cash,
 he should be able to see all his BCH wallets and have some of the
 settings imported.
 """
+import glob
 import logging
 import os
 import shutil
@@ -211,6 +212,14 @@ def update_config():
     # Migrate all users to the XEC unit
     if "decimal_point" in config and tuple(config_version) <= (4, 9, 9):
         config["decimal_point"] = 2
+
+    # Remove exchange cache data after upgrading to 5.0.1 because the old
+    # "CoinGecko" exchange was renamed and the name reused for the new
+    # XEC API.
+    if tuple(config_version) <= (5, 0, 0):
+        for fname in glob.glob(os.path.join(get_user_dir(), "cache", "CoinGecko_*")):
+            _logger.info(f"Deleting exchange cache data {fname}")
+            safe_rm(fname)
 
     # update version number, to avoid doing this again for this version
     config["latest_version_used"] = VERSION_TUPLE
