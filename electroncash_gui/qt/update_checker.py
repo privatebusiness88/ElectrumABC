@@ -85,11 +85,6 @@ class UpdateChecker(QWidget, PrintError):
         address.Address.from_string(
             "ecash:qz5j83ez703wvlwpqh94j6t45f8dn2afjgtgurgua0",
             net=MainNet),
-        # keep the old signing address for a couple of releases,
-        # until no-one uses a version < 5.0.0 any longer
-        address.Address.from_string(
-            "bitcoincash:qz5j83ez703wvlwpqh94j6t45f8dn2afjgj9ggnxmc",
-            net=MainNet),
     )
 
     def __init__(self, parent=None):
