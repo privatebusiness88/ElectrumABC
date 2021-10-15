@@ -10,7 +10,7 @@
 import unittest
 
 from .. import networks
-from ..address import Address, AddressError
+from ..address import Address
 
 LEGACY_ADDRESS = "1F6UYGAwkzZKqFwyiwc54b7SNvHsNgcZ6h"
 BCH_CASHADDR_NO_PREFIX = "qzdf44zy632zk4etztvmaqav0y2cest4evjvrwf70z"

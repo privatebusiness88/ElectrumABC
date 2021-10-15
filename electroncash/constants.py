@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from typing import List, Mapping, Sequence
 
 PROJECT_NAME: str = "Electrum ABC"

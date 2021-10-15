@@ -9,7 +9,12 @@ from io import StringIO
 from ..address import Address
 from ..simple_config import SimpleConfig
 from ..storage import FINAL_SEED_VERSION, WalletStorage
-from ..wallet import create_new_wallet, restore_wallet_from_text
+from ..wallet import (
+    Abstract_Wallet,
+    Standard_Wallet,
+    create_new_wallet,
+    restore_wallet_from_text,
+)
 
 
 class FakeSynchronizer(object):

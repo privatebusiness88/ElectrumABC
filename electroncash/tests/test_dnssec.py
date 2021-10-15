@@ -3,8 +3,6 @@ import unittest
 import dns
 from dns.dnssec import ValidationFailure
 
-from electroncash import dnssec
-
 from . import ElectronCashTestCase
 
 

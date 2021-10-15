@@ -61,7 +61,7 @@ class Test_bitcoin(unittest.TestCase):
         Pub = pvk * G
         pubkey_c = point_to_ser(Pub, True)
         # pubkey_u = point_to_ser(Pub,False)
-        addr_c = public_key_to_p2pkh(pubkey_c)
+        public_key_to_p2pkh(pubkey_c)
 
         # print "Private key            ", '%064x'%pvk
         eck = EC_KEY(number_to_string(pvk, _r))

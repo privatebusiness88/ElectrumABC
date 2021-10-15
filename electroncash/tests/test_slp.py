@@ -492,7 +492,7 @@ class SLPTests(unittest.TestCase):
             with self.subTest(description=description, script=scripthex):
                 sco = address.ScriptOutput(bytes.fromhex(scripthex))
                 try:
-                    slp_sco = slp.ScriptOutput(sco.script)
+                    slp.ScriptOutput(sco.script)
                 except Exception as e:
                     if isinstance(e, slp.InvalidOutputMessage):
                         emsg = e.args
@@ -532,10 +532,6 @@ class SLPTests(unittest.TestCase):
                 continue
             if scripthex is None:
                 continue
-            if hasattr(code, "__iter__"):
-                expected_codes = tuple(code)
-            else:
-                expected_codes = (code,)
 
             def check_is_equal_message(msg1, msg2):
                 print("ScriptHex = ", scripthex)
@@ -544,10 +540,7 @@ class SLPTests(unittest.TestCase):
                 for k in msg1.valid_properties:
                     if k.startswith("_") or k in seen:
                         continue
-                    try:
-                        v = getattr(msg1, k, None)
-                    except:
-                        continue
+                    v = getattr(msg1, k, None)
                     if v is not None and not callable(v):
                         # print("kw=",k)
                         self.assertEqual(v, getattr(msg2, k, None))
@@ -555,12 +548,8 @@ class SLPTests(unittest.TestCase):
                 for k in msg2.valid_properties:
                     if k.startswith("_") or k in seen:
                         continue
-                    try:
-                        v = getattr(msg2, k, None)
-                    except:
-                        continue
+                    v = getattr(msg2, k, None)
                     if v is not None and not callable(v):
-                        # print("kw=",k)
                         self.assertEqual(v, getattr(msg1, k, None))
                         seen.add(k)
 
