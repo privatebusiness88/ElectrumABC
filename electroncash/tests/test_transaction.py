@@ -598,7 +598,7 @@ class TestTransaction(unittest.TestCase):
         )
 
 
-class NetworkMock(object):
+class NetworkMock:
     def __init__(self, unspent):
         self.unspent = unspent
 

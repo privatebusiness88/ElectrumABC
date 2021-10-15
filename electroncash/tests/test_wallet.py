@@ -17,7 +17,7 @@ from ..wallet import (
 )
 
 
-class FakeSynchronizer(object):
+class FakeSynchronizer:
     def __init__(self):
         self.store = []
 

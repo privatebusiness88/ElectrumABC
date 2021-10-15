@@ -143,7 +143,7 @@ class TestUserConfig(unittest.TestCase):
         self.assertEqual({}, result)
 
     def test_path_with_reprd_object(self):
-        class something(object):
+        class something:
             pass
 
         thefile = os.path.join(self.user_dir, "config")

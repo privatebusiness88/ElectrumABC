@@ -174,9 +174,8 @@ class TestCashAddrAddress(unittest.TestCase):
     def test_bad_encode_size(self):
         """Test that bad sized hashes fail to encode."""
         for bits_size in self.valid_sizes:
-            size = bits_size // 8
             # Make size invalid
-            size += 1
+            size = bits_size // 8 + 1
             # Convert to a valid number of bytes for a hash
             hashbytes = bytes(random.randint(0, 255) for i in range(size))
             with self.assertRaises(ValueError):

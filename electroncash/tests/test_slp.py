@@ -495,27 +495,29 @@ class SLPTests(unittest.TestCase):
                     slp.ScriptOutput(sco.script)
                 except Exception as e:
                     if isinstance(e, slp.InvalidOutputMessage):
-                        emsg = e.args
-                        if errorcodes[emsg] not in expected_codes:
-                            raise AssertionError(
-                                "Invalidity reason %r (code: %d) not in expected reasons %r"
-                                % (emsg, errorcodes[emsg], expected_codes)
-                            )
+                        self.assertIn(
+                            errorcodes[e.args],
+                            expected_codes,
+                            "Invalidity reason %r (code: %d) not in expected reasons %r"
+                            % (e.args, errorcodes[e.args], expected_codes),
+                        )
                     elif isinstance(e, slp.UnsupportedSlpTokenType):
-                        if 255 not in expected_codes:
-                            raise AssertionError(
-                                "UnsupportedSlpTokenType exception raised (code 255) but not in expected reasons (%r)"
-                                % (expected_codes,)
-                            )
+                        self.assertIn(
+                            255,
+                            expected_codes,
+                            "UnsupportedSlpTokenType exception raised (code 255) but not in expected reasons (%r)"
+                            % (expected_codes,),
+                        )
                     else:
                         raise
                 else:
                     # no exception
-                    if None not in expected_codes:
-                        raise AssertionError(
-                            "Script was found valid but should have been invalid, for a reason code in %r."
-                            % (expected_codes,)
-                        )
+                    self.assertIn(
+                        None,
+                        expected_codes,
+                        "Script was found valid but should have been invalid, for a reason code in %r."
+                        % (expected_codes,),
+                    )
 
     def test_opreturn_build(self):
         testlist = json.loads(script_tests_json)

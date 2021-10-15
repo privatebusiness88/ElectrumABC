@@ -25,6 +25,7 @@
 # SOFTWARE.
 
 from collections import defaultdict
+from contextlib import suppress
 from enum import IntEnum
 from functools import partial
 
@@ -99,16 +100,12 @@ class AddressList(MyTreeWidget):
             self._ca_cb_registered = False
         # paranoia -- we have seen Qt not clean up the signal before the object is
         # destroyed on Python 3.7.3 PyQt 5.12.3, see #1531
-        try:
+        with suppress(TypeError):
             self.parent.gui_object.addr_fmt_changed.disconnect(self.update)
-        except TypeError:
-            pass
-        try:
+        with suppress(TypeError):
             self.parent.ca_address_default_changed_signal.disconnect(
                 self._ca_on_address_default_change
             )
-        except TypeError:
-            pass
 
     def filter(self, p):
         """Reimplementation from superclass filter.  Chops off the
