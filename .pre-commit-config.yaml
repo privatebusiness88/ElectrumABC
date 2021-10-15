@@ -24,7 +24,7 @@ repos:
     hooks:
     -   id: black
 -   repo: https://github.com/pycqa/flake8
-    rev: 4.0.1
+    rev: 3.9.2
     hooks:
     -   id: flake8
         args:
@@ -34,3 +34,4 @@ repos:
         -   flake8-comprehensions
         -   flake8-mutable
         -   flake8-simplify
+        -   flake8-use-fstring

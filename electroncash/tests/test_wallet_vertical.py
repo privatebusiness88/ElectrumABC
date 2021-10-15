@@ -33,10 +33,10 @@ class TestWalletKeystoreAddressIntegrity(unittest.TestCase):
 
     def _create_multisig_wallet(self, ks1, ks2):
         store = storage.WalletStorage("if_this_exists_mocking_failed_648151893")
-        multisig_type = "%dof%d" % (2, 2)
+        multisig_type = "2of2"
         store.put("wallet_type", multisig_type)
-        store.put("x%d/" % 1, ks1.dump())
-        store.put("x%d/" % 2, ks2.dump())
+        store.put("x1/", ks1.dump())
+        store.put("x2/", ks2.dump())
         store.put("gap_limit", self.gap_limit)
         w = wallet.Multisig_Wallet(store)
         w.synchronize()

@@ -477,7 +477,6 @@ class SLPTests(unittest.TestCase):
     def test_opreturn_parse(self):
         testlist = json.loads(script_tests_json)
 
-        print("Starting %d tests on SLP's OP_RETURN parser" % len(testlist))
         for d in testlist:
             description = d["msg"]
             scripthex = d["script"]
@@ -522,7 +521,6 @@ class SLPTests(unittest.TestCase):
     def test_opreturn_build(self):
         testlist = json.loads(script_tests_json)
 
-        print("Starting %d tests on SLP's OP_RETURN builder" % len(testlist))
         ctr = 0
         for d in testlist:
             description = d["msg"]
@@ -604,8 +602,6 @@ class SLPTests(unittest.TestCase):
                 else:
                     raise RuntimeError("Unexpected transation_type")
                 ctr += 1
-
-        print("Completed %d OP_RETURN *build* tests" % ctr)
 
 
 if __name__ == "__main__":
