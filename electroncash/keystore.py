@@ -26,6 +26,7 @@
 # SOFTWARE.
 
 import hashlib
+from typing import Union
 
 import ecdsa
 from ecdsa.curves import SECP256k1
@@ -276,10 +277,10 @@ class Xpub:
     def get_master_public_key(self):
         return self.xpub
 
-    def derive_pubkey(self, for_change, n):
+    def derive_pubkey(self, for_change: bool, n):
         xpub = self.xpub_change if for_change else self.xpub_receive
         if xpub is None:
-            xpub = bitcoin.bip32_public_derivation(self.xpub, "", "/%d" % for_change)
+            xpub = bitcoin.bip32_public_derivation(self.xpub, "", f"/{for_change:d}")
             if for_change:
                 self.xpub_change = xpub
             else:
@@ -326,14 +327,9 @@ class Xpub:
 
     def get_pubkey_derivation_based_on_wallet_advice(self, x_pubkey):
         _, addr = xpubkey_to_address(x_pubkey)
-        retval = None
-        try:
-            retval = self.wallet_advice.get(addr)
-        except AttributeError:
-            # future-proofing the code: self.wallet_advice wasn't defined, which can happen
-            # if this class is inherited in the future by non-KeyStore children
-            pass
-        return retval  # None or the derivation based on wallet advice..
+        retval = self.wallet_advice.get(addr)
+        # None or the derivation based on wallet advice.
+        return retval
 
     def get_pubkey_derivation(self, x_pubkey):
         if x_pubkey[0:2] == "fd":
@@ -479,11 +475,9 @@ class Old_KeyStore(Deterministic_KeyStore):
         return ecdsa.util.string_to_number(x)
 
     @classmethod
-    def get_sequence(self, mpk, for_change, n):
+    def get_sequence(self, mpk, for_change: Union[int, bool], n: int):
         return ecdsa.util.string_to_number(
-            bitcoin.Hash(
-                ("%d:%d:" % (n, for_change)).encode("ascii") + bytes.fromhex(mpk)
-            )
+            bitcoin.Hash(f"{n:d}:{for_change:d}:".encode("ascii") + bytes.fromhex(mpk))
         )
 
     @classmethod
@@ -693,7 +687,6 @@ def hardware_keystore(d):
 
 
 def load_keystore(storage, name):
-    w = storage.get("wallet_type", "standard")
     d = storage.get(name, {})
     t = d.get("type")
     if not t:
@@ -711,10 +704,11 @@ def load_keystore(storage, name):
     return k
 
 
-def is_old_mpk(mpk):
+def is_old_mpk(mpk: str) -> bool:
     try:
         int(mpk, 16)
-    except:
+    except ValueError:
+        # invalid hexadecimal string
         return False
     return len(mpk) == 128
 
