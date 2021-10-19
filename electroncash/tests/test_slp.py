@@ -534,15 +534,12 @@ class SLPTests(unittest.TestCase):
                 continue
 
             def check_is_equal_message(msg1, msg2):
-                print("ScriptHex = ", scripthex)
-                print("Testing ", msg1.chunks, "vs", msg2.chunks)
                 seen = {"chunks"}
                 for k in msg1.valid_properties:
                     if k.startswith("_") or k in seen:
                         continue
                     v = getattr(msg1, k, None)
                     if v is not None and not callable(v):
-                        # print("kw=",k)
                         self.assertEqual(v, getattr(msg2, k, None))
                         seen.add(k)
                 for k in msg2.valid_properties:

@@ -255,10 +255,11 @@ class DaemonThread(threading.Thread, PrintError):
         self.print_error("stopped")
 
 
-# TODO: disable
-is_verbose = True
+is_verbose = False
 verbose_timestamps = True
 verbose_thread_id = True
+
+
 def set_verbosity(b, *, timestamps=True, thread_id=True):
     global is_verbose, verbose_timestamps, verbose_thread_id
     is_verbose = b

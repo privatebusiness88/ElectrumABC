@@ -63,15 +63,12 @@ class Test_bitcoin(unittest.TestCase):
         # pubkey_u = point_to_ser(Pub,False)
         public_key_to_p2pkh(pubkey_c)
 
-        # print "Private key            ", '%064x'%pvk
         eck = EC_KEY(number_to_string(pvk, _r))
 
-        # print "Compressed public key  ", pubkey_c.encode('hex')
         enc = EC_KEY.encrypt_message(message, pubkey_c)
         dec = eck.decrypt_message(enc)
         self.assertEqual(message, dec)
 
-        # print "Uncompressed public key", pubkey_u.encode('hex')
         # enc2 = EC_KEY.encrypt_message(message, pubkey_u)
         dec2 = eck.decrypt_message(enc)
         self.assertEqual(message, dec2)

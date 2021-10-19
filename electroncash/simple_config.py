@@ -101,7 +101,6 @@ class SimpleConfig(PrintError):
         obsolete_file = os.path.join(path, 'recent_servers')
         if os.path.exists(obsolete_file):
             os.remove(obsolete_file)
-        self.print_error(f"{SCRIPT_NAME} directory", path)
         return path
 
     def rename_config_keys(self, config, keypairs, deprecation_warning=False):
@@ -145,8 +144,6 @@ class SimpleConfig(PrintError):
 
     def upgrade(self):
         with self.lock:
-            self.print_error('upgrading config')
-
             self.convert_version_2()
 
             self.set_key('config_version', FINAL_CONFIG_VERSION, save=True)
@@ -240,7 +237,6 @@ class SimpleConfig(PrintError):
             self.set_key('recently_open', recent)
 
     def set_session_timeout(self, seconds):
-        self.print_error("session timeout -> %d seconds" % seconds)
         self.set_key('session_timeout', seconds)
 
     def get_session_timeout(self):

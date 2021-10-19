@@ -37,7 +37,7 @@ from typing import Optional, Tuple, Union
 
 from . import networks
 from .util import (bfh, bh2u, to_string, print_error, InvalidPassword,
-                   assert_bytes, to_bytes, inv_dict, profiler)
+                   assert_bytes, to_bytes, inv_dict)
 from .ecc_fast import do_monkey_patching_of_python_ecdsa_internals_with_libsecp256k1
 
 # Ensure Python interpreter is not running with -O, since this entire
@@ -1196,14 +1196,12 @@ class Bip38Key:
         if cls._scrypt_1 or cls._scrypt_2:
             return True
         if hasattr(hashlib, 'scrypt'):
-            print_error("[{}] found and using hashlib.scrypt! (Fast scrypt)".format(cls.__name__))
             cls._scrypt_1 = hashlib.scrypt
             return True
         else:
             try:
                 from Cryptodome.Protocol.KDF import scrypt
                 cls._scrypt_2 = scrypt
-                print_error("[{}] found and using Cryptodome.Protocol.KDF.scrypt! (Fast scrypt)".format(cls.__name__))
                 return True
             except (ImportError, NameError):
                 pass
@@ -1226,7 +1224,6 @@ class Bip38Key:
     def canEncrypt(): return Bip38Key.canDecrypt()
 
     @staticmethod
-    @profiler
     def _scrypt(password, salt, N, r, p, dkLen):
         password = to_bytes(password)
         salt = to_bytes(salt)
@@ -1436,7 +1433,6 @@ class Bip38Key:
         intermediate_passphrase_string = magic + ownerentropy + passpoint # 49 bytes (not a str, despite name. We use the name from bip38 spec here)
 
         enc = EncodeBase58Check(intermediate_passphrase_string)
-        print_error("[{}] Intermediate passphrase string:".format(cls.__name__), enc)
         return cls.ec_mult_from_intermediate_passphrase_string(enc, compressed)
 
     @classmethod
