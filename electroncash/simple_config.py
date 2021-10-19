@@ -119,7 +119,7 @@ class SimpleConfig(PrintError):
 
     def set_key(self, key, value, save=True):
         if not self.is_modifiable(key):
-            self.print_stderr("Warning: not changing config key '%s' set on the command line" % key)
+            self.print_error("Warning: not changing config key '%s' set on the command line" % key)
             return
         self._set_key_in_user_config(key, value, save)
 
