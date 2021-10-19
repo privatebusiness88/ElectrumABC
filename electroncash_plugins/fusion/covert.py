@@ -76,7 +76,9 @@ def is_tor_port(host, port):
         # Tor responds uniquely to HTTP-like requests
         s.send(b"GET\n")
         if b"Tor is not an HTTP Proxy" in s.recv(1024):
+            s.close()
             return True
+        s.close()
     except socket.error:
         pass
     return False
