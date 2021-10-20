@@ -60,6 +60,7 @@ from electroncash.constants import (
     PORTABLE_DATA_DIR,
 )
 from electroncash.i18n import _
+from electroncash.keystore import bip44_derivation_xec
 from electroncash.migrate_data import migrate_data_from_ec, update_config
 from electroncash.plugins import Plugins
 from electroncash.storage import WalletStorage
@@ -72,6 +73,7 @@ from electroncash.util import (
     set_verbosity,
 )
 from electroncash.wallet import (
+    create_new_wallet,
     ImportedAddressWallet,
     ImportedPrivkeyWallet,
     Wallet,
@@ -176,7 +178,7 @@ def run_non_rpc(simple_config: SimpleConfig):
     if cmd_name == 'restore':
         wallet = restore_wallet(simple_config, storage)
     elif cmd_name == 'create':
-        wallet = create_wallet(simple_config, storage)
+        wallet = create_wallet(simple_config)
     else:
         raise RuntimeError(f"run_non_rpc called with invalid cmd: {cmd_name}")
 
@@ -238,35 +240,28 @@ def restore_wallet(simple_config: SimpleConfig,
     return wallet
 
 
-def create_wallet(simple_config: SimpleConfig,
-                  storage: WalletStorage):
+def create_wallet(simple_config: SimpleConfig):
     """Create a new wallet"""
     password = prompt_create_wallet_password()
-    passphrase = simple_config.get("passphrase", "")
     seed_type = simple_config.get("seed_type", "bip39")
-    if seed_type == "bip39":
-        seed = mnemo.make_bip39_words("english")
-    elif seed_type in ["electrum", "standard"]:
+    if seed_type == "standard":
         seed_type = "electrum"
-        seed = mnemo.Mnemonic_Electrum("en").make_seed()
-    else:
-        raise RuntimeError("Unknown seed_type " + str(seed_type))
-    k = keystore.from_seed(seed, passphrase, seed_type=seed_type)
-    storage.put("seed_type", seed_type)
-    storage.put("keystore", k.dump())
-    storage.put("wallet_type", "standard")
-    wallet = Wallet(storage)
-    wallet.update_password(None, password, True)  # pylint: disable=no-member
-    wallet.synchronize()  # pylint: disable=no-member
-    print_msg("Your wallet generation seed is:\n    \"%s\"" % seed)
-    print_msg("Wallet seed format:", seed_type)
-    if k.has_derivation() and seed_type != "electrum":
-        print_msg("Your wallet derivation path is:", str(k.derivation))
-    print_msg(
-        "Please keep your seed information in a safe place; if you lose it, "
-        "you will not be able to restore your wallet."
+
+    d = create_new_wallet(
+        path=simple_config.get_wallet_path(),
+        config=simple_config,
+        passphrase=simple_config.get("passphrase", ""),
+        password=password,
+        encrypt_file=True,
+        seed_type=seed_type
     )
-    return wallet
+
+    print_msg(f'Your wallet generation seed is:\n    "{d["seed"]}"')
+    print_msg(f"Wallet seed format: {seed_type}")
+    if seed_type == "bip39":
+        print_msg(f"Your wallet derivation path is: {bip44_derivation_xec(0)}")
+    print_msg(d["msg"])
+    return d["wallet"]
 
 
 def init_daemon(config_options):
