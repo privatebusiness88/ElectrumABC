@@ -786,10 +786,7 @@ def bip39_normalize_passphrase(passphrase):
     return mnemo.normalize_text(passphrase or "", is_passphrase=True)
 
 
-def from_seed(
-    seed, passphrase, is_p2sh=None, *, seed_type="", derivation=None
-) -> KeyStore:
-    del is_p2sh  # argument totally ignored.  Legacy API.
+def from_seed(seed, passphrase, *, seed_type="", derivation=None) -> KeyStore:
     if not seed_type:
         seed_type = mnemo.seed_type_name(seed)  # auto-detect
     if seed_type == "old":

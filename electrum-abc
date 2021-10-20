@@ -249,7 +249,6 @@ def create_wallet(simple_config: SimpleConfig):
 
     d = create_new_wallet(
         path=simple_config.get_wallet_path(),
-        config=simple_config,
         passphrase=simple_config.get("passphrase", ""),
         password=password,
         encrypt_file=True,

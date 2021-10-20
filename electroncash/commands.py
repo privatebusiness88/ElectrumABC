@@ -193,8 +193,7 @@ class Commands:
                               passphrase=passphrase,
                               password=password,
                               encrypt_file=encrypt_file,
-                              seed_type=seed_type,
-                              config=self.config)
+                              seed_type=seed_type)
         return {
             'seed': d['seed'],
             'path': d['wallet'].storage.path,

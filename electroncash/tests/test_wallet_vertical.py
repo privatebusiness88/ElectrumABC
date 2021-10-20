@@ -47,7 +47,7 @@ class TestWalletKeystoreAddressIntegrity(unittest.TestCase):
         seed_words = "cycle rocket west magnet parrot shuffle foot correct salt library feed song"
         self.assertEqual(mnemo.seed_type_name(seed_words), "electrum")
 
-        ks = keystore.from_seed(seed_words, "", False)
+        ks = keystore.from_seed(seed_words, "")
 
         self._check_seeded_keystore_sanity(ks)
         self.assertTrue(isinstance(ks, keystore.BIP32_KeyStore))
@@ -73,7 +73,7 @@ class TestWalletKeystoreAddressIntegrity(unittest.TestCase):
         seed_words = "powerful random nobody notice nothing important anyway look away hidden message over"
         self.assertEqual(mnemo.seed_type_name(seed_words), "old")
 
-        ks = keystore.from_seed(seed_words, "", False)
+        ks = keystore.from_seed(seed_words, "")
 
         self._check_seeded_keystore_sanity(ks)
         self.assertTrue(isinstance(ks, keystore.Old_KeyStore))
@@ -129,7 +129,7 @@ class TestWalletKeystoreAddressIntegrity(unittest.TestCase):
         seed_words = "blast uniform dragon fiscal ensure vast young utility dinosaur abandon rookie sure"
         self.assertEqual(mnemo.seed_type_name(seed_words), "electrum")
 
-        ks1 = keystore.from_seed(seed_words, "", True)
+        ks1 = keystore.from_seed(seed_words, "")
         self._check_seeded_keystore_sanity(ks1)
         self.assertTrue(isinstance(ks1, keystore.BIP32_KeyStore))
         self.assertEqual(

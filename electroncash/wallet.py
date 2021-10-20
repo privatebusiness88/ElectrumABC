@@ -3251,8 +3251,8 @@ class Wallet:
         raise UnknownWalletType("Unknown wallet type: " + str(wallet_type))
 
 
-def create_new_wallet(*, path, config, passphrase=None, password=None,
-                      encrypt_file=True, seed_type=None, gap_limit=None) -> dict:
+def create_new_wallet(*, path, passphrase=None, password=None,
+                      encrypt_file=True, seed_type=None) -> dict:
     """Create a new wallet"""
     storage = WalletStorage(path)
     if storage.file_exists():
@@ -3271,8 +3271,6 @@ def create_new_wallet(*, path, config, passphrase=None, password=None,
     storage.put('keystore', k.dump())
     storage.put('wallet_type', 'standard')
     storage.put('seed_type', seed_type)
-    if gap_limit is not None:
-        storage.put('gap_limit', gap_limit)
     wallet = Wallet(storage)
     wallet.update_password(old_pw=None, new_pw=password, encrypt=encrypt_file)
     wallet.synchronize()
