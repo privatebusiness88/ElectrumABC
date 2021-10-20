@@ -3260,9 +3260,14 @@ def create_new_wallet(*, path, config, passphrase=None, password=None,
 
     if seed_type == 'electrum':
         seed = mnemo.Mnemonic_Electrum('en').make_seed()
-    else:
+    elif seed_type in [None, "bip39"]:
         seed = mnemo.make_bip39_words('english')
-    k = keystore.from_seed(seed, passphrase, seed_type = seed_type)
+        seed_type = "bip39"
+    else:
+        raise keystore.InvalidSeed(
+            f"Seed type {seed_type} not supported for new wallet creation"
+        )
+    k = keystore.from_seed(seed, passphrase, seed_type=seed_type)
     storage.put('keystore', k.dump())
     storage.put('wallet_type', 'standard')
     storage.put('seed_type', seed_type)
