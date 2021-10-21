@@ -629,12 +629,11 @@ class ElectrumGui(QObject, PrintError):
                     self._cache_password(wallet, password)
             except BaseException as e:
                 traceback.print_exc(file=sys.stdout)
-                if '2fa' in str(e):
-                    self.warning(
-                        title=_('Error'),
-                        message=f'2FA wallets for Bitcoin Cash are currently unsupported by <a href="https://api.trustedcoin.com/#/">TrustedCoin</a>. Follow <a href="{REPOSITORY_URL}/issues/41#issuecomment-357468208">this guide</a> in order to recover your funds.')
-                else:
-                    self.warning(title=_('Error'), message = 'Cannot load wallet:\n' + str(e), icon=QMessageBox.Critical)
+                self.warning(
+                    title=_('Error'),
+                    message = 'Cannot load wallet:\n' + str(e),
+                    icon=QMessageBox.Critical
+                )
                 return
             w = self.create_window_for_wallet(wallet)
         if uri:

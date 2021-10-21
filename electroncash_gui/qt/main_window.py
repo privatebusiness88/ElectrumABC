@@ -505,8 +505,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.wallet.is_watching_only():
             msg = ' '.join([
                 _("This wallet is watching-only."),
-                _("This means you will not be able to spend Bitcoin Cash with it."),
-                _("Make sure you own the seed phrase or the private keys, before you request Bitcoin Cash to be sent to this wallet.")
+                _(f"This means you will not be able to spend {CURRENCY} with it."),
+                _(f"Make sure you own the seed phrase or the private keys, before you "
+                  f"request {CURRENCY} to be sent to this wallet.")
             ])
             self.show_warning(msg, title=_('Information'))
 
@@ -1123,7 +1124,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.receive_address_e = ButtonsLineEdit()
         self.receive_address_e.addCopyButton()
         self.receive_address_e.setReadOnly(True)
-        msg = _('Bitcoin Cash address where the payment should be received. Note that each payment request uses a different Bitcoin Cash address.')
+        msg = _(f'{CURRENCY} address where the payment should be received. Note that '
+                f'each payment request uses a different {CURRENCY} address.')
         label = HelpLabel(_('&Receiving address'), msg)
         label.setBuddy(self.receive_address_e)
         self.receive_address_e.textChanged.connect(self.update_receive_qr)
@@ -1247,8 +1249,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             _('This information is seen by the recipient if you send them'
               ' a signed payment request.'),
             _('Expired requests have to be deleted manually from your list,'
-              ' in order to free the corresponding Bitcoin Cash addresses.'),
-            _(f'The Bitcoin Cash address never expires and will always be '
+              f' in order to free the corresponding {CURRENCY} addresses.'),
+            _(f'The {CURRENCY} address never expires and will always be '
               f'part of this {PROJECT_NAME} wallet.'),
         ])
         label = HelpLabel(_('Request &expires'), msg)
@@ -1580,6 +1582,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         msg = "<span style=\"font-weight:400;\">" + _('Recipient of the funds.') + " " + \
               _("You may enter:"
                 "<ul>"
+                f"<li> {CURRENCY} <b>Address</b> <b>★</b>"
                 "<li> Bitcoin Cash <b>Address</b> <b>★</b>"
                 "<li> Bitcoin Legacy <b>Address</b> <b>★</b>"
                 "<li> <b>Cash Account</b> <b>★</b> e.g. <i>satoshi#123</i>"
@@ -1670,9 +1673,15 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         hbox.addStretch(1)
         grid.addLayout(hbox, 5, 4, 1, -1)
 
-        msg = _('Bitcoin Cash transactions are in general not free. A transaction fee is paid by the sender of the funds.') + '\n\n'\
-              + _('The amount of fee can be decided freely by the sender. However, transactions with low fees take more time to be processed.') + '\n\n'\
-              + _('A suggested fee is automatically added to this field. You may override it. The suggested fee increases with the size of the transaction.')
+        msg = _(f'{CURRENCY} transactions are in general not free. A transaction fee is '
+                f'  paid by the sender of the funds.')\
+              + '\n\n'\
+              + _('The amount of fee can be decided freely by the sender. However, '
+                  'transactions with low fees take more time to be processed.')\
+              + '\n\n'\
+              + _('A suggested fee is automatically added to this field. You may '
+                  'override it. The suggested fee increases with the size of the '
+                  'transaction.')
         self.fee_e_label = HelpLabel(_('F&ee'), msg)
 
         def fee_cb(dyn, pos, fee_rate):
@@ -3237,7 +3246,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         try:
             addr = Address.from_string(address)
         except:
-            self.show_message(_('Invalid Bitcoin Cash address.'))
+            self.show_message(_(f'Invalid {CURRENCY} address.'))
             return
         if addr.kind != addr.ADDR_P2PKH:
             msg_sign = ( _("Signing with an address actually means signing with the corresponding "
@@ -3264,7 +3273,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         try:
             address = Address.from_string(address.text().strip())
         except:
-            self.show_message(_('Invalid Bitcoin Cash address.'))
+            self.show_message(_(f'Invalid {CURRENCY} address.'))
             return
         message = message.toPlainText().strip().encode('utf-8')
         try:

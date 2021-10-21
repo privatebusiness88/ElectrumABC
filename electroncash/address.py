@@ -532,8 +532,7 @@ class Address(namedtuple("AddressTuple", "hash160 kind")):
                              net: networks.AbstractNet = None,
                              support_arbitrary_prefix: bool = False):
         """Construct from a cashaddress string.
-        This support arbitrary prefixes.
-        If the prefix is not specified, "bitcoincash:" is tried.
+        If the prefix is not specified, "ecash:" and "bitcoincash:" are tried.
         :return: Instance of :class:`Address`
         """
         if net is None:
