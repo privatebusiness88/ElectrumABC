@@ -45,8 +45,8 @@ def get_constants():
 
 PROJECT_NAME, REPOSITORY_URL, SCRIPT_NAME, PROJECT_NAME_NO_SPACES = get_constants()
 
-if sys.version_info[:3] < (3, 6):
-    sys.exit(f"Error: {PROJECT} requires Python version >= 3.6...")
+if sys.version_info[:3] < (3, 7):
+    sys.exit(f"Error: {PROJECT_NAME} requires Python version >= 3.7...")
 
 data_files = []
 
@@ -233,7 +233,6 @@ setup(
         "Operating System :: POSIX",
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',

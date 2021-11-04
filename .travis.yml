@@ -12,7 +12,7 @@ matrix:
         - RUN_COVERAGE=true
         - MAKE_SECP=false
 
-    - python: 3.6
+    - python: 3.7
       os: linux
       env:
         - RUN_COVERAGE=false

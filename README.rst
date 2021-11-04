@@ -12,8 +12,8 @@ Electrum ABC - Lightweight eCash client
 Getting started
 ===============
 
-**Note: If running from source, Python 3.6 or above is required to run Electrum ABC.**
-If your system lacks Python 3.6, you have other options, such as the
+**Note: If running from source, Python 3.7 or above is required to run Electrum ABC.**
+If your system lacks Python 3.7, you have other options, such as the
 `AppImage / binary releases <https://github.com/Bitcoin-ABC/ElectrumABC/releases/>`_
 or running from source using `pyenv` (see section `Running from source on old Linux`_ below).
 
@@ -60,7 +60,7 @@ If you still have problems connecting to your Nano S please have a look at this
 Development version
 ===================
 
-Check your python version >= 3.6, and install pyqt5, as instructed above in the
+Check your python version >= 3.7, and install pyqt5, as instructed above in the
 `Getting started`_ section above or `Running from source on old Linux`_ section below.
 
 If you are on macOS, see the `Running from source on macOS`_ section below.
@@ -103,9 +103,9 @@ to run completely independently of your system configuration.
    account. Follow the printed instructions about updating your environment
    variables and ``.bashrc``, and restart your shell to ensure that they are
    loaded.
-2. Run ``pyenv install 3.6.9``. This will download and compile that version of
+2. Run ``pyenv install 3.9.7``. This will download and compile that version of
    python, storing it under ``.pyenv`` in your home directory.
-3. ``cd`` into the Electrum ABC directory. Run ``pyenv local 3.6.9`` which inserts
+3. ``cd`` into the Electrum ABC directory. Run ``pyenv local 3.9.7`` which inserts
    a file ``.python-version`` into the current directory.
 4. While still in this directory, run ``pip install pyqt5``.
 5. If you are installing from the source file (.tar.gz or .zip) then you are
@@ -123,8 +123,8 @@ is required for either).
 1. After installing either HomeBrew or MacPorts, clone this repository and
    switch to the directory:
    ``git clone https://github.com/Bitcoin-ABC/ElectrumABC && cd ElectrumABC``
-2. Install python 3.6 or 3.7. For brew: ``brew install python3``
-   or if using MacPorts: ``sudo port install python36``
+2. Install python 3.7+. For brew: ``brew install python3``
+   or if using MacPorts: ``sudo port install python37``
 3. Install PyQt5: ``python3 -m pip install --user pyqt5``
 4. Install Electrum ABC requirements:
    ``python3 -m pip install --user -r contrib/requirements/requirements.txt``

@@ -68,9 +68,9 @@ task:
     - coverage report --include="./electroncash*";
   matrix:
     - container:
-        image: python:3.6
+        image: python:3.7
     - container:
-        image: python:3.8
+        image: python:3.9
 
 task:
   name: "Tests (secp256k1)"
