@@ -67,7 +67,7 @@ class QrReaderVideoOverlay(QtWidgets.QWidget):
         self.bg_rect_pen = QPen()
         self.bg_rect_pen.setColor(Qt.black)
         self.bg_rect_pen.setStyle(Qt.DotLine)
-        self.bg_rect_fill = QColor(255, 255, 255, 255 * self.BG_RECT_OPACITY)
+        self.bg_rect_fill = QColor(255, 255, 255, int(255 * self.BG_RECT_OPACITY))
 
         self.qr_finder = QSvgRenderer(":icons/qr_finder.svg")
 

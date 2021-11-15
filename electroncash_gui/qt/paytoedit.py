@@ -66,10 +66,9 @@ class PayToEdit(PrintError, ScanQRTextEdit):
         self.fontSpacing = fontMetrics.lineSpacing()
 
         margins = self.contentsMargins()
-        documentMargin = document.documentMargin()
         self.verticalMargins = margins.top() + margins.bottom()
         self.verticalMargins += self.frameWidth() * 2
-        self.verticalMargins += documentMargin * 2
+        self.verticalMargins += int(document.documentMargin() * 2)
 
         self.heightMin = self.fontSpacing + self.verticalMargins
         self.heightMax = (self.fontSpacing * 10) + self.verticalMargins

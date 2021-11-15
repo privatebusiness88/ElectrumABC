@@ -739,10 +739,10 @@ class ElectrumGui(QtCore.QObject, PrintError):
         self.update_checker_timer.first_run = bool(first_run)
         if first_run:
             # do it very soon (in 10 seconds)
-            interval = 10.0 * 1e3
+            interval = 10_000
         else:
             # once every 4 hours (in ms)
-            interval = 4.0 * 3600.0 * 1e3
+            interval = 4 * 3_600_000
         self.update_checker_timer.start(interval)
         self.print_error(
             f"Auto update check: interval set to {interval // 1e3} seconds")
