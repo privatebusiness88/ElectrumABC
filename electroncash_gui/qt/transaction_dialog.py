@@ -573,6 +573,7 @@ class TxDialog(QtWidgets.QDialog, MessageBoxMixin, PrintError):
         i_text.setFont(QFont(MONOSPACE_FONT))
         i_text.setReadOnly(True)
         i_text.setTextInteractionFlags(i_text.textInteractionFlags() | Qt.LinksAccessibleByMouse | Qt.LinksAccessibleByKeyboard)
+        i_text.setMinimumWidth(780)
         vbox.addWidget(i_text)
 
 
