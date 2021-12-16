@@ -233,11 +233,11 @@ class Test_bitcoin(unittest.TestCase):
         self.assertEqual(op_push(0x4B), "4b")
         self.assertEqual(op_push(0x4C), "4c4c")
         self.assertEqual(op_push(0xFE), "4cfe")
-        self.assertEqual(op_push(0xFF), "4dff00")
+        self.assertEqual(op_push(0xFF), "4cff")
         self.assertEqual(op_push(0x100), "4d0001")
         self.assertEqual(op_push(0x1234), "4d3412")
         self.assertEqual(op_push(0xFFFE), "4dfeff")
-        self.assertEqual(op_push(0xFFFF), "4effff0000")
+        self.assertEqual(op_push(0xFFFF), "4dffff")
         self.assertEqual(op_push(0x10000), "4e00000100")
         self.assertEqual(op_push(0x12345678), "4e78563412")
 
