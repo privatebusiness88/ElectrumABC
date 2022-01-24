@@ -819,14 +819,15 @@ class ElectrumWindow(QtWidgets.QMainWindow, MessageBoxMixin, PrintError):
 
     def show_about(self):
         year_start_ec = 2017
-        year_end_ec = 2020
+        year_end_ec = 2022
         year_start = 2020
+        year_end = 2022
         QtWidgets.QMessageBox.about(
             self, f"{PROJECT_NAME}",
             f"<p><font size=+3><b>{PROJECT_NAME}</b></font></p><p>"
             + _("Version") + f" {self.wallet.electrum_version}" + "</p>" +
             '<span style="font-size:11pt; font-weight:500;"><p>' +
-            f"Copyright © {year_start} Bitcoin ABC and the {PROJECT_NAME} "
+            f"Copyright © {year_start}-{year_end} Bitcoin ABC and the {PROJECT_NAME} "
             f"developers." + "</p><p>" +
             _(f"Copyright © {year_start_ec}-{year_end_ec} Electron Cash LLC "
               f"and the Electron Cash developers.") + "</p><p>" +
