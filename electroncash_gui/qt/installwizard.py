@@ -173,13 +173,24 @@ class InstallWizard(QtWidgets.QDialog, MessageBoxMixin, BaseWizard):
         self, path, get_wallet_from_daemon
     ) -> Tuple[str, Optional[WalletStorage]]:
         vbox = QtWidgets.QVBoxLayout()
+        vbox.addWidget(
+            QtWidgets.QLabel(
+                _('Create a new wallet or load an existing wallet from file.'))
+        )
+        vbox.addSpacing(20)
+
         hbox = QtWidgets.QHBoxLayout()
-        hbox.addWidget(QtWidgets.QLabel(_('Wallet') + ':'))
+        hbox.addWidget(QtWidgets.QLabel(_('Wallet name') + ':'))
         self.name_e = QtWidgets.QLineEdit()
+        self.name_e.setToolTip(
+            _("Enter a wallet name (new or existing), or the path to a wallet file.")
+        )
         hbox.addWidget(self.name_e)
-        button = QtWidgets.QPushButton(_('Choose...'))
+        button = QtWidgets.QPushButton(_('Load...'))
+        button.setToolTip(_("Open a file selection dialog to load a wallet file."))
         hbox.addWidget(button)
         vbox.addLayout(hbox)
+        vbox.addSpacing(20)
 
         self.msg_label = QtWidgets.QLabel('')
         vbox.addWidget(self.msg_label)
