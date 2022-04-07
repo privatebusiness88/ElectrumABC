@@ -55,8 +55,9 @@ prepare_wine() {
         LIBUSB_REPO='https://github.com/libusb/libusb.git'
         LIBUSB_COMMIT=e782eeb2514266f6738e242cdcb18e3ae1ed06fa
 
-        PYINSTALLER_REPO='https://github.com/PiRK/pyinstaller.git'
-        PYINSTALLER_COMMIT=d6f3d02365ba68ffc84169c56c292701f346110e # Version 4.2 + a patch to drop an unused .rc file
+        PYINSTALLER_REPO="https://github.com/pyinstaller/pyinstaller.git"
+        PYINSTALLER_COMMIT="0fe956a2c6157e1b276819de1a050c242de70a29"
+        # ^ latest commit from "v4" branch, somewhat after "4.10" tag
 
         ## These settings probably don't need change
         export WINEPREFIX=$HOME/wine64
