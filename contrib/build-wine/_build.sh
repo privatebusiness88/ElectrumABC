@@ -55,9 +55,8 @@ prepare_wine() {
         LIBUSB_REPO='https://github.com/libusb/libusb.git'
         LIBUSB_COMMIT=e782eeb2514266f6738e242cdcb18e3ae1ed06fa
 
-        PYINSTALLER_REPO="https://github.com/pyinstaller/pyinstaller.git"
-        PYINSTALLER_COMMIT="0fe956a2c6157e1b276819de1a050c242de70a29"
-        # ^ latest commit from "v4" branch, somewhat after "4.10" tag
+        PYINSTALLER_REPO='https://github.com/PiRK/pyinstaller.git'
+        PYINSTALLER_COMMIT=d6f3d02365ba68ffc84169c56c292701f346110e # Version 4.2 + a patch to drop an unused .rc file
 
         ## These settings probably don't need change
         export WINEPREFIX=$HOME/wine64
@@ -143,6 +142,7 @@ EOF
             # If we switch to 64-bit, edit this path below.
             popd
             [ -e PyInstaller/bootloader/Windows-32bit/runw.exe ] || fail "Could not find runw.exe in target dir!"
+            rm -fv pyinstaller.py # workaround for https://github.com/pyinstaller/pyinstaller/pull/6701
         ) || fail "PyInstaller bootloader build failed"
         info "Installing PyInstaller ..."
         $PYTHON -m pip install --no-deps --no-warn-script-location ./pyinstaller || fail "PyInstaller install failed"
