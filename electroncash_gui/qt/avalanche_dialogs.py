@@ -335,7 +335,7 @@ class AvaProofWidget(QtWidgets.QWidget):
                 _("No valid stake left after excluding unconfirmed coins."),
             )
             return
-        if len(self.excluded_utxos) >= 0:
+        if len(self.excluded_utxos) > 0:
             QtWidgets.QMessageBox.warning(
                 self,
                 _("Excluded stakes"),
