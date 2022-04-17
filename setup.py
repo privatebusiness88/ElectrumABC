@@ -177,6 +177,7 @@ setup(
     },
     packages=[
         'electroncash',
+        'electroncash.avalanche',
         'electroncash.qrreaders',
         'electroncash.slp',
         'electroncash.tor',
