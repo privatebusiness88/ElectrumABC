@@ -351,7 +351,7 @@ class AvaProofWidget(QtWidgets.QWidget):
 
     def open_dg_dialog(self):
         if self.dg_dialog is None:
-            self.dg_dialog = AvaDelegationDialog()
+            self.dg_dialog = AvaDelegationDialog(self)
         self.dg_dialog.set_proof(self.proof_display.toPlainText())
         self.dg_dialog.set_master(self.master_key_edit.text())
         self.dg_dialog.show()
