@@ -319,7 +319,7 @@ class PasswordDialog(WindowModalDialog):
     def __init__(self, parent=None, msg=None):
         msg = msg or _('Please enter your password')
         WindowModalDialog.__init__(self, parent, _("Enter Password"))
-        self.pw = pw = PasswordLineEdit
+        self.pw = pw = PasswordLineEdit()
         vbox = QtWidgets.QVBoxLayout()
         vbox.addWidget(QtWidgets.QLabel(msg))
         grid = QtWidgets.QGridLayout()
