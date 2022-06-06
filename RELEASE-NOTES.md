@@ -25,9 +25,14 @@ transactions as expected.
 
 # Release notes
 
-## Current master
+## Release 5.1.2
 
-- Change command line usage to enforce specifying global options before command name.
+- Update the payment request protocol MIME types (BIP71)  (#213).
+- Change command line usage to enforce specifying global options before command name (#215).
+- Improve the error message when the BCH app is not open on a ledger device (#216).
+- Fix a bug breaking support of encrypted hardware wallets (#218).
+- Use the ripemd160 implementation from the `pycryptodome` library preferably to the python
+  fallback implementation when the `hashlib` / OpenSSL implementation is not available.
 
 
 ## Release 5.1.1
