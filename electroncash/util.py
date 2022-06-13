@@ -189,7 +189,7 @@ class DaemonThread(threading.Thread, PrintError):
 
     def __init__(self):
         threading.Thread.__init__(self)
-        self.parent_thread = threading.currentThread()
+        self.parent_thread = threading.current_thread()
         self.running = False
         self.running_lock = threading.Lock()
         self.job_lock = threading.Lock()
@@ -198,7 +198,7 @@ class DaemonThread(threading.Thread, PrintError):
         self._jobs2rm = set()  # removing jobs does not need to preserve orer so we can benefit from the uniqueness property of using a set.
 
     def add_jobs(self, jobs):
-        if threading.currentThread() is not self:
+        if threading.current_thread() is not self:
             with self.job_lock:
                 for job in jobs:
                     if job not in self.jobs: # ensure unique
@@ -212,7 +212,7 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2add.extend(jobs)
 
     def remove_jobs(self, jobs):
-        if threading.currentThread() is not self:
+        if threading.current_thread() is not self:
             with self.job_lock:
                 for job in jobs:
                     ct = 0
