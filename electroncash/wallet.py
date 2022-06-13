@@ -3317,7 +3317,7 @@ class Wallet:
     This class is actually a factory that will return a wallet of the correct
     type when passed a WalletStorage instance."""
 
-    def __new__(self, storage):
+    def __new__(self, storage) -> Abstract_Wallet:
         wallet_type = storage.get('wallet_type')
         # check here if I need to load a plugin
         if wallet_type in plugin_loaders:
