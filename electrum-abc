@@ -419,7 +419,7 @@ def run_gui(config: SimpleConfig, config_options: dict):
     file_desc, server = daemon.get_fd_or_server(config)
     if file_desc is not None:
         plugins = init_plugins(config, config.get("gui", "qt"))
-        daemon_thread = daemon.Daemon(config, file_desc, True, plugins)
+        daemon_thread = daemon.Daemon(config, file_desc, plugins)
         daemon_thread.start()
         try:
             daemon_thread.init_gui()
@@ -450,7 +450,7 @@ def run_start(config: SimpleConfig, config_options: dict, subcommand: str):
                 # from e.g. a plugin, etc.
                 os._exit(0)
         plugins = init_plugins(config, "cmdline")
-        daemon_thread = daemon.Daemon(config, file_desc, False, plugins)
+        daemon_thread = daemon.Daemon(config, file_desc, plugins)
         daemon_thread.start()
         if config.get("websocket_server"):
             # The websockets module relies on an optional module that isn't

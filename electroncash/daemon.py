@@ -158,7 +158,6 @@ class Daemon(DaemonThread):
         self,
         config: SimpleConfig,
         fd: int,
-        is_gui: bool,
         plugins: Plugins,
         *,
         listen_jsonrpc: bool=True
@@ -180,9 +179,9 @@ class Daemon(DaemonThread):
         self.wallets = {}
         if listen_jsonrpc:
             # Setup JSONRPC server
-            self.init_server(config, fd, is_gui)
+            self.init_server(config, fd)
 
-    def init_server(self, config, fd, is_gui):
+    def init_server(self, config: SimpleConfig, fd: int):
         host = config.get('rpchost', '127.0.0.1')
         port = config.get('rpcport', 0)
 
