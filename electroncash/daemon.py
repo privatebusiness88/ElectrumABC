@@ -23,10 +23,13 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+from __future__ import annotations
+
 import ast
 import os
 import time
 import sys
+from typing import TYPE_CHECKING, Optional, Tuple
 
 from .constants import PROJECT_NAME, SCRIPT_NAME
 
@@ -43,6 +46,9 @@ from .commands import known_commands, Commands
 from .simple_config import SimpleConfig
 from .exchange_rate import FxThread
 
+if TYPE_CHECKING:
+    from .plugins import Plugins
+
 
 def get_lockfile(config):
     return os.path.join(config.path, 'daemon')
@@ -56,7 +62,8 @@ def remove_lockfile(lockfile):
         print_error("Could not remove lockfile:", lockfile, repr(e))
 
 
-def get_fd_or_server(config):
+def get_fd_or_server(
+    config: SimpleConfig) -> Tuple[Optional[int], Optional[jsonrpclib.Server]]:
     """Tries to create the lockfile, using O_EXCL to
     prevent races.  If it succeeds it returns the a tuple (fd, None).
     Otherwise try and connect to the server specified in the lockfile.
@@ -91,7 +98,7 @@ def get_fd_or_server(config):
              f"Last error was: {repr(latest_exc)}")
 
 
-def get_server(config, timeout=2.0):
+def get_server(config: SimpleConfig, timeout=2.0) -> Optional[jsonrpclib.Server]:
     assert timeout > 0.0
     lockfile = get_lockfile(config)
     while True:
@@ -147,7 +154,15 @@ def get_rpc_credentials(config):
 
 class Daemon(DaemonThread):
 
-    def __init__(self, config, fd, is_gui, plugins, *, listen_jsonrpc=True):
+    def __init__(
+        self,
+        config: SimpleConfig,
+        fd: int,
+        is_gui: bool,
+        plugins: Plugins,
+        *,
+        listen_jsonrpc: bool=True
+    ):
         DaemonThread.__init__(self)
         self.plugins = plugins
         self.config = config
