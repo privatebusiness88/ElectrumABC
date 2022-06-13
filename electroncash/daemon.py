@@ -65,7 +65,7 @@ def remove_lockfile(lockfile):
 def get_fd_or_server(
     config: SimpleConfig) -> Tuple[Optional[int], Optional[jsonrpclib.Server]]:
     """Tries to create the lockfile, using O_EXCL to
-    prevent races.  If it succeeds it returns the a tuple (fd, None).
+    prevent races.  If it succeeds it returns a tuple (fd, None).
     Otherwise try and connect to the server specified in the lockfile.
     If this succeeds, a tuple (None, server) is returned.
     Otherwise remove the lockfile and try again.
