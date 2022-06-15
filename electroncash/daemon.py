@@ -29,7 +29,7 @@ import ast
 import os
 import time
 import sys
-from typing import TYPE_CHECKING, Optional, Tuple
+from typing import TYPE_CHECKING, Dict, Optional, Tuple
 
 from .constants import PROJECT_NAME, SCRIPT_NAME
 
@@ -47,6 +47,7 @@ from .simple_config import SimpleConfig
 from .exchange_rate import FxThread
 
 if TYPE_CHECKING:
+    from .wallet import Abstract_Wallet
     from .plugins import Plugins
 
 
@@ -176,7 +177,7 @@ class Daemon(DaemonThread):
             self.network.add_jobs([self.fx])
         self.gui = None
         self.server = None
-        self.wallets = {}
+        self.wallets: Dict[str, Abstract_Wallet] = {}
         if listen_jsonrpc:
             # Setup JSONRPC server
             self.init_server(config, fd)
