@@ -600,6 +600,7 @@ class LedgerPlugin(HW_PluginBase):
     LEDGER_MODEL_IDS = {
         0x10: "Ledger Nano S",
         0x40: "Ledger Nano X",
+        0x50: "Ledger Nano S Plus",
     }
 
     def __init__(self, parent, config, name):
@@ -624,6 +625,8 @@ class LedgerPlugin(HW_PluginBase):
                 return True, "Ledger Nano S"
             if product_key == (0x2c97, 0x0004):
                 return True, "Ledger Nano X"
+            if product_key == (0x2c97, 0x0005):
+                return True, "Ledger Nano S Plus"
             return True, None
         # modern product_keys
         if product_key[0] == 0x2c97:
