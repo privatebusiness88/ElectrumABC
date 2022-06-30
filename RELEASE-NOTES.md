@@ -25,6 +25,17 @@ transactions as expected.
 
 # Release notes
 
+## Release 5.1.3
+
+- Add deamon commands `enable_autofuse` and `fusion_status` to run Cash Fusion
+  in command line mode (#219).
+- Fix unit for amounts in the output of the `history` command (#220).
+- Warn users about insufficient numbers of confirmations when using a UTXO to build
+  an avalanche proof (#221).
+- Electron Cash backports:
+  - Update Tor to version 0.4.7.8 with a patch for static linking.
+
+
 ## Release 5.1.2
 
 - Update the payment request protocol MIME types (BIP71)  (#213).
