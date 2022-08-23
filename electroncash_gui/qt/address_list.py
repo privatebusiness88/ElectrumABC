@@ -269,10 +269,10 @@ class AddressList(MyTreeWidget):
                     # Set Cash Accounts: tool tip.. this will read the minimal_chash
                     # attribute we added to this object above
                     self._ca_set_item_tooltip(address_item, ca_info)
-                address_item.setTextAlignment(3, Qt.AlignRight)
+                address_item.setTextAlignment(3, Qt.AlignRight | Qt.AlignVCenter)
                 address_item.setFont(3, self.monospace_font)
                 if fx:
-                    address_item.setTextAlignment(4, Qt.AlignRight)
+                    address_item.setTextAlignment(4, Qt.AlignRight | Qt.AlignVCenter)
                     address_item.setFont(4, self.monospace_font)
 
                 # Set col0 address font to monospace
