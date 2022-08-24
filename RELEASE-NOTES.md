@@ -25,6 +25,27 @@ transactions as expected.
 
 # Release notes
 
+## Release 5.1.4
+
+- Improvements to the invoice tool (#224):
+  - Make the dialog non-modal.
+  - Suggest a default filename when saving invoice.
+  - Show a corresponding fiat amount when entering an XEC amount.
+  - Add additional fields to the invoice: invoice id, recipient address, sender address.
+- Improvements to the Avalanche Proof editor (#229):
+  - Save proof to a file.
+  - Load proof from an hexadecimal string or a file, decode and view proofs.
+  - Enable collaborative proof building:
+    - signing stakes from a different wallet than the master wallet signing the proof;
+    - adding more signed stakes to an existing proof, from multiple staking wallets.
+  - Fix a bug in the coin consolidation tool when the user sets the target transaction
+    size to the absolute maximum allowed size (#226).
+- Fix a bug when running the `enable_autofuse` or `fusion_status` daemon commands
+  in a terminal session different from the `daemon start` session (#223).
+- Electron Cash backports (#230):
+  - Update Tor to version 0.4.7.10 with a patch for static linking.
+  - Update wine docker to ubuntu 22.04.
+
 ## Release 5.1.3
 
 - Add deamon commands `enable_autofuse` and `fusion_status` to run Cash Fusion
