@@ -541,7 +541,7 @@ class UTXOList(MyTreeWidget):
             utxos_for_json.append(utxo_for_json)
 
         fileName, _filter = QtWidgets.QFileDialog.getSaveFileName(
-            self, "Save UTXOs to file", filter="JSON files (*.json); All files (*)"
+            self, "Save UTXOs to file", filter="JSON files (*.json);;All files (*)"
         )
         if not fileName:
             return
