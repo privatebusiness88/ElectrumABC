@@ -49,8 +49,8 @@ the git clone command. You can check this using the `git remote -v` command.
 ```shell
 $ cd ElectrumABC
 $ git remote -v
-origin	git@github.com:your_username/ElectrumBCHA.git (fetch)
-origin	git@github.com:your_username/ElectrumBCHA.git (push)
+origin	git@github.com:your_username/ElectrumABC.git (fetch)
+origin	git@github.com:your_username/ElectrumABC.git (push)
 ```
 
 The next step is to also add the main repository to the available
@@ -59,8 +59,8 @@ remote repositories. Call it `upstream`.
 ```shell
 $ git remote add upstream https://github.com/Bitcoin-ABC/ElectrumABC.git
 $ git remote -v
-origin	git@github.com:your_username/ElectrumBCHA.git (fetch)
-origin	git@github.com:your_username/ElectrumBCHA.git (push)
+origin	git@github.com:your_username/ElectrumABC.git (fetch)
+origin	git@github.com:your_username/ElectrumABC.git (push)
 upstream	https://github.com/Bitcoin-ABC/ElectrumABC.git (fetch)
 upstream	https://github.com/Bitcoin-ABC/ElectrumABC.git (push)
 ```
