@@ -14,7 +14,7 @@ DISTDIR="$PROJECT_ROOT/dist"
 BUILDDIR="$CONTRIB/build-linux/appimage/build/appimage"
 APPDIR="$BUILDDIR/$PACKAGE.AppDir"
 CACHEDIR="$CONTRIB/build-linux/appimage/.cache/appimage"
-PYDIR="$APPDIR"/usr/lib/python3.9
+PYDIR="${APPDIR}/usr/lib/python${PY_VER_MAJOR}"
 
 export GCC_STRIP_BINARIES="1"
 
@@ -73,7 +73,7 @@ appdir_python() {
   env \
     PYTHONNOUSERSITE=1 \
     LD_LIBRARY_PATH="$APPDIR/usr/lib:$APPDIR/usr/lib/x86_64-linux-gnu${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}" \
-    "$APPDIR/usr/bin/python3.9" "$@"
+    "$APPDIR/usr/bin/python${PY_VER_MAJOR}" "$@"
 }
 
 python='appdir_python'
@@ -130,7 +130,7 @@ info "Finalizing AppDir"
     move_lib
 
     # apply global appimage blacklist to exclude stuff
-    # move usr/include out of the way to preserve usr/include/python3.9m.
+    # move usr/include out of the way to preserve usr/include/python${PY_VER_MAJOR}.
     mv usr/include usr/include.tmp
     delete_blacklisted
     mv usr/include.tmp usr/include
@@ -155,7 +155,7 @@ strip_binaries()
 {
   chmod u+w -R "$APPDIR"
   {
-    printf '%s\0' "$APPDIR/usr/bin/python3.9"
+    printf '%s\0' "$APPDIR/usr/bin/python${PY_VER_MAJOR}"
     find "$APPDIR" -type f -regex '.*\.so\(\.[0-9.]+\)?$' -print0
   } | xargs -0 --no-run-if-empty --verbose strip -R .note.gnu.build-id -R .comment
 }
