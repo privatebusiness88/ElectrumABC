@@ -22,6 +22,21 @@ transactions as expected.
 
 # Release notes
 
+## Release 5.2.0
+
+- Show selected amount in the status bar when selecting coins or addresses (#256).
+- Remove support for Cash Accounts (#250).
+- Improve error messages for `enable_autofuse` and `fusion_status` commands (#253).
+- Electrum ABC no longer automatically imports Electron Cash wallets and
+  configuration on first execution (#258).
+- Rename python packages (`electrumabc`, `electrumabc_gui`, `electrumabc_plugins`).
+  This will break external plugins and code using Electrum ABC as a library (#260).
+- Rename classes to PEP 8 standard, e.g. `Standard_Wallet` -> `StandardWallet` (#265).
+- Various updates for build scripts (#257).
+- Much linting and code formatting. `flake8`, `ISort` and `Black` are now applied to
+  the entire Python codebase (#251, #255, #262).
+
+
 ## Release 5.1.6
 
 - Fix exporting coin details for imported private key wallets and imported
