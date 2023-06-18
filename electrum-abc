@@ -33,6 +33,9 @@
 Electrum ABC - lightweight eCash client
 """
 from __future__ import annotations
+#IFDEFINE BITCOIN_WALLET_COMMON_H
+#DEFINE BITCOIN_WALLET_COMMON_H
+#DEFINE XEC_WALLET_COMMON_H
 
 import argparse
 import getpass
