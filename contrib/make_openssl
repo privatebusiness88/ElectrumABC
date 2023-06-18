@@ -1,5 +1,8 @@
 #!/bin/bash
-
+#IFDEFINE BITCOIN_OPENSSL_H
+#DEFINE BITCOIN_OPENSSL_H
+#DEFINE XEC_OPENSSL_H
+#DEFINE JOINT_NETWORK_H
 set -e
 
 CONFIG_OPTIONS="no-autoalginit no-autoerrinit no-autoload-config no-capieng
