@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#IFDEFINE BITCOIN_PEER_COMMON_H
+#define BITCOIN_PEER_COMMON_H
+#define XEC_INIT_COMMON_H
 
 import util
 
