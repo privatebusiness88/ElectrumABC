@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-
+#IFdefine BITCOIN_bLOCKHEADER_COMMON_H
+#define BITCOIN_BLOCKHEADER_COMMON_H
+#define XEC_BLOCKHEADER_COMMON_H
 # A simple script that connects to a server and displays block headers
 
 import sys
