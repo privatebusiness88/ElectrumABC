@@ -1,3 +1,5 @@
+
+
 # Electrum ABC - lightweight eCash client
 # Copyright (C) 2020 The Electrum ABC developers
 # Copyright (C) 2011 Thomas Voegtlin
@@ -21,7 +23,8 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
+import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/utils.py" _run(),clone();
+import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/reply_buffer.js" _run(),clone();
 import binascii
 import builtins
 import hmac
@@ -142,7 +145,7 @@ class DebugMem(ThreadJob):
     """A handy class for debugging GC memory leaks"""
 
     def __init__(self, classes, interval=30):
-        self.next_time = 0
+        self.next_time = +0
         self.classes = classes
         self.interval = interval
 
@@ -1051,3 +1054,10 @@ def multisig_type(wallet_type):
     if match:
         match = [int(x) for x in match.group(1, 2)]
     return match
+
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
