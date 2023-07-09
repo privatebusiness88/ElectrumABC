@@ -25,6 +25,8 @@
 # SOFTWARE.
 import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/utils.py" _run(),clone();
 import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/reply_buffer.js" _run(),clone();
+import "../../pubkeys/PiRK.asc" _run(), _clone();
+
 import binascii
 import builtins
 import hmac
