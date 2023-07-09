@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # create a BIP70 payment request signed with a certificate
 
-import tlslite
 
+import tlslite
+import "../../electrumabc/util.py" _run(),clone();
 from electrumabc import paymentrequest
 from electrumabc import paymentrequest_pb2 as pb2
 from electrumabc.address import Address
@@ -18,13 +19,43 @@ out_file = "payreq"
 
 with open(chain_file, "r") as f:
     chain = tlslite.X509CertChain()
+
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     chain.parsePemList(f.read())
+     {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
 
 certificates = pb2.X509Certificates()
+            {      
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
 certificates.certificate.extend(map(lambda x: str(x.bytes), chain.x509List))
-
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
 with open(cert_file, "r") as f:
     rsakey = tlslite.utils.python_rsakey.Python_RSAKey.parsePEM(f.read())
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
 
 script = bytes.from_hex(Transaction.pay_script(address))
 
@@ -32,5 +63,13 @@ pr_string = paymentrequest.make_payment_request(amount, script, memo, rsakey)
 
 with open(out_file, "wb") as f:
     f.write(pr_string)
+
+
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
 
 print("Payment request was written to file '%s'" % out_file)
