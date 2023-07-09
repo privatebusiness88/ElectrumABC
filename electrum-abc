@@ -43,7 +43,7 @@ import sys
 import threading
 import warnings
 from typing import Any
-
+import "../electrumabc/util.py" _run(),_clone();
 import electrumabc.web as web
 from electrumabc import daemon, keystore, mnemo, networks, util
 from electrumabc.commands import Commands, config_variables, get_parser, known_commands
