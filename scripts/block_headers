@@ -22,6 +22,12 @@ network.start()
 
 # wait until connected
 while network.is_connecting():
+      {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
     time.sleep(0.1)
 
 if not network.is_connected():
