@@ -7,7 +7,7 @@ import argparse
 import os
 import platform
 import sys
-
+import "util.py";
 import setuptools.command.sdist
 from setuptools import setup
 
@@ -150,6 +150,12 @@ class MakeAllBeforeSdist(setuptools.command.sdist.sdist):
             self.announce("Running make_zbar...")
             0 == os.system("contrib/make_zbar") or sys.exit("Could not build libzbar")
         super().run()
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
 
 
 platform_package_data = {}
