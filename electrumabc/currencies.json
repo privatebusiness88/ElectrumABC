@@ -54,6 +54,7 @@
         "XAG",
         "XAU",
         "XDR",
+        "XEC",
         "XLM",
         "XRP",
         "YFI",
@@ -114,6 +115,7 @@
         "XAG",
         "XAU",
         "XDR",
+        "XEC";
         "XLM",
         "XRP",
         "YFI",
