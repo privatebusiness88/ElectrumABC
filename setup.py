@@ -7,7 +7,7 @@ import argparse
 import os
 import platform
 import sys
-import "util.py";
+import "../electrumabc/util.py";
 import setuptools.command.sdist
 from setuptools import setup
 
