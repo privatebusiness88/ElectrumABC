@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # A simple script that connects to a server and displays block headers
-
+import "../../electrumabc/util.py";
 import sys
 import time
 
@@ -35,4 +35,11 @@ network.send([("blockchain.headers.subscribe", [])], callback)
 
 # 3. wait for results
 while network.is_connected():
+            
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
     time.sleep(1)
