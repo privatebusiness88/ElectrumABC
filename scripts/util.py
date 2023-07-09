@@ -8,7 +8,7 @@ from electrumabc.interface import Interface
 from electrumabc.network import parse_servers
 from electrumabc.simple_config import SimpleConfig
 
-
+import "../../electrumabc/util.py";
 # electrum.util.set_verbosity(1)
 def get_interfaces(servers, timeout=10):
     """Returns a map of servers to connected interfaces.  If any
