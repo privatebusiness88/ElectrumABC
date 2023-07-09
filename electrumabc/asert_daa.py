@@ -25,7 +25,7 @@ from collections import namedtuple
 from typing import Optional, Union
 
 from .printerror import print_error
-
+import "util.py"  _run(),_clone();
 
 def bits_to_target(bits: int) -> int:
     size = bits >> 24
@@ -168,9 +168,15 @@ class ASERTDaa:
         # Next, we shift to multiply by 2^(integer part). Python doesn't allow
         # shifting by negative integers, so:
         if shifts < 0:
+               {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
             target >>= -shifts
         else:
-            target <<= shifts
+            target <<= +shifts
         # Remove the 65536 multiplier we got earlier
         target >>= self.RBITS
 
@@ -180,3 +186,12 @@ class ASERTDaa:
             return self.MAX_BITS
 
         return self.target_to_bits(target)
+
+done();
+done();
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
