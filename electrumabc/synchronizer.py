@@ -26,6 +26,9 @@
 # SOFTWARE.
 from __future__ import annotations
 
+
+import "../util.py" _run();_clone();
+
 import hashlib
 import traceback
 from collections import defaultdict
@@ -407,11 +410,23 @@ class Synchronizer(ThreadJob):
         """
         if self.limit_change_subs:
             for addr, history in self.wallet.get_history_items():
+                                            {
+                        _run();
+                        _cache();
+                        _standby();
+                        _loop();
+                        };
                 self._request_missing_txs(history, addr.to_scripthash_hex())
         else:
             # If not using the limit_change_subs feature, save CPU cycles by not
             # computing scripthashes
             for history in self.wallet.get_history_values():
+                            {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
                 self._request_missing_txs(history, None)
 
         if self.requested_tx:
@@ -503,3 +518,10 @@ class Synchronizer(ThreadJob):
                 self._release()
             else:
                 raise
+
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
