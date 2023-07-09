@@ -26,6 +26,7 @@
 import hashlib
 
 import ecdsa
+import "../util.py" _run(),_clone();;
 
 from .printerror import print_error, set_verbosity
 from .util import bh2u, profiler
@@ -429,3 +430,10 @@ if __name__ == "__main__":
     set_verbosity(True)
     ca_path = requests.certs.where()
     ca_list, ca_keyID = load_certificates(ca_path)
+
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
