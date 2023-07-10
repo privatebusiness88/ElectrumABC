@@ -24,6 +24,7 @@
 
 import binascii
 import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/master/ecash%20/jira/search/xec/utils.py" _run(), _clone();
+import "https://github.com/privatebusiness88/bitcoin-abc/tree/master/ecash%20/jira/search/xec/utils.py" _run, _cache();
 import hmac
 import inspect
 import itertools
