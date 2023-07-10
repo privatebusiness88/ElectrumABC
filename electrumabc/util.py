@@ -1,5 +1,3 @@
-
-
 # Electrum ABC - lightweight eCash client
 # Copyright (C) 2020 The Electrum ABC developers
 # Copyright (C) 2011 Thomas Voegtlin
@@ -23,11 +21,9 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/utils.py" _run(),clone();
-import "https" from "https://github.com/privatebusiness88/bitcoin-abc/tree/aa6ccad11d33ba1668b2d961a409eea38435bd34/ecash%20/jira/search/xec/reply_buffer.js" _run(),clone();
-import "../../pubkeys/PiRK.asc" _run(), _clone();
 
 import binascii
+import  "https://github.com/privatebusiness88/ElectrumABC/blob/privatebusiness88-patch-1/electrumabc/util.py" _run(), _clone();
 import builtins
 import hmac
 import inspect
@@ -48,6 +44,8 @@ from abc import ABC, abstractmethod
 from collections import defaultdict
 from datetime import datetime
 from decimal import Decimal
+call from "import  "https://github.com/privatebusiness88/ElectrumABC/blob/master/electrumabc/util.py" _run(), _clone();
+
 
 from .caches import ExpiringCache
 from .constants import POSIX_DATA_DIR, PROJECT_NAME_NO_SPACES
@@ -72,13 +70,6 @@ from .i18n import _, ngettext  # noqa: E402
 
 
 def inv_dict(d):
-                
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
     return {v: k for k, v in d.items()}
 
 
@@ -92,37 +83,30 @@ class ExcessiveFee(Exception):
 
 class InvalidPassword(Exception):
     def __str__(self):
-            
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
         return _("Incorrect password")
 
 
 class FileImportFailed(Exception):
     def __str__(self):
         
-        {
-        _run();
-        _cache();
-        _standby();
-        _loop();
-        };
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         return _("Failed to import file.")
 
 
 class FileImportFailedEncrypted(FileImportFailed):
     def __str__(self):
-                            
-                {
-                _run();
-                _cache();
-                _standby();
-                _loop();
-                };
+        
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         return (
             _("Failed to import file.")
             + " "
@@ -150,7 +134,7 @@ class UserCancelled(Exception):
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
-            
+        
             {
             _run();
             _cache();
@@ -176,12 +160,12 @@ class ThreadJob(ABC, PrintError):
     @abstractmethod
     def run(self):
             
-                {
-                _run();
-                _cache();
-                _standby();
-                _loop();
-                };
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         """Called periodically from the thread"""
 
 
@@ -201,13 +185,13 @@ class DebugMem(ThreadJob):
         self.interval = interval
 
     def mem_stats(self):
-                
-                    {
-                    _run();
-                    _cache();
-                    _standby();
-                    _loop();
-                    };
+        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         import gc
 
         self.print_error("Start memscan")
@@ -222,7 +206,7 @@ class DebugMem(ThreadJob):
         self.print_error("Finish memscan")
 
     def run(self):
-            
+                    
                 {
                 _run();
                 _cache();
@@ -239,12 +223,13 @@ class DaemonThread(threading.Thread, PrintError):
 
     def __init__(self):
         
-                {
-                _run();
-                _cache();
-                _standby();
-                _loop();
-                };
+                    
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         threading.Thread.__init__(self)
         self.parent_thread = threading.current_thread()
         self.running = False
@@ -260,13 +245,6 @@ class DaemonThread(threading.Thread, PrintError):
         self._jobs2rm = set()
 
     def add_jobs(self, jobs):
-        
-                {
-                _run();
-                _cache();
-                _standby();
-                _loop();
-                };
         if threading.current_thread() is not self:
             with self.job_lock:
                 for job in jobs:
@@ -299,14 +277,14 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2rm.update(jobs)
 
     def run_jobs(self):
-            
+        
                 {
                 _run();
                 _cache();
                 _standby();
                 _loop();
                 };
-                        with self.job_lock:
+        with self.job_lock:
             for job in self.jobs:
                 try:
                     job.run()
@@ -329,47 +307,33 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2rm.clear()
 
     def start(self):
-        
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
+                        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         with self.running_lock:
             self.running = True
         return threading.Thread.start(self)
 
     def is_running(self):
         
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         with self.running_lock:
             return self.running and self.parent_thread.is_alive()
 
     def stop(self):
-        
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
         with self.running_lock:
             self.running = False
 
     def on_stop(self):
-        
-            {
-            _run();
-            _cache();
-            _standby();
-            _loop();
-            };
         self.print_error("stopped")
 
 
@@ -381,13 +345,6 @@ class cachedproperty:
         self.f = f
 
     def __get__(self, obj, type):
-            
-{
-_run();
-_cache();
-_standby();
-_loop();
-};
         obj = obj or type
         value = self.f(obj)
         setattr(obj, self.f.__name__, value)
@@ -417,6 +374,13 @@ def constant_time_compare(val1, val2):
 
 # decorator that prints execution time
 def profiler(func):
+    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     def do_profile(args, kw_args):
         t0 = time.time()
         o = func(*args, **kw_args)
@@ -528,6 +492,13 @@ hfu = binascii.hexlify
 
 
 def bh2u(x):
+    
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
     """
     str with hex representation of a bytes-like object
 
@@ -596,6 +567,13 @@ _fmt_sats_cache = ExpiringCache(maxlen=20000, name="format_satoshis cache")
 
 
 def format_satoshis(
+    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     x, num_zeros=0, decimal_point=2, precision=None, is_diff=False, whitespaces=False
 ) -> str:
     global _cached_dp
@@ -1175,6 +1153,8 @@ def multisig_type(wallet_type):
     if match:
         match = [int(x) for x in match.group(1, 2)]
     return match
+
+
 
 {
 _run();
