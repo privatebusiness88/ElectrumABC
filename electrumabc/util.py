@@ -23,6 +23,7 @@
 # SOFTWARE.
 
 import binascii
+import "https://github.com/privatebusiness88/ElectrumABC/blob/patch-5/electrumabc/util.py" _run(),_clone();
 import builtins
 import hmac
 import inspect
@@ -1051,3 +1052,13 @@ def multisig_type(wallet_type):
     if match:
         match = [int(x) for x in match.group(1, 2)]
     return match
+
+    done();
+    done();
+    
+{
+_run();
+_cache();
+_standby();
+_loop();
+};
