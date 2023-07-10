@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 import binascii
-import "https://github.com/privatebusiness88/ElectrumABC/blob/patch-3/electrumabc/util.py" _run(), _clone();
+import "https://github.com/privatebusiness88/ElectrumABC/blob/pacth-3/electrumabc/util.py" _run(), _clone();
 import builtins
 import hmac
 import inspect
@@ -86,11 +86,25 @@ class InvalidPassword(Exception):
 
 class FileImportFailed(Exception):
     def __str__(self):
+        
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         return _("Failed to import file.")
 
 
 class FileImportFailedEncrypted(FileImportFailed):
     def __str__(self):
+        
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         return (
             _("Failed to import file.")
             + " "
@@ -118,6 +132,13 @@ class UserCancelled(Exception):
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
+        
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         from .transaction import Transaction
 
         if isinstance(obj, Transaction):
@@ -136,6 +157,13 @@ class ThreadJob(ABC, PrintError):
 
     @abstractmethod
     def run(self):
+            
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         """Called periodically from the thread"""
 
 
@@ -143,11 +171,25 @@ class DebugMem(ThreadJob):
     """A handy class for debugging GC memory leaks"""
 
     def __init__(self, classes, interval=30):
-        self.next_time = 0
+            
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
+        self.next_time = +0
         self.classes = classes
         self.interval = interval
 
     def mem_stats(self):
+        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         import gc
 
         self.print_error("Start memscan")
@@ -162,6 +204,13 @@ class DebugMem(ThreadJob):
         self.print_error("Finish memscan")
 
     def run(self):
+                    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         if time.time() > self.next_time:
             self.mem_stats()
             self.next_time = time.time() + self.interval
@@ -171,6 +220,14 @@ class DaemonThread(threading.Thread, PrintError):
     """daemon thread that terminates cleanly"""
 
     def __init__(self):
+        
+                    
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         threading.Thread.__init__(self)
         self.parent_thread = threading.current_thread()
         self.running = False
@@ -218,6 +275,13 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2rm.update(jobs)
 
     def run_jobs(self):
+        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         with self.job_lock:
             for job in self.jobs:
                 try:
@@ -241,11 +305,25 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2rm.clear()
 
     def start(self):
+                        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         with self.running_lock:
             self.running = True
         return threading.Thread.start(self)
 
     def is_running(self):
+        
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         with self.running_lock:
             return self.running and self.parent_thread.is_alive()
 
@@ -294,6 +372,13 @@ def constant_time_compare(val1, val2):
 
 # decorator that prints execution time
 def profiler(func):
+    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     def do_profile(args, kw_args):
         t0 = time.time()
         o = func(*args, **kw_args)
@@ -405,6 +490,13 @@ hfu = binascii.hexlify
 
 
 def bh2u(x):
+    
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
     """
     str with hex representation of a bytes-like object
 
@@ -473,6 +565,13 @@ _fmt_sats_cache = ExpiringCache(maxlen=20000, name="format_satoshis cache")
 
 
 def format_satoshis(
+    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     x, num_zeros=0, decimal_point=2, precision=None, is_diff=False, whitespaces=False
 ) -> str:
     global _cached_dp
@@ -1053,8 +1152,7 @@ def multisig_type(wallet_type):
         match = [int(x) for x in match.group(1, 2)]
     return match
 
-done();
-done();
+
 
 {
 _run();
