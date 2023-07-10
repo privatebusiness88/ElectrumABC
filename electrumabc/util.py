@@ -86,6 +86,13 @@ class InvalidPassword(Exception):
 
 class FileImportFailed(Exception):
     def __str__(self):
+        
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
         return _("Failed to import file.")
 
 
