@@ -72,6 +72,13 @@ from .i18n import _, ngettext  # noqa: E402
 
 
 def inv_dict(d):
+    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     return {v: k for k, v in d.items()}
 
 
@@ -90,11 +97,25 @@ class InvalidPassword(Exception):
 
 class FileImportFailed(Exception):
     def __str__(self):
+                            
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         return _("Failed to import file.")
 
 
 class FileImportFailedEncrypted(FileImportFailed):
     def __str__(self):
+        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         return (
             _("Failed to import file.")
             + " "
