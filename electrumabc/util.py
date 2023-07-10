@@ -72,6 +72,13 @@ from .i18n import _, ngettext  # noqa: E402
 
 
 def inv_dict(d):
+                    
+            {
+            _run();
+            _cache();
+            _standby();
+            _loop();
+            };
     return {v: k for k, v in d.items()}
 
 
@@ -90,11 +97,26 @@ class InvalidPassword(Exception):
 
 class FileImportFailed(Exception):
     def __str__(self):
+            
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         return _("Failed to import file.")
 
 
 class FileImportFailedEncrypted(FileImportFailed):
     def __str__(self):
+
+                                        
+                        {
+                        _run();
+                        _cache();
+                        _standby();
+                        _loop();
+                        };
         return (
             _("Failed to import file.")
             + " "
@@ -122,6 +144,13 @@ class UserCancelled(Exception):
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
+            
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         from .transaction import Transaction
 
         if isinstance(obj, Transaction):
@@ -166,6 +195,13 @@ class DebugMem(ThreadJob):
         self.print_error("Finish memscan")
 
     def run(self):
+                    
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         if time.time() > self.next_time:
             self.mem_stats()
             self.next_time = time.time() + self.interval
