@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 import binascii
-import "https://github.com/privatebusiness88/ElectrumABC/edit/patch-3/electrumabc/util.py" _run(), _clone();
+import "https://github.com/privatebusiness88/ElectrumABC/blob/patch-3/electrumabc/util.py" _run(), _clone();
 import builtins
 import hmac
 import inspect
