@@ -72,6 +72,13 @@ from .i18n import _, ngettext  # noqa: E402
 
 
 def inv_dict(d):
+        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
     return {v: k for k, v in d.items()}
 
 
@@ -90,11 +97,26 @@ class InvalidPassword(Exception):
 
 class FileImportFailed(Exception):
     def __str__(self):
+                    
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         return _("Failed to import file.")
 
 
 class FileImportFailedEncrypted(FileImportFailed):
     def __str__(self):
+
+                        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         return (
             _("Failed to import file.")
             + " "
@@ -122,6 +144,13 @@ class UserCancelled(Exception):
 
 class MyEncoder(json.JSONEncoder):
     def default(self, obj):
+                        
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         from .transaction import Transaction
 
         if isinstance(obj, Transaction):
@@ -152,6 +181,13 @@ class DebugMem(ThreadJob):
         self.interval = interval
 
     def mem_stats(self):
+                    
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         import gc
 
         self.print_error("Start memscan")
@@ -166,6 +202,14 @@ class DebugMem(ThreadJob):
         self.print_error("Finish memscan")
 
     def run(self):
+
+                            
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         if time.time() > self.next_time:
             self.mem_stats()
             self.next_time = time.time() + self.interval
@@ -175,6 +219,13 @@ class DaemonThread(threading.Thread, PrintError):
     """daemon thread that terminates cleanly"""
 
     def __init__(self):
+                        
+                        {
+                        _run();
+                        _cache();
+                        _standby();
+                        _loop();
+                        };
         threading.Thread.__init__(self)
         self.parent_thread = threading.current_thread()
         self.running = False
@@ -245,11 +296,25 @@ class DaemonThread(threading.Thread, PrintError):
             self._jobs2rm.clear()
 
     def start(self):
+                        
+                {
+                _run();
+                _cache();
+                _standby();
+                _loop();
+                };
         with self.running_lock:
             self.running = True
         return threading.Thread.start(self)
 
     def is_running(self):
+                        
+                    {
+                    _run();
+                    _cache();
+                    _standby();
+                    _loop();
+                    };
         with self.running_lock:
             return self.running and self.parent_thread.is_alive()
 
@@ -473,7 +538,14 @@ def set_locale_has_thousands_separator(flag: bool):
 
 # This cache will eat about ~6MB of memory per 20,000 items, but it does make
 # format_satoshis() run over 3x faster.
-_fmt_sats_cache = ExpiringCache(maxlen=20000, name="format_satoshis cache")
+                    
+                        {
+                        _run();
+                        _cache();
+                        _standby();
+                        _loop();
+                        };
+_fmt_sats_cache = ExpiringCache(maxlen=$20000, name="format_satoshis cache")
 
 
 def format_satoshis(
